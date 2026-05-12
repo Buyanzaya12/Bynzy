@@ -115,6 +115,7 @@ model type_translation {
 model brand {
     id         Int      @id @default(autoincrement())
     name       String
+    image_url  String?
     code       String   @unique
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
@@ -126,9 +127,9 @@ model color {
     id           Int                 @id @default(autoincrement())
     translations color_translation[]
     code         String              @unique
-
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    image_url    String?
+    created_at   DateTime            @default(now())
+    updated_at   DateTime            @updatedAt
 
     products product[]
 }
@@ -168,8 +169,72 @@ model product {
     stock      product_stock?
     stock_logs product_stock_log[]
 
-    cart_items user_cart_item[]
-    favourite  user_favorite[]
+    cart_items            user_cart_item[]
+    favourite             user_favorite[]
+    availability_id       Int?
+    availability          product_availability?  @relation(fields: [availability_id], references: [id])
+    stock_profile_id      Int?
+    stock_profile         product_stock_profile? @relation(fields: [stock_profile_id], references: [id])
+    product_audiences     product_audience[]
+    product_home_sections product_home_section[]
+    product_attributes    product_attribute[]
+        arrival_date DateTime?
+product_unit_maps product_unit_map[]
+}
+
+model product_unit {
+    id            Int                        @id @default(autoincrement())
+    code          String                     @unique
+    translations  product_unit_translation[]
+    product_units product_unit_map[]
+
+    created_at DateTime  @default(now())
+    updated_at DateTime  @updatedAt
+}
+
+model product_unit_translation {
+    id         Int      @id @default(autoincrement())
+    unit_id    Int
+    language   Language
+    name       String
+    short_name String?
+
+    unit product_unit @relation(fields: [unit_id], references: [id])
+
+    @@unique([unit_id, language])
+}
+
+model product_unit_map {
+    id               Int    @id @default(autoincrement())
+    product_id       Int
+    unit_id          Int
+    quantity_in_base Int
+    price            Float?
+
+    product product      @relation(fields: [product_id], references: [id])
+    unit    product_unit @relation(fields: [unit_id], references: [id])
+
+    @@unique([product_id, unit_id])
+}
+
+model product_availability {
+    id           Int                                @id @default(autoincrement())
+    code         String                             @unique
+    translations product_availability_translation[]
+    products     product[]
+    created_at   DateTime                           @default(now())
+    updated_at   DateTime                           @updatedAt
+}
+
+model product_availability_translation {
+    id              Int      @id @default(autoincrement())
+    availability_id Int
+    language        Language
+    name            String
+
+    availability product_availability @relation(fields: [availability_id], references: [id])
+
+    @@unique([availability_id, language])
 }
 
 model product_image {
@@ -195,6 +260,89 @@ model product_translation {
     @@unique([product_id, language])
 }
 
+model product_attribute_type {
+    id                Int                                  @id @default(autoincrement())
+    code              String                               @unique
+    translations      product_attribute_type_translation[]
+    display_order     Int                                  @default(0)
+    product_attributes product_attribute[]
+    created_at        DateTime                             @default(now())
+    updated_at        DateTime                             @updatedAt
+}
+
+model product_attribute_type_translation {
+    id       Int      @id @default(autoincrement())
+    type_id  Int
+    language Language
+    name     String
+
+    type product_attribute_type @relation(fields: [type_id], references: [id])
+
+    @@unique([type_id, language])
+}
+
+model product_attribute {
+    id         Int    @id @default(autoincrement())
+    product_id Int
+    type_id    Int
+    value      String
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    product product                @relation(fields: [product_id], references: [id])
+    type    product_attribute_type @relation(fields: [type_id], references: [id])
+    @@unique([product_id, type_id])
+    @@index([product_id])
+@@index([type_id])
+}
+
+model audience {
+    id               Int                @id @default(autoincrement())
+    code             String             @unique
+    name             String
+    product_audiences product_audience[]
+    created_at       DateTime           @default(now())
+    updated_at       DateTime           @updatedAt
+}
+
+model product_audience {
+    id          Int @id @default(autoincrement())
+    product_id  Int
+    audience_id Int
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    product  product  @relation(fields: [product_id], references: [id])
+    audience audience @relation(fields: [audience_id], references: [id])
+    @@index([product_id])
+    @@index([audience_id])
+}
+
+model home_section {
+    id       Int                    @id @default(autoincrement())
+    name     String
+    code     String
+    products product_home_section[]
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+
+model product_home_section {
+    id         Int          @id @default(autoincrement())
+    section_id Int
+    section    home_section @relation(fields: [section_id], references: [id])
+    product_id Int
+    product    product      @relation(fields: [product_id], references: [id])
+    created_at DateTime     @default(now())
+    updated_at DateTime     @updatedAt
+
+    @@unique([section_id, product_id])
+    @@index([product_id])
+    @@index([section_id])
+}
+
 model product_stock {
     id         Int @id @default(autoincrement())
     product_id Int @unique
@@ -204,6 +352,30 @@ model product_stock {
     updated_at DateTime @updatedAt
 
     product product @relation(fields: [product_id], references: [id])
+}
+
+model product_stock_profile {
+    id           Int                                 @id @default(autoincrement())
+    code         String                              @unique
+    translations product_stock_profile_translation[]
+
+    low_stock_threshold Int
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    products product[]
+}
+
+model product_stock_profile_translation {
+    id         Int      @id @default(autoincrement())
+    profile_id Int
+    language   Language
+    name       String
+
+    profile product_stock_profile @relation(fields: [profile_id], references: [id])
+
+    @@unique([profile_id, language])
 }
 
 model product_stock_log {

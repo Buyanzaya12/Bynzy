@@ -7,16 +7,16 @@ const generateCode = (name: string) => {
 
 export const addBrand = async (req: Request, res: Response) => {
   try {
-    const { name, name_en, code } = req.body;
+    const { name, image_url, code } = req.body;
 
-    if (!name || !code) {
+    if (!name || !image_url || !code) {
       return res.status(400).json({ error: "Missing fields" });
     }
 
     const brand = await prisma.brand.create({
       data: {
         name,
-        name_en,
+        image_url,
         code,
       },
     });
@@ -84,7 +84,7 @@ export const updateBrand = async (
 ): Promise<void> => {
   try {
     const id = Number(req.params.id);
-    const { name } = req.body;
+    const { name, image_url, code } = req.body;
 
     if (!id) {
       res.status(400).json({ error: "Valid ID required" });
@@ -96,13 +96,13 @@ export const updateBrand = async (
       return;
     }
 
-    const code = generateCode(name);
+    
 
     const brand = await prisma.brand.update({
       where: { id },
       data: {
         name,
-        name_en: name,
+        image_url,
         code,
       },
     });

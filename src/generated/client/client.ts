@@ -103,6 +103,31 @@ export type color_translation = Prisma.color_translationModel
  */
 export type product = Prisma.productModel
 /**
+ * Model product_unit
+ * 
+ */
+export type product_unit = Prisma.product_unitModel
+/**
+ * Model product_unit_translation
+ * 
+ */
+export type product_unit_translation = Prisma.product_unit_translationModel
+/**
+ * Model product_unit_map
+ * 
+ */
+export type product_unit_map = Prisma.product_unit_mapModel
+/**
+ * Model product_availability
+ * 
+ */
+export type product_availability = Prisma.product_availabilityModel
+/**
+ * Model product_availability_translation
+ * 
+ */
+export type product_availability_translation = Prisma.product_availability_translationModel
+/**
  * Model product_image
  * 
  */
@@ -113,10 +138,55 @@ export type product_image = Prisma.product_imageModel
  */
 export type product_translation = Prisma.product_translationModel
 /**
+ * Model product_attribute_type
+ * 
+ */
+export type product_attribute_type = Prisma.product_attribute_typeModel
+/**
+ * Model product_attribute_type_translation
+ * 
+ */
+export type product_attribute_type_translation = Prisma.product_attribute_type_translationModel
+/**
+ * Model product_attribute
+ * 
+ */
+export type product_attribute = Prisma.product_attributeModel
+/**
+ * Model audience
+ * 
+ */
+export type audience = Prisma.audienceModel
+/**
+ * Model product_audience
+ * 
+ */
+export type product_audience = Prisma.product_audienceModel
+/**
+ * Model home_section
+ * 
+ */
+export type home_section = Prisma.home_sectionModel
+/**
+ * Model product_home_section
+ * 
+ */
+export type product_home_section = Prisma.product_home_sectionModel
+/**
  * Model product_stock
  * 
  */
 export type product_stock = Prisma.product_stockModel
+/**
+ * Model product_stock_profile
+ * 
+ */
+export type product_stock_profile = Prisma.product_stock_profileModel
+/**
+ * Model product_stock_profile_translation
+ * 
+ */
+export type product_stock_profile_translation = Prisma.product_stock_profile_translationModel
 /**
  * Model product_stock_log
  * 

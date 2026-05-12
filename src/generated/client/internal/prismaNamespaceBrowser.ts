@@ -61,9 +61,23 @@ export const ModelName = {
   color: 'color',
   color_translation: 'color_translation',
   product: 'product',
+  product_unit: 'product_unit',
+  product_unit_translation: 'product_unit_translation',
+  product_unit_map: 'product_unit_map',
+  product_availability: 'product_availability',
+  product_availability_translation: 'product_availability_translation',
   product_image: 'product_image',
   product_translation: 'product_translation',
+  product_attribute_type: 'product_attribute_type',
+  product_attribute_type_translation: 'product_attribute_type_translation',
+  product_attribute: 'product_attribute',
+  audience: 'audience',
+  product_audience: 'product_audience',
+  home_section: 'home_section',
+  product_home_section: 'product_home_section',
   product_stock: 'product_stock',
+  product_stock_profile: 'product_stock_profile',
+  product_stock_profile_translation: 'product_stock_profile_translation',
   product_stock_log: 'product_stock_log'
 } as const
 
@@ -176,6 +190,7 @@ export type Type_translationScalarFieldEnum = (typeof Type_translationScalarFiel
 export const BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  image_url: 'image_url',
   code: 'code',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -187,6 +202,7 @@ export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof Br
 export const ColorScalarFieldEnum = {
   id: 'id',
   code: 'code',
+  image_url: 'image_url',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -213,10 +229,65 @@ export const ProductScalarFieldEnum = {
   brand_id: 'brand_id',
   color_id: 'color_id',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  availability_id: 'availability_id',
+  stock_profile_id: 'stock_profile_id',
+  arrival_date: 'arrival_date'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const Product_unitScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_unitScalarFieldEnum = (typeof Product_unitScalarFieldEnum)[keyof typeof Product_unitScalarFieldEnum]
+
+
+export const Product_unit_translationScalarFieldEnum = {
+  id: 'id',
+  unit_id: 'unit_id',
+  language: 'language',
+  name: 'name',
+  short_name: 'short_name'
+} as const
+
+export type Product_unit_translationScalarFieldEnum = (typeof Product_unit_translationScalarFieldEnum)[keyof typeof Product_unit_translationScalarFieldEnum]
+
+
+export const Product_unit_mapScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  unit_id: 'unit_id',
+  quantity_in_base: 'quantity_in_base',
+  price: 'price'
+} as const
+
+export type Product_unit_mapScalarFieldEnum = (typeof Product_unit_mapScalarFieldEnum)[keyof typeof Product_unit_mapScalarFieldEnum]
+
+
+export const Product_availabilityScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_availabilityScalarFieldEnum = (typeof Product_availabilityScalarFieldEnum)[keyof typeof Product_availabilityScalarFieldEnum]
+
+
+export const Product_availability_translationScalarFieldEnum = {
+  id: 'id',
+  availability_id: 'availability_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Product_availability_translationScalarFieldEnum = (typeof Product_availability_translationScalarFieldEnum)[keyof typeof Product_availability_translationScalarFieldEnum]
 
 
 export const Product_imageScalarFieldEnum = {
@@ -241,6 +312,83 @@ export const Product_translationScalarFieldEnum = {
 export type Product_translationScalarFieldEnum = (typeof Product_translationScalarFieldEnum)[keyof typeof Product_translationScalarFieldEnum]
 
 
+export const Product_attribute_typeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  display_order: 'display_order',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_attribute_typeScalarFieldEnum = (typeof Product_attribute_typeScalarFieldEnum)[keyof typeof Product_attribute_typeScalarFieldEnum]
+
+
+export const Product_attribute_type_translationScalarFieldEnum = {
+  id: 'id',
+  type_id: 'type_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Product_attribute_type_translationScalarFieldEnum = (typeof Product_attribute_type_translationScalarFieldEnum)[keyof typeof Product_attribute_type_translationScalarFieldEnum]
+
+
+export const Product_attributeScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  type_id: 'type_id',
+  value: 'value',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_attributeScalarFieldEnum = (typeof Product_attributeScalarFieldEnum)[keyof typeof Product_attributeScalarFieldEnum]
+
+
+export const AudienceScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type AudienceScalarFieldEnum = (typeof AudienceScalarFieldEnum)[keyof typeof AudienceScalarFieldEnum]
+
+
+export const Product_audienceScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  audience_id: 'audience_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_audienceScalarFieldEnum = (typeof Product_audienceScalarFieldEnum)[keyof typeof Product_audienceScalarFieldEnum]
+
+
+export const Home_sectionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Home_sectionScalarFieldEnum = (typeof Home_sectionScalarFieldEnum)[keyof typeof Home_sectionScalarFieldEnum]
+
+
+export const Product_home_sectionScalarFieldEnum = {
+  id: 'id',
+  section_id: 'section_id',
+  product_id: 'product_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_home_sectionScalarFieldEnum = (typeof Product_home_sectionScalarFieldEnum)[keyof typeof Product_home_sectionScalarFieldEnum]
+
+
 export const Product_stockScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
@@ -250,6 +398,27 @@ export const Product_stockScalarFieldEnum = {
 } as const
 
 export type Product_stockScalarFieldEnum = (typeof Product_stockScalarFieldEnum)[keyof typeof Product_stockScalarFieldEnum]
+
+
+export const Product_stock_profileScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  low_stock_threshold: 'low_stock_threshold',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Product_stock_profileScalarFieldEnum = (typeof Product_stock_profileScalarFieldEnum)[keyof typeof Product_stock_profileScalarFieldEnum]
+
+
+export const Product_stock_profile_translationScalarFieldEnum = {
+  id: 'id',
+  profile_id: 'profile_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Product_stock_profile_translationScalarFieldEnum = (typeof Product_stock_profile_translationScalarFieldEnum)[keyof typeof Product_stock_profile_translationScalarFieldEnum]
 
 
 export const Product_stock_logScalarFieldEnum = {

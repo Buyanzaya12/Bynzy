@@ -37,6 +37,7 @@ export type ColorSumAggregateOutputType = {
 export type ColorMinAggregateOutputType = {
   id: number | null
   code: string | null
+  image_url: string | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -44,6 +45,7 @@ export type ColorMinAggregateOutputType = {
 export type ColorMaxAggregateOutputType = {
   id: number | null
   code: string | null
+  image_url: string | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -51,6 +53,7 @@ export type ColorMaxAggregateOutputType = {
 export type ColorCountAggregateOutputType = {
   id: number
   code: number
+  image_url: number
   created_at: number
   updated_at: number
   _all: number
@@ -68,6 +71,7 @@ export type ColorSumAggregateInputType = {
 export type ColorMinAggregateInputType = {
   id?: true
   code?: true
+  image_url?: true
   created_at?: true
   updated_at?: true
 }
@@ -75,6 +79,7 @@ export type ColorMinAggregateInputType = {
 export type ColorMaxAggregateInputType = {
   id?: true
   code?: true
+  image_url?: true
   created_at?: true
   updated_at?: true
 }
@@ -82,6 +87,7 @@ export type ColorMaxAggregateInputType = {
 export type ColorCountAggregateInputType = {
   id?: true
   code?: true
+  image_url?: true
   created_at?: true
   updated_at?: true
   _all?: true
@@ -176,6 +182,7 @@ export type colorGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type ColorGroupByOutputType = {
   id: number
   code: string
+  image_url: string | null
   created_at: Date
   updated_at: Date
   _count: ColorCountAggregateOutputType | null
@@ -206,6 +213,7 @@ export type colorWhereInput = {
   NOT?: Prisma.colorWhereInput | Prisma.colorWhereInput[]
   id?: Prisma.IntFilter<"color"> | number
   code?: Prisma.StringFilter<"color"> | string
+  image_url?: Prisma.StringNullableFilter<"color"> | string | null
   created_at?: Prisma.DateTimeFilter<"color"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"color"> | Date | string
   translations?: Prisma.Color_translationListRelationFilter
@@ -215,6 +223,7 @@ export type colorWhereInput = {
 export type colorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  image_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   translations?: Prisma.color_translationOrderByRelationAggregateInput
@@ -227,6 +236,7 @@ export type colorWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.colorWhereInput | Prisma.colorWhereInput[]
   OR?: Prisma.colorWhereInput[]
   NOT?: Prisma.colorWhereInput | Prisma.colorWhereInput[]
+  image_url?: Prisma.StringNullableFilter<"color"> | string | null
   created_at?: Prisma.DateTimeFilter<"color"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"color"> | Date | string
   translations?: Prisma.Color_translationListRelationFilter
@@ -236,6 +246,7 @@ export type colorWhereUniqueInput = Prisma.AtLeast<{
 export type colorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  image_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   _count?: Prisma.colorCountOrderByAggregateInput
@@ -251,12 +262,14 @@ export type colorScalarWhereWithAggregatesInput = {
   NOT?: Prisma.colorScalarWhereWithAggregatesInput | Prisma.colorScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"color"> | number
   code?: Prisma.StringWithAggregatesFilter<"color"> | string
+  image_url?: Prisma.StringNullableWithAggregatesFilter<"color"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"color"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"color"> | Date | string
 }
 
 export type colorCreateInput = {
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.color_translationCreateNestedManyWithoutColorInput
@@ -266,6 +279,7 @@ export type colorCreateInput = {
 export type colorUncheckedCreateInput = {
   id?: number
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.color_translationUncheckedCreateNestedManyWithoutColorInput
@@ -274,6 +288,7 @@ export type colorUncheckedCreateInput = {
 
 export type colorUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUpdateManyWithoutColorNestedInput
@@ -283,6 +298,7 @@ export type colorUpdateInput = {
 export type colorUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUncheckedUpdateManyWithoutColorNestedInput
@@ -292,12 +308,14 @@ export type colorUncheckedUpdateInput = {
 export type colorCreateManyInput = {
   id?: number
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
 }
 
 export type colorUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -305,6 +323,7 @@ export type colorUpdateManyMutationInput = {
 export type colorUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -312,6 +331,7 @@ export type colorUncheckedUpdateManyInput = {
 export type colorCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  image_url?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -323,6 +343,7 @@ export type colorAvgOrderByAggregateInput = {
 export type colorMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  image_url?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -330,6 +351,7 @@ export type colorMaxOrderByAggregateInput = {
 export type colorMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  image_url?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -380,6 +402,7 @@ export type colorUpdateOneWithoutProductsNestedInput = {
 
 export type colorCreateWithoutTranslationsInput = {
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   products?: Prisma.productCreateNestedManyWithoutColorInput
@@ -388,6 +411,7 @@ export type colorCreateWithoutTranslationsInput = {
 export type colorUncheckedCreateWithoutTranslationsInput = {
   id?: number
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   products?: Prisma.productUncheckedCreateNestedManyWithoutColorInput
@@ -411,6 +435,7 @@ export type colorUpdateToOneWithWhereWithoutTranslationsInput = {
 
 export type colorUpdateWithoutTranslationsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.productUpdateManyWithoutColorNestedInput
@@ -419,6 +444,7 @@ export type colorUpdateWithoutTranslationsInput = {
 export type colorUncheckedUpdateWithoutTranslationsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.productUncheckedUpdateManyWithoutColorNestedInput
@@ -426,6 +452,7 @@ export type colorUncheckedUpdateWithoutTranslationsInput = {
 
 export type colorCreateWithoutProductsInput = {
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.color_translationCreateNestedManyWithoutColorInput
@@ -434,6 +461,7 @@ export type colorCreateWithoutProductsInput = {
 export type colorUncheckedCreateWithoutProductsInput = {
   id?: number
   code: string
+  image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.color_translationUncheckedCreateNestedManyWithoutColorInput
@@ -457,6 +485,7 @@ export type colorUpdateToOneWithWhereWithoutProductsInput = {
 
 export type colorUpdateWithoutProductsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUpdateManyWithoutColorNestedInput
@@ -465,6 +494,7 @@ export type colorUpdateWithoutProductsInput = {
 export type colorUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUncheckedUpdateManyWithoutColorNestedInput
@@ -513,6 +543,7 @@ export type ColorCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.
 export type colorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
+  image_url?: boolean
   created_at?: boolean
   updated_at?: boolean
   translations?: boolean | Prisma.color$translationsArgs<ExtArgs>
@@ -523,6 +554,7 @@ export type colorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type colorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
+  image_url?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["color"]>
@@ -530,6 +562,7 @@ export type colorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type colorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
+  image_url?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["color"]>
@@ -537,11 +570,12 @@ export type colorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type colorSelectScalar = {
   id?: boolean
   code?: boolean
+  image_url?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type colorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "created_at" | "updated_at", ExtArgs["result"]["color"]>
+export type colorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "image_url" | "created_at" | "updated_at", ExtArgs["result"]["color"]>
 export type colorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   translations?: boolean | Prisma.color$translationsArgs<ExtArgs>
   products?: boolean | Prisma.color$productsArgs<ExtArgs>
@@ -559,6 +593,7 @@ export type $colorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     code: string
+    image_url: string | null
     created_at: Date
     updated_at: Date
   }, ExtArgs["result"]["color"]>
@@ -988,6 +1023,7 @@ export interface Prisma__colorClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface colorFieldRefs {
   readonly id: Prisma.FieldRef<"color", 'Int'>
   readonly code: Prisma.FieldRef<"color", 'String'>
+  readonly image_url: Prisma.FieldRef<"color", 'String'>
   readonly created_at: Prisma.FieldRef<"color", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"color", 'DateTime'>
 }

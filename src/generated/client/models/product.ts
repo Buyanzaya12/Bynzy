@@ -33,6 +33,8 @@ export type ProductAvgAggregateOutputType = {
   type_id: number | null
   brand_id: number | null
   color_id: number | null
+  availability_id: number | null
+  stock_profile_id: number | null
 }
 
 export type ProductSumAggregateOutputType = {
@@ -42,6 +44,8 @@ export type ProductSumAggregateOutputType = {
   type_id: number | null
   brand_id: number | null
   color_id: number | null
+  availability_id: number | null
+  stock_profile_id: number | null
 }
 
 export type ProductMinAggregateOutputType = {
@@ -54,6 +58,9 @@ export type ProductMinAggregateOutputType = {
   color_id: number | null
   created_at: Date | null
   updated_at: Date | null
+  availability_id: number | null
+  stock_profile_id: number | null
+  arrival_date: Date | null
 }
 
 export type ProductMaxAggregateOutputType = {
@@ -66,6 +73,9 @@ export type ProductMaxAggregateOutputType = {
   color_id: number | null
   created_at: Date | null
   updated_at: Date | null
+  availability_id: number | null
+  stock_profile_id: number | null
+  arrival_date: Date | null
 }
 
 export type ProductCountAggregateOutputType = {
@@ -78,6 +88,9 @@ export type ProductCountAggregateOutputType = {
   color_id: number
   created_at: number
   updated_at: number
+  availability_id: number
+  stock_profile_id: number
+  arrival_date: number
   _all: number
 }
 
@@ -89,6 +102,8 @@ export type ProductAvgAggregateInputType = {
   type_id?: true
   brand_id?: true
   color_id?: true
+  availability_id?: true
+  stock_profile_id?: true
 }
 
 export type ProductSumAggregateInputType = {
@@ -98,6 +113,8 @@ export type ProductSumAggregateInputType = {
   type_id?: true
   brand_id?: true
   color_id?: true
+  availability_id?: true
+  stock_profile_id?: true
 }
 
 export type ProductMinAggregateInputType = {
@@ -110,6 +127,9 @@ export type ProductMinAggregateInputType = {
   color_id?: true
   created_at?: true
   updated_at?: true
+  availability_id?: true
+  stock_profile_id?: true
+  arrival_date?: true
 }
 
 export type ProductMaxAggregateInputType = {
@@ -122,6 +142,9 @@ export type ProductMaxAggregateInputType = {
   color_id?: true
   created_at?: true
   updated_at?: true
+  availability_id?: true
+  stock_profile_id?: true
+  arrival_date?: true
 }
 
 export type ProductCountAggregateInputType = {
@@ -134,6 +157,9 @@ export type ProductCountAggregateInputType = {
   color_id?: true
   created_at?: true
   updated_at?: true
+  availability_id?: true
+  stock_profile_id?: true
+  arrival_date?: true
   _all?: true
 }
 
@@ -233,6 +259,9 @@ export type ProductGroupByOutputType = {
   color_id: number | null
   created_at: Date
   updated_at: Date
+  availability_id: number | null
+  stock_profile_id: number | null
+  arrival_date: Date | null
   _count: ProductCountAggregateOutputType | null
   _avg: ProductAvgAggregateOutputType | null
   _sum: ProductSumAggregateOutputType | null
@@ -268,6 +297,9 @@ export type productWhereInput = {
   color_id?: Prisma.IntNullableFilter<"product"> | number | null
   created_at?: Prisma.DateTimeFilter<"product"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product"> | Date | string
+  availability_id?: Prisma.IntNullableFilter<"product"> | number | null
+  stock_profile_id?: Prisma.IntNullableFilter<"product"> | number | null
+  arrival_date?: Prisma.DateTimeNullableFilter<"product"> | Date | string | null
   translations?: Prisma.Product_translationListRelationFilter
   type?: Prisma.XOR<Prisma.TypeScalarRelationFilter, Prisma.typeWhereInput>
   brand?: Prisma.XOR<Prisma.BrandNullableScalarRelationFilter, Prisma.brandWhereInput> | null
@@ -277,6 +309,12 @@ export type productWhereInput = {
   stock_logs?: Prisma.Product_stock_logListRelationFilter
   cart_items?: Prisma.User_cart_itemListRelationFilter
   favourite?: Prisma.User_favoriteListRelationFilter
+  availability?: Prisma.XOR<Prisma.Product_availabilityNullableScalarRelationFilter, Prisma.product_availabilityWhereInput> | null
+  stock_profile?: Prisma.XOR<Prisma.Product_stock_profileNullableScalarRelationFilter, Prisma.product_stock_profileWhereInput> | null
+  product_audiences?: Prisma.Product_audienceListRelationFilter
+  product_home_sections?: Prisma.Product_home_sectionListRelationFilter
+  product_attributes?: Prisma.Product_attributeListRelationFilter
+  product_unit_maps?: Prisma.Product_unit_mapListRelationFilter
 }
 
 export type productOrderByWithRelationInput = {
@@ -289,6 +327,9 @@ export type productOrderByWithRelationInput = {
   color_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  arrival_date?: Prisma.SortOrderInput | Prisma.SortOrder
   translations?: Prisma.product_translationOrderByRelationAggregateInput
   type?: Prisma.typeOrderByWithRelationInput
   brand?: Prisma.brandOrderByWithRelationInput
@@ -298,6 +339,12 @@ export type productOrderByWithRelationInput = {
   stock_logs?: Prisma.product_stock_logOrderByRelationAggregateInput
   cart_items?: Prisma.user_cart_itemOrderByRelationAggregateInput
   favourite?: Prisma.user_favoriteOrderByRelationAggregateInput
+  availability?: Prisma.product_availabilityOrderByWithRelationInput
+  stock_profile?: Prisma.product_stock_profileOrderByWithRelationInput
+  product_audiences?: Prisma.product_audienceOrderByRelationAggregateInput
+  product_home_sections?: Prisma.product_home_sectionOrderByRelationAggregateInput
+  product_attributes?: Prisma.product_attributeOrderByRelationAggregateInput
+  product_unit_maps?: Prisma.product_unit_mapOrderByRelationAggregateInput
 }
 
 export type productWhereUniqueInput = Prisma.AtLeast<{
@@ -313,6 +360,9 @@ export type productWhereUniqueInput = Prisma.AtLeast<{
   color_id?: Prisma.IntNullableFilter<"product"> | number | null
   created_at?: Prisma.DateTimeFilter<"product"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product"> | Date | string
+  availability_id?: Prisma.IntNullableFilter<"product"> | number | null
+  stock_profile_id?: Prisma.IntNullableFilter<"product"> | number | null
+  arrival_date?: Prisma.DateTimeNullableFilter<"product"> | Date | string | null
   translations?: Prisma.Product_translationListRelationFilter
   type?: Prisma.XOR<Prisma.TypeScalarRelationFilter, Prisma.typeWhereInput>
   brand?: Prisma.XOR<Prisma.BrandNullableScalarRelationFilter, Prisma.brandWhereInput> | null
@@ -322,6 +372,12 @@ export type productWhereUniqueInput = Prisma.AtLeast<{
   stock_logs?: Prisma.Product_stock_logListRelationFilter
   cart_items?: Prisma.User_cart_itemListRelationFilter
   favourite?: Prisma.User_favoriteListRelationFilter
+  availability?: Prisma.XOR<Prisma.Product_availabilityNullableScalarRelationFilter, Prisma.product_availabilityWhereInput> | null
+  stock_profile?: Prisma.XOR<Prisma.Product_stock_profileNullableScalarRelationFilter, Prisma.product_stock_profileWhereInput> | null
+  product_audiences?: Prisma.Product_audienceListRelationFilter
+  product_home_sections?: Prisma.Product_home_sectionListRelationFilter
+  product_attributes?: Prisma.Product_attributeListRelationFilter
+  product_unit_maps?: Prisma.Product_unit_mapListRelationFilter
 }, "id" | "code">
 
 export type productOrderByWithAggregationInput = {
@@ -334,6 +390,9 @@ export type productOrderByWithAggregationInput = {
   color_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  arrival_date?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.productCountOrderByAggregateInput
   _avg?: Prisma.productAvgOrderByAggregateInput
   _max?: Prisma.productMaxOrderByAggregateInput
@@ -354,6 +413,9 @@ export type productScalarWhereWithAggregatesInput = {
   color_id?: Prisma.IntNullableWithAggregatesFilter<"product"> | number | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"product"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"product"> | Date | string
+  availability_id?: Prisma.IntNullableWithAggregatesFilter<"product"> | number | null
+  stock_profile_id?: Prisma.IntNullableWithAggregatesFilter<"product"> | number | null
+  arrival_date?: Prisma.DateTimeNullableWithAggregatesFilter<"product"> | Date | string | null
 }
 
 export type productCreateInput = {
@@ -362,6 +424,7 @@ export type productCreateInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -371,6 +434,12 @@ export type productCreateInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateInput = {
@@ -383,12 +452,19 @@ export type productUncheckedCreateInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productUpdateInput = {
@@ -397,6 +473,7 @@ export type productUpdateInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -406,6 +483,12 @@ export type productUpdateInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateInput = {
@@ -418,12 +501,19 @@ export type productUncheckedUpdateInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productCreateManyInput = {
@@ -436,6 +526,9 @@ export type productCreateManyInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
 }
 
 export type productUpdateManyMutationInput = {
@@ -444,6 +537,7 @@ export type productUpdateManyMutationInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type productUncheckedUpdateManyInput = {
@@ -456,6 +550,9 @@ export type productUncheckedUpdateManyInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProductScalarRelationFilter = {
@@ -483,6 +580,9 @@ export type productCountOrderByAggregateInput = {
   color_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrder
+  arrival_date?: Prisma.SortOrder
 }
 
 export type productAvgOrderByAggregateInput = {
@@ -492,6 +592,8 @@ export type productAvgOrderByAggregateInput = {
   type_id?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
   color_id?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrder
 }
 
 export type productMaxOrderByAggregateInput = {
@@ -504,6 +606,9 @@ export type productMaxOrderByAggregateInput = {
   color_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrder
+  arrival_date?: Prisma.SortOrder
 }
 
 export type productMinOrderByAggregateInput = {
@@ -516,6 +621,9 @@ export type productMinOrderByAggregateInput = {
   color_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrder
+  arrival_date?: Prisma.SortOrder
 }
 
 export type productSumOrderByAggregateInput = {
@@ -525,6 +633,8 @@ export type productSumOrderByAggregateInput = {
   type_id?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
   color_id?: Prisma.SortOrder
+  availability_id?: Prisma.SortOrder
+  stock_profile_id?: Prisma.SortOrder
 }
 
 export type productCreateNestedOneWithoutCart_itemsInput = {
@@ -705,6 +815,62 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type productCreateNestedOneWithoutProduct_unit_mapsInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_unit_mapsInput, Prisma.productUncheckedCreateWithoutProduct_unit_mapsInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_unit_mapsInput
+  connect?: Prisma.productWhereUniqueInput
+}
+
+export type productUpdateOneRequiredWithoutProduct_unit_mapsNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_unit_mapsInput, Prisma.productUncheckedCreateWithoutProduct_unit_mapsInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_unit_mapsInput
+  upsert?: Prisma.productUpsertWithoutProduct_unit_mapsInput
+  connect?: Prisma.productWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.productUpdateToOneWithWhereWithoutProduct_unit_mapsInput, Prisma.productUpdateWithoutProduct_unit_mapsInput>, Prisma.productUncheckedUpdateWithoutProduct_unit_mapsInput>
+}
+
+export type productCreateNestedManyWithoutAvailabilityInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutAvailabilityInput, Prisma.productUncheckedCreateWithoutAvailabilityInput> | Prisma.productCreateWithoutAvailabilityInput[] | Prisma.productUncheckedCreateWithoutAvailabilityInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutAvailabilityInput | Prisma.productCreateOrConnectWithoutAvailabilityInput[]
+  createMany?: Prisma.productCreateManyAvailabilityInputEnvelope
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+}
+
+export type productUncheckedCreateNestedManyWithoutAvailabilityInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutAvailabilityInput, Prisma.productUncheckedCreateWithoutAvailabilityInput> | Prisma.productCreateWithoutAvailabilityInput[] | Prisma.productUncheckedCreateWithoutAvailabilityInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutAvailabilityInput | Prisma.productCreateOrConnectWithoutAvailabilityInput[]
+  createMany?: Prisma.productCreateManyAvailabilityInputEnvelope
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+}
+
+export type productUpdateManyWithoutAvailabilityNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutAvailabilityInput, Prisma.productUncheckedCreateWithoutAvailabilityInput> | Prisma.productCreateWithoutAvailabilityInput[] | Prisma.productUncheckedCreateWithoutAvailabilityInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutAvailabilityInput | Prisma.productCreateOrConnectWithoutAvailabilityInput[]
+  upsert?: Prisma.productUpsertWithWhereUniqueWithoutAvailabilityInput | Prisma.productUpsertWithWhereUniqueWithoutAvailabilityInput[]
+  createMany?: Prisma.productCreateManyAvailabilityInputEnvelope
+  set?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  disconnect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  delete?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  update?: Prisma.productUpdateWithWhereUniqueWithoutAvailabilityInput | Prisma.productUpdateWithWhereUniqueWithoutAvailabilityInput[]
+  updateMany?: Prisma.productUpdateManyWithWhereWithoutAvailabilityInput | Prisma.productUpdateManyWithWhereWithoutAvailabilityInput[]
+  deleteMany?: Prisma.productScalarWhereInput | Prisma.productScalarWhereInput[]
+}
+
+export type productUncheckedUpdateManyWithoutAvailabilityNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutAvailabilityInput, Prisma.productUncheckedCreateWithoutAvailabilityInput> | Prisma.productCreateWithoutAvailabilityInput[] | Prisma.productUncheckedCreateWithoutAvailabilityInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutAvailabilityInput | Prisma.productCreateOrConnectWithoutAvailabilityInput[]
+  upsert?: Prisma.productUpsertWithWhereUniqueWithoutAvailabilityInput | Prisma.productUpsertWithWhereUniqueWithoutAvailabilityInput[]
+  createMany?: Prisma.productCreateManyAvailabilityInputEnvelope
+  set?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  disconnect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  delete?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  update?: Prisma.productUpdateWithWhereUniqueWithoutAvailabilityInput | Prisma.productUpdateWithWhereUniqueWithoutAvailabilityInput[]
+  updateMany?: Prisma.productUpdateManyWithWhereWithoutAvailabilityInput | Prisma.productUpdateManyWithWhereWithoutAvailabilityInput[]
+  deleteMany?: Prisma.productScalarWhereInput | Prisma.productScalarWhereInput[]
+}
+
 export type productCreateNestedOneWithoutImagesInput = {
   create?: Prisma.XOR<Prisma.productCreateWithoutImagesInput, Prisma.productUncheckedCreateWithoutImagesInput>
   connectOrCreate?: Prisma.productCreateOrConnectWithoutImagesInput
@@ -733,6 +899,48 @@ export type productUpdateOneRequiredWithoutTranslationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.productUpdateToOneWithWhereWithoutTranslationsInput, Prisma.productUpdateWithoutTranslationsInput>, Prisma.productUncheckedUpdateWithoutTranslationsInput>
 }
 
+export type productCreateNestedOneWithoutProduct_attributesInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_attributesInput, Prisma.productUncheckedCreateWithoutProduct_attributesInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_attributesInput
+  connect?: Prisma.productWhereUniqueInput
+}
+
+export type productUpdateOneRequiredWithoutProduct_attributesNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_attributesInput, Prisma.productUncheckedCreateWithoutProduct_attributesInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_attributesInput
+  upsert?: Prisma.productUpsertWithoutProduct_attributesInput
+  connect?: Prisma.productWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.productUpdateToOneWithWhereWithoutProduct_attributesInput, Prisma.productUpdateWithoutProduct_attributesInput>, Prisma.productUncheckedUpdateWithoutProduct_attributesInput>
+}
+
+export type productCreateNestedOneWithoutProduct_audiencesInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_audiencesInput, Prisma.productUncheckedCreateWithoutProduct_audiencesInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_audiencesInput
+  connect?: Prisma.productWhereUniqueInput
+}
+
+export type productUpdateOneRequiredWithoutProduct_audiencesNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_audiencesInput, Prisma.productUncheckedCreateWithoutProduct_audiencesInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_audiencesInput
+  upsert?: Prisma.productUpsertWithoutProduct_audiencesInput
+  connect?: Prisma.productWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.productUpdateToOneWithWhereWithoutProduct_audiencesInput, Prisma.productUpdateWithoutProduct_audiencesInput>, Prisma.productUncheckedUpdateWithoutProduct_audiencesInput>
+}
+
+export type productCreateNestedOneWithoutProduct_home_sectionsInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_home_sectionsInput, Prisma.productUncheckedCreateWithoutProduct_home_sectionsInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_home_sectionsInput
+  connect?: Prisma.productWhereUniqueInput
+}
+
+export type productUpdateOneRequiredWithoutProduct_home_sectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutProduct_home_sectionsInput, Prisma.productUncheckedCreateWithoutProduct_home_sectionsInput>
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutProduct_home_sectionsInput
+  upsert?: Prisma.productUpsertWithoutProduct_home_sectionsInput
+  connect?: Prisma.productWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.productUpdateToOneWithWhereWithoutProduct_home_sectionsInput, Prisma.productUpdateWithoutProduct_home_sectionsInput>, Prisma.productUncheckedUpdateWithoutProduct_home_sectionsInput>
+}
+
 export type productCreateNestedOneWithoutStockInput = {
   create?: Prisma.XOR<Prisma.productCreateWithoutStockInput, Prisma.productUncheckedCreateWithoutStockInput>
   connectOrCreate?: Prisma.productCreateOrConnectWithoutStockInput
@@ -745,6 +953,48 @@ export type productUpdateOneRequiredWithoutStockNestedInput = {
   upsert?: Prisma.productUpsertWithoutStockInput
   connect?: Prisma.productWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.productUpdateToOneWithWhereWithoutStockInput, Prisma.productUpdateWithoutStockInput>, Prisma.productUncheckedUpdateWithoutStockInput>
+}
+
+export type productCreateNestedManyWithoutStock_profileInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutStock_profileInput, Prisma.productUncheckedCreateWithoutStock_profileInput> | Prisma.productCreateWithoutStock_profileInput[] | Prisma.productUncheckedCreateWithoutStock_profileInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutStock_profileInput | Prisma.productCreateOrConnectWithoutStock_profileInput[]
+  createMany?: Prisma.productCreateManyStock_profileInputEnvelope
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+}
+
+export type productUncheckedCreateNestedManyWithoutStock_profileInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutStock_profileInput, Prisma.productUncheckedCreateWithoutStock_profileInput> | Prisma.productCreateWithoutStock_profileInput[] | Prisma.productUncheckedCreateWithoutStock_profileInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutStock_profileInput | Prisma.productCreateOrConnectWithoutStock_profileInput[]
+  createMany?: Prisma.productCreateManyStock_profileInputEnvelope
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+}
+
+export type productUpdateManyWithoutStock_profileNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutStock_profileInput, Prisma.productUncheckedCreateWithoutStock_profileInput> | Prisma.productCreateWithoutStock_profileInput[] | Prisma.productUncheckedCreateWithoutStock_profileInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutStock_profileInput | Prisma.productCreateOrConnectWithoutStock_profileInput[]
+  upsert?: Prisma.productUpsertWithWhereUniqueWithoutStock_profileInput | Prisma.productUpsertWithWhereUniqueWithoutStock_profileInput[]
+  createMany?: Prisma.productCreateManyStock_profileInputEnvelope
+  set?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  disconnect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  delete?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  update?: Prisma.productUpdateWithWhereUniqueWithoutStock_profileInput | Prisma.productUpdateWithWhereUniqueWithoutStock_profileInput[]
+  updateMany?: Prisma.productUpdateManyWithWhereWithoutStock_profileInput | Prisma.productUpdateManyWithWhereWithoutStock_profileInput[]
+  deleteMany?: Prisma.productScalarWhereInput | Prisma.productScalarWhereInput[]
+}
+
+export type productUncheckedUpdateManyWithoutStock_profileNestedInput = {
+  create?: Prisma.XOR<Prisma.productCreateWithoutStock_profileInput, Prisma.productUncheckedCreateWithoutStock_profileInput> | Prisma.productCreateWithoutStock_profileInput[] | Prisma.productUncheckedCreateWithoutStock_profileInput[]
+  connectOrCreate?: Prisma.productCreateOrConnectWithoutStock_profileInput | Prisma.productCreateOrConnectWithoutStock_profileInput[]
+  upsert?: Prisma.productUpsertWithWhereUniqueWithoutStock_profileInput | Prisma.productUpsertWithWhereUniqueWithoutStock_profileInput[]
+  createMany?: Prisma.productCreateManyStock_profileInputEnvelope
+  set?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  disconnect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  delete?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  connect?: Prisma.productWhereUniqueInput | Prisma.productWhereUniqueInput[]
+  update?: Prisma.productUpdateWithWhereUniqueWithoutStock_profileInput | Prisma.productUpdateWithWhereUniqueWithoutStock_profileInput[]
+  updateMany?: Prisma.productUpdateManyWithWhereWithoutStock_profileInput | Prisma.productUpdateManyWithWhereWithoutStock_profileInput[]
+  deleteMany?: Prisma.productScalarWhereInput | Prisma.productScalarWhereInput[]
 }
 
 export type productCreateNestedOneWithoutStock_logsInput = {
@@ -767,6 +1017,7 @@ export type productCreateWithoutCart_itemsInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -775,6 +1026,12 @@ export type productCreateWithoutCart_itemsInput = {
   stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutCart_itemsInput = {
@@ -787,11 +1044,18 @@ export type productUncheckedCreateWithoutCart_itemsInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutCart_itemsInput = {
@@ -816,6 +1080,7 @@ export type productUpdateWithoutCart_itemsInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -824,6 +1089,12 @@ export type productUpdateWithoutCart_itemsInput = {
   stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutCart_itemsInput = {
@@ -836,11 +1107,18 @@ export type productUncheckedUpdateWithoutCart_itemsInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productCreateWithoutFavouriteInput = {
@@ -849,6 +1127,7 @@ export type productCreateWithoutFavouriteInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -857,6 +1136,12 @@ export type productCreateWithoutFavouriteInput = {
   stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutFavouriteInput = {
@@ -869,11 +1154,18 @@ export type productUncheckedCreateWithoutFavouriteInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutFavouriteInput = {
@@ -898,6 +1190,7 @@ export type productUpdateWithoutFavouriteInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -906,6 +1199,12 @@ export type productUpdateWithoutFavouriteInput = {
   stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutFavouriteInput = {
@@ -918,11 +1217,18 @@ export type productUncheckedUpdateWithoutFavouriteInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productCreateWithoutTypeInput = {
@@ -931,6 +1237,7 @@ export type productCreateWithoutTypeInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
   color?: Prisma.colorCreateNestedOneWithoutProductsInput
@@ -939,6 +1246,12 @@ export type productCreateWithoutTypeInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutTypeInput = {
@@ -950,12 +1263,19 @@ export type productUncheckedCreateWithoutTypeInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutTypeInput = {
@@ -997,6 +1317,9 @@ export type productScalarWhereInput = {
   color_id?: Prisma.IntNullableFilter<"product"> | number | null
   created_at?: Prisma.DateTimeFilter<"product"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product"> | Date | string
+  availability_id?: Prisma.IntNullableFilter<"product"> | number | null
+  stock_profile_id?: Prisma.IntNullableFilter<"product"> | number | null
+  arrival_date?: Prisma.DateTimeNullableFilter<"product"> | Date | string | null
 }
 
 export type productCreateWithoutBrandInput = {
@@ -1005,6 +1328,7 @@ export type productCreateWithoutBrandInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   color?: Prisma.colorCreateNestedOneWithoutProductsInput
@@ -1013,6 +1337,12 @@ export type productCreateWithoutBrandInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutBrandInput = {
@@ -1024,12 +1354,19 @@ export type productUncheckedCreateWithoutBrandInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutBrandInput = {
@@ -1064,6 +1401,7 @@ export type productCreateWithoutColorInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -1072,6 +1410,12 @@ export type productCreateWithoutColorInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutColorInput = {
@@ -1083,12 +1427,19 @@ export type productUncheckedCreateWithoutColorInput = {
   brand_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutColorInput = {
@@ -1117,12 +1468,196 @@ export type productUpdateManyWithWhereWithoutColorInput = {
   data: Prisma.XOR<Prisma.productUpdateManyMutationInput, Prisma.productUncheckedUpdateManyWithoutColorInput>
 }
 
+export type productCreateWithoutProduct_unit_mapsInput = {
+  code: string
+  price: number
+  discount?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
+  type: Prisma.typeCreateNestedOneWithoutProductsInput
+  brand?: Prisma.brandCreateNestedOneWithoutProductsInput
+  color?: Prisma.colorCreateNestedOneWithoutProductsInput
+  images?: Prisma.product_imageCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+}
+
+export type productUncheckedCreateWithoutProduct_unit_mapsInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
+  images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type productCreateOrConnectWithoutProduct_unit_mapsInput = {
+  where: Prisma.productWhereUniqueInput
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_unit_mapsInput, Prisma.productUncheckedCreateWithoutProduct_unit_mapsInput>
+}
+
+export type productUpsertWithoutProduct_unit_mapsInput = {
+  update: Prisma.XOR<Prisma.productUpdateWithoutProduct_unit_mapsInput, Prisma.productUncheckedUpdateWithoutProduct_unit_mapsInput>
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_unit_mapsInput, Prisma.productUncheckedCreateWithoutProduct_unit_mapsInput>
+  where?: Prisma.productWhereInput
+}
+
+export type productUpdateToOneWithWhereWithoutProduct_unit_mapsInput = {
+  where?: Prisma.productWhereInput
+  data: Prisma.XOR<Prisma.productUpdateWithoutProduct_unit_mapsInput, Prisma.productUncheckedUpdateWithoutProduct_unit_mapsInput>
+}
+
+export type productUpdateWithoutProduct_unit_mapsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
+  type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
+  brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
+  color?: Prisma.colorUpdateOneWithoutProductsNestedInput
+  images?: Prisma.product_imageUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateWithoutProduct_unit_mapsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
+  images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productCreateWithoutAvailabilityInput = {
+  code: string
+  price: number
+  discount?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
+  type: Prisma.typeCreateNestedOneWithoutProductsInput
+  brand?: Prisma.brandCreateNestedOneWithoutProductsInput
+  color?: Prisma.colorCreateNestedOneWithoutProductsInput
+  images?: Prisma.product_imageCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
+}
+
+export type productUncheckedCreateWithoutAvailabilityInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
+  images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type productCreateOrConnectWithoutAvailabilityInput = {
+  where: Prisma.productWhereUniqueInput
+  create: Prisma.XOR<Prisma.productCreateWithoutAvailabilityInput, Prisma.productUncheckedCreateWithoutAvailabilityInput>
+}
+
+export type productCreateManyAvailabilityInputEnvelope = {
+  data: Prisma.productCreateManyAvailabilityInput | Prisma.productCreateManyAvailabilityInput[]
+  skipDuplicates?: boolean
+}
+
+export type productUpsertWithWhereUniqueWithoutAvailabilityInput = {
+  where: Prisma.productWhereUniqueInput
+  update: Prisma.XOR<Prisma.productUpdateWithoutAvailabilityInput, Prisma.productUncheckedUpdateWithoutAvailabilityInput>
+  create: Prisma.XOR<Prisma.productCreateWithoutAvailabilityInput, Prisma.productUncheckedCreateWithoutAvailabilityInput>
+}
+
+export type productUpdateWithWhereUniqueWithoutAvailabilityInput = {
+  where: Prisma.productWhereUniqueInput
+  data: Prisma.XOR<Prisma.productUpdateWithoutAvailabilityInput, Prisma.productUncheckedUpdateWithoutAvailabilityInput>
+}
+
+export type productUpdateManyWithWhereWithoutAvailabilityInput = {
+  where: Prisma.productScalarWhereInput
+  data: Prisma.XOR<Prisma.productUpdateManyMutationInput, Prisma.productUncheckedUpdateManyWithoutAvailabilityInput>
+}
+
 export type productCreateWithoutImagesInput = {
   code: string
   price: number
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -1131,6 +1666,12 @@ export type productCreateWithoutImagesInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutImagesInput = {
@@ -1143,11 +1684,18 @@ export type productUncheckedCreateWithoutImagesInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutImagesInput = {
@@ -1172,6 +1720,7 @@ export type productUpdateWithoutImagesInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -1180,6 +1729,12 @@ export type productUpdateWithoutImagesInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutImagesInput = {
@@ -1192,11 +1747,18 @@ export type productUncheckedUpdateWithoutImagesInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productCreateWithoutTranslationsInput = {
@@ -1205,6 +1767,7 @@ export type productCreateWithoutTranslationsInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
   color?: Prisma.colorCreateNestedOneWithoutProductsInput
@@ -1213,6 +1776,12 @@ export type productCreateWithoutTranslationsInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutTranslationsInput = {
@@ -1225,11 +1794,18 @@ export type productUncheckedCreateWithoutTranslationsInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutTranslationsInput = {
@@ -1254,6 +1830,7 @@ export type productUpdateWithoutTranslationsInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
   color?: Prisma.colorUpdateOneWithoutProductsNestedInput
@@ -1262,6 +1839,12 @@ export type productUpdateWithoutTranslationsInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutTranslationsInput = {
@@ -1274,11 +1857,348 @@ export type productUncheckedUpdateWithoutTranslationsInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productCreateWithoutProduct_attributesInput = {
+  code: string
+  price: number
+  discount?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
+  type: Prisma.typeCreateNestedOneWithoutProductsInput
+  brand?: Prisma.brandCreateNestedOneWithoutProductsInput
+  color?: Prisma.colorCreateNestedOneWithoutProductsInput
+  images?: Prisma.product_imageCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
+}
+
+export type productUncheckedCreateWithoutProduct_attributesInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
+  images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type productCreateOrConnectWithoutProduct_attributesInput = {
+  where: Prisma.productWhereUniqueInput
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_attributesInput, Prisma.productUncheckedCreateWithoutProduct_attributesInput>
+}
+
+export type productUpsertWithoutProduct_attributesInput = {
+  update: Prisma.XOR<Prisma.productUpdateWithoutProduct_attributesInput, Prisma.productUncheckedUpdateWithoutProduct_attributesInput>
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_attributesInput, Prisma.productUncheckedCreateWithoutProduct_attributesInput>
+  where?: Prisma.productWhereInput
+}
+
+export type productUpdateToOneWithWhereWithoutProduct_attributesInput = {
+  where?: Prisma.productWhereInput
+  data: Prisma.XOR<Prisma.productUpdateWithoutProduct_attributesInput, Prisma.productUncheckedUpdateWithoutProduct_attributesInput>
+}
+
+export type productUpdateWithoutProduct_attributesInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
+  type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
+  brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
+  color?: Prisma.colorUpdateOneWithoutProductsNestedInput
+  images?: Prisma.product_imageUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateWithoutProduct_attributesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
+  images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productCreateWithoutProduct_audiencesInput = {
+  code: string
+  price: number
+  discount?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
+  type: Prisma.typeCreateNestedOneWithoutProductsInput
+  brand?: Prisma.brandCreateNestedOneWithoutProductsInput
+  color?: Prisma.colorCreateNestedOneWithoutProductsInput
+  images?: Prisma.product_imageCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
+}
+
+export type productUncheckedCreateWithoutProduct_audiencesInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
+  images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type productCreateOrConnectWithoutProduct_audiencesInput = {
+  where: Prisma.productWhereUniqueInput
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_audiencesInput, Prisma.productUncheckedCreateWithoutProduct_audiencesInput>
+}
+
+export type productUpsertWithoutProduct_audiencesInput = {
+  update: Prisma.XOR<Prisma.productUpdateWithoutProduct_audiencesInput, Prisma.productUncheckedUpdateWithoutProduct_audiencesInput>
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_audiencesInput, Prisma.productUncheckedCreateWithoutProduct_audiencesInput>
+  where?: Prisma.productWhereInput
+}
+
+export type productUpdateToOneWithWhereWithoutProduct_audiencesInput = {
+  where?: Prisma.productWhereInput
+  data: Prisma.XOR<Prisma.productUpdateWithoutProduct_audiencesInput, Prisma.productUncheckedUpdateWithoutProduct_audiencesInput>
+}
+
+export type productUpdateWithoutProduct_audiencesInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
+  type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
+  brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
+  color?: Prisma.colorUpdateOneWithoutProductsNestedInput
+  images?: Prisma.product_imageUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateWithoutProduct_audiencesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
+  images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productCreateWithoutProduct_home_sectionsInput = {
+  code: string
+  price: number
+  discount?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
+  type: Prisma.typeCreateNestedOneWithoutProductsInput
+  brand?: Prisma.brandCreateNestedOneWithoutProductsInput
+  color?: Prisma.colorCreateNestedOneWithoutProductsInput
+  images?: Prisma.product_imageCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
+}
+
+export type productUncheckedCreateWithoutProduct_home_sectionsInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
+  images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type productCreateOrConnectWithoutProduct_home_sectionsInput = {
+  where: Prisma.productWhereUniqueInput
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_home_sectionsInput, Prisma.productUncheckedCreateWithoutProduct_home_sectionsInput>
+}
+
+export type productUpsertWithoutProduct_home_sectionsInput = {
+  update: Prisma.XOR<Prisma.productUpdateWithoutProduct_home_sectionsInput, Prisma.productUncheckedUpdateWithoutProduct_home_sectionsInput>
+  create: Prisma.XOR<Prisma.productCreateWithoutProduct_home_sectionsInput, Prisma.productUncheckedCreateWithoutProduct_home_sectionsInput>
+  where?: Prisma.productWhereInput
+}
+
+export type productUpdateToOneWithWhereWithoutProduct_home_sectionsInput = {
+  where?: Prisma.productWhereInput
+  data: Prisma.XOR<Prisma.productUpdateWithoutProduct_home_sectionsInput, Prisma.productUncheckedUpdateWithoutProduct_home_sectionsInput>
+}
+
+export type productUpdateWithoutProduct_home_sectionsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
+  type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
+  brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
+  color?: Prisma.colorUpdateOneWithoutProductsNestedInput
+  images?: Prisma.product_imageUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateWithoutProduct_home_sectionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
+  images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productCreateWithoutStockInput = {
@@ -1287,6 +2207,7 @@ export type productCreateWithoutStockInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -1295,6 +2216,12 @@ export type productCreateWithoutStockInput = {
   stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutStockInput = {
@@ -1307,11 +2234,18 @@ export type productUncheckedCreateWithoutStockInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutStockInput = {
@@ -1336,6 +2270,7 @@ export type productUpdateWithoutStockInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -1344,6 +2279,12 @@ export type productUpdateWithoutStockInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutStockInput = {
@@ -1356,11 +2297,91 @@ export type productUncheckedUpdateWithoutStockInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productCreateWithoutStock_profileInput = {
+  code: string
+  price: number
+  discount?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
+  type: Prisma.typeCreateNestedOneWithoutProductsInput
+  brand?: Prisma.brandCreateNestedOneWithoutProductsInput
+  color?: Prisma.colorCreateNestedOneWithoutProductsInput
+  images?: Prisma.product_imageCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
+}
+
+export type productUncheckedCreateWithoutStock_profileInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  availability_id?: number | null
+  arrival_date?: Date | string | null
+  translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
+  images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
+  stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
+  stock_logs?: Prisma.product_stock_logUncheckedCreateNestedManyWithoutProductInput
+  cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
+  favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type productCreateOrConnectWithoutStock_profileInput = {
+  where: Prisma.productWhereUniqueInput
+  create: Prisma.XOR<Prisma.productCreateWithoutStock_profileInput, Prisma.productUncheckedCreateWithoutStock_profileInput>
+}
+
+export type productCreateManyStock_profileInputEnvelope = {
+  data: Prisma.productCreateManyStock_profileInput | Prisma.productCreateManyStock_profileInput[]
+  skipDuplicates?: boolean
+}
+
+export type productUpsertWithWhereUniqueWithoutStock_profileInput = {
+  where: Prisma.productWhereUniqueInput
+  update: Prisma.XOR<Prisma.productUpdateWithoutStock_profileInput, Prisma.productUncheckedUpdateWithoutStock_profileInput>
+  create: Prisma.XOR<Prisma.productCreateWithoutStock_profileInput, Prisma.productUncheckedCreateWithoutStock_profileInput>
+}
+
+export type productUpdateWithWhereUniqueWithoutStock_profileInput = {
+  where: Prisma.productWhereUniqueInput
+  data: Prisma.XOR<Prisma.productUpdateWithoutStock_profileInput, Prisma.productUncheckedUpdateWithoutStock_profileInput>
+}
+
+export type productUpdateManyWithWhereWithoutStock_profileInput = {
+  where: Prisma.productScalarWhereInput
+  data: Prisma.XOR<Prisma.productUpdateManyMutationInput, Prisma.productUncheckedUpdateManyWithoutStock_profileInput>
 }
 
 export type productCreateWithoutStock_logsInput = {
@@ -1369,6 +2390,7 @@ export type productCreateWithoutStock_logsInput = {
   discount?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationCreateNestedManyWithoutProductInput
   type: Prisma.typeCreateNestedOneWithoutProductsInput
   brand?: Prisma.brandCreateNestedOneWithoutProductsInput
@@ -1377,6 +2399,12 @@ export type productCreateWithoutStock_logsInput = {
   stock?: Prisma.product_stockCreateNestedOneWithoutProductInput
   cart_items?: Prisma.user_cart_itemCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteCreateNestedManyWithoutProductInput
+  availability?: Prisma.product_availabilityCreateNestedOneWithoutProductsInput
+  stock_profile?: Prisma.product_stock_profileCreateNestedOneWithoutProductsInput
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapCreateNestedManyWithoutProductInput
 }
 
 export type productUncheckedCreateWithoutStock_logsInput = {
@@ -1389,11 +2417,18 @@ export type productUncheckedCreateWithoutStock_logsInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
   translations?: Prisma.product_translationUncheckedCreateNestedManyWithoutProductInput
   images?: Prisma.product_imageUncheckedCreateNestedManyWithoutProductInput
   stock?: Prisma.product_stockUncheckedCreateNestedOneWithoutProductInput
   cart_items?: Prisma.user_cart_itemUncheckedCreateNestedManyWithoutProductInput
   favourite?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutProductInput
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutProductInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutProductInput
+  product_attributes?: Prisma.product_attributeUncheckedCreateNestedManyWithoutProductInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type productCreateOrConnectWithoutStock_logsInput = {
@@ -1418,6 +2453,7 @@ export type productUpdateWithoutStock_logsInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -1426,6 +2462,12 @@ export type productUpdateWithoutStock_logsInput = {
   stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutStock_logsInput = {
@@ -1438,11 +2480,18 @@ export type productUncheckedUpdateWithoutStock_logsInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productCreateManyTypeInput = {
@@ -1454,6 +2503,9 @@ export type productCreateManyTypeInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
 }
 
 export type productUpdateWithoutTypeInput = {
@@ -1462,6 +2514,7 @@ export type productUpdateWithoutTypeInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
   color?: Prisma.colorUpdateOneWithoutProductsNestedInput
@@ -1470,6 +2523,12 @@ export type productUpdateWithoutTypeInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutTypeInput = {
@@ -1481,12 +2540,19 @@ export type productUncheckedUpdateWithoutTypeInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateManyWithoutTypeInput = {
@@ -1498,6 +2564,9 @@ export type productUncheckedUpdateManyWithoutTypeInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type productCreateManyBrandInput = {
@@ -1509,6 +2578,9 @@ export type productCreateManyBrandInput = {
   color_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
 }
 
 export type productUpdateWithoutBrandInput = {
@@ -1517,6 +2589,7 @@ export type productUpdateWithoutBrandInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   color?: Prisma.colorUpdateOneWithoutProductsNestedInput
@@ -1525,6 +2598,12 @@ export type productUpdateWithoutBrandInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutBrandInput = {
@@ -1536,12 +2615,19 @@ export type productUncheckedUpdateWithoutBrandInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateManyWithoutBrandInput = {
@@ -1553,6 +2639,9 @@ export type productUncheckedUpdateManyWithoutBrandInput = {
   color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type productCreateManyColorInput = {
@@ -1564,6 +2653,9 @@ export type productCreateManyColorInput = {
   brand_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  availability_id?: number | null
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
 }
 
 export type productUpdateWithoutColorInput = {
@@ -1572,6 +2664,7 @@ export type productUpdateWithoutColorInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
   type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
   brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
@@ -1580,6 +2673,12 @@ export type productUpdateWithoutColorInput = {
   stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateWithoutColorInput = {
@@ -1591,12 +2690,19 @@ export type productUncheckedUpdateWithoutColorInput = {
   brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
   images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
   stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
   stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
   cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
   favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type productUncheckedUpdateManyWithoutColorInput = {
@@ -1608,6 +2714,159 @@ export type productUncheckedUpdateManyWithoutColorInput = {
   brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type productCreateManyAvailabilityInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  stock_profile_id?: number | null
+  arrival_date?: Date | string | null
+}
+
+export type productUpdateWithoutAvailabilityInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
+  type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
+  brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
+  color?: Prisma.colorUpdateOneWithoutProductsNestedInput
+  images?: Prisma.product_imageUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  stock_profile?: Prisma.product_stock_profileUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateWithoutAvailabilityInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
+  images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateManyWithoutAvailabilityInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stock_profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type productCreateManyStock_profileInput = {
+  id?: number
+  code: string
+  price: number
+  discount?: number | null
+  type_id: number
+  brand_id?: number | null
+  color_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  availability_id?: number | null
+  arrival_date?: Date | string | null
+}
+
+export type productUpdateWithoutStock_profileInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUpdateManyWithoutProductNestedInput
+  type?: Prisma.typeUpdateOneRequiredWithoutProductsNestedInput
+  brand?: Prisma.brandUpdateOneWithoutProductsNestedInput
+  color?: Prisma.colorUpdateOneWithoutProductsNestedInput
+  images?: Prisma.product_imageUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUpdateManyWithoutProductNestedInput
+  availability?: Prisma.product_availabilityUpdateOneWithoutProductsNestedInput
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateWithoutStock_profileInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  translations?: Prisma.product_translationUncheckedUpdateManyWithoutProductNestedInput
+  images?: Prisma.product_imageUncheckedUpdateManyWithoutProductNestedInput
+  stock?: Prisma.product_stockUncheckedUpdateOneWithoutProductNestedInput
+  stock_logs?: Prisma.product_stock_logUncheckedUpdateManyWithoutProductNestedInput
+  cart_items?: Prisma.user_cart_itemUncheckedUpdateManyWithoutProductNestedInput
+  favourite?: Prisma.user_favoriteUncheckedUpdateManyWithoutProductNestedInput
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutProductNestedInput
+  product_home_sections?: Prisma.product_home_sectionUncheckedUpdateManyWithoutProductNestedInput
+  product_attributes?: Prisma.product_attributeUncheckedUpdateManyWithoutProductNestedInput
+  product_unit_maps?: Prisma.product_unit_mapUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type productUncheckedUpdateManyWithoutStock_profileInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  color_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availability_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  arrival_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1621,6 +2880,10 @@ export type ProductCountOutputType = {
   stock_logs: number
   cart_items: number
   favourite: number
+  product_audiences: number
+  product_home_sections: number
+  product_attributes: number
+  product_unit_maps: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1629,6 +2892,10 @@ export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   stock_logs?: boolean | ProductCountOutputTypeCountStock_logsArgs
   cart_items?: boolean | ProductCountOutputTypeCountCart_itemsArgs
   favourite?: boolean | ProductCountOutputTypeCountFavouriteArgs
+  product_audiences?: boolean | ProductCountOutputTypeCountProduct_audiencesArgs
+  product_home_sections?: boolean | ProductCountOutputTypeCountProduct_home_sectionsArgs
+  product_attributes?: boolean | ProductCountOutputTypeCountProduct_attributesArgs
+  product_unit_maps?: boolean | ProductCountOutputTypeCountProduct_unit_mapsArgs
 }
 
 /**
@@ -1676,6 +2943,34 @@ export type ProductCountOutputTypeCountFavouriteArgs<ExtArgs extends runtime.Typ
   where?: Prisma.user_favoriteWhereInput
 }
 
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountProduct_audiencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_audienceWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountProduct_home_sectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_home_sectionWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountProduct_attributesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_attributeWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountProduct_unit_mapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_unit_mapWhereInput
+}
+
 
 export type productSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1687,6 +2982,9 @@ export type productSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   color_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+  availability_id?: boolean
+  stock_profile_id?: boolean
+  arrival_date?: boolean
   translations?: boolean | Prisma.product$translationsArgs<ExtArgs>
   type?: boolean | Prisma.typeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.product$brandArgs<ExtArgs>
@@ -1696,6 +2994,12 @@ export type productSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   stock_logs?: boolean | Prisma.product$stock_logsArgs<ExtArgs>
   cart_items?: boolean | Prisma.product$cart_itemsArgs<ExtArgs>
   favourite?: boolean | Prisma.product$favouriteArgs<ExtArgs>
+  availability?: boolean | Prisma.product$availabilityArgs<ExtArgs>
+  stock_profile?: boolean | Prisma.product$stock_profileArgs<ExtArgs>
+  product_audiences?: boolean | Prisma.product$product_audiencesArgs<ExtArgs>
+  product_home_sections?: boolean | Prisma.product$product_home_sectionsArgs<ExtArgs>
+  product_attributes?: boolean | Prisma.product$product_attributesArgs<ExtArgs>
+  product_unit_maps?: boolean | Prisma.product$product_unit_mapsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -1709,9 +3013,14 @@ export type productSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   color_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+  availability_id?: boolean
+  stock_profile_id?: boolean
+  arrival_date?: boolean
   type?: boolean | Prisma.typeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.product$brandArgs<ExtArgs>
   color?: boolean | Prisma.product$colorArgs<ExtArgs>
+  availability?: boolean | Prisma.product$availabilityArgs<ExtArgs>
+  stock_profile?: boolean | Prisma.product$stock_profileArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type productSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1724,9 +3033,14 @@ export type productSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   color_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+  availability_id?: boolean
+  stock_profile_id?: boolean
+  arrival_date?: boolean
   type?: boolean | Prisma.typeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.product$brandArgs<ExtArgs>
   color?: boolean | Prisma.product$colorArgs<ExtArgs>
+  availability?: boolean | Prisma.product$availabilityArgs<ExtArgs>
+  stock_profile?: boolean | Prisma.product$stock_profileArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type productSelectScalar = {
@@ -1739,9 +3053,12 @@ export type productSelectScalar = {
   color_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+  availability_id?: boolean
+  stock_profile_id?: boolean
+  arrival_date?: boolean
 }
 
-export type productOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "price" | "discount" | "type_id" | "brand_id" | "color_id" | "created_at" | "updated_at", ExtArgs["result"]["product"]>
+export type productOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "price" | "discount" | "type_id" | "brand_id" | "color_id" | "created_at" | "updated_at" | "availability_id" | "stock_profile_id" | "arrival_date", ExtArgs["result"]["product"]>
 export type productInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   translations?: boolean | Prisma.product$translationsArgs<ExtArgs>
   type?: boolean | Prisma.typeDefaultArgs<ExtArgs>
@@ -1752,17 +3069,27 @@ export type productInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   stock_logs?: boolean | Prisma.product$stock_logsArgs<ExtArgs>
   cart_items?: boolean | Prisma.product$cart_itemsArgs<ExtArgs>
   favourite?: boolean | Prisma.product$favouriteArgs<ExtArgs>
+  availability?: boolean | Prisma.product$availabilityArgs<ExtArgs>
+  stock_profile?: boolean | Prisma.product$stock_profileArgs<ExtArgs>
+  product_audiences?: boolean | Prisma.product$product_audiencesArgs<ExtArgs>
+  product_home_sections?: boolean | Prisma.product$product_home_sectionsArgs<ExtArgs>
+  product_attributes?: boolean | Prisma.product$product_attributesArgs<ExtArgs>
+  product_unit_maps?: boolean | Prisma.product$product_unit_mapsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type productIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   type?: boolean | Prisma.typeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.product$brandArgs<ExtArgs>
   color?: boolean | Prisma.product$colorArgs<ExtArgs>
+  availability?: boolean | Prisma.product$availabilityArgs<ExtArgs>
+  stock_profile?: boolean | Prisma.product$stock_profileArgs<ExtArgs>
 }
 export type productIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   type?: boolean | Prisma.typeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.product$brandArgs<ExtArgs>
   color?: boolean | Prisma.product$colorArgs<ExtArgs>
+  availability?: boolean | Prisma.product$availabilityArgs<ExtArgs>
+  stock_profile?: boolean | Prisma.product$stock_profileArgs<ExtArgs>
 }
 
 export type $productPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1777,6 +3104,12 @@ export type $productPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     stock_logs: Prisma.$product_stock_logPayload<ExtArgs>[]
     cart_items: Prisma.$user_cart_itemPayload<ExtArgs>[]
     favourite: Prisma.$user_favoritePayload<ExtArgs>[]
+    availability: Prisma.$product_availabilityPayload<ExtArgs> | null
+    stock_profile: Prisma.$product_stock_profilePayload<ExtArgs> | null
+    product_audiences: Prisma.$product_audiencePayload<ExtArgs>[]
+    product_home_sections: Prisma.$product_home_sectionPayload<ExtArgs>[]
+    product_attributes: Prisma.$product_attributePayload<ExtArgs>[]
+    product_unit_maps: Prisma.$product_unit_mapPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1788,6 +3121,9 @@ export type $productPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     color_id: number | null
     created_at: Date
     updated_at: Date
+    availability_id: number | null
+    stock_profile_id: number | null
+    arrival_date: Date | null
   }, ExtArgs["result"]["product"]>
   composites: {}
 }
@@ -2191,6 +3527,12 @@ export interface Prisma__productClient<T, Null = never, ExtArgs extends runtime.
   stock_logs<T extends Prisma.product$stock_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$stock_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_stock_logPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cart_items<T extends Prisma.product$cart_itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$cart_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_cart_itemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   favourite<T extends Prisma.product$favouriteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$favouriteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  availability<T extends Prisma.product$availabilityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$availabilityArgs<ExtArgs>>): Prisma.Prisma__product_availabilityClient<runtime.Types.Result.GetResult<Prisma.$product_availabilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  stock_profile<T extends Prisma.product$stock_profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$stock_profileArgs<ExtArgs>>): Prisma.Prisma__product_stock_profileClient<runtime.Types.Result.GetResult<Prisma.$product_stock_profilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  product_audiences<T extends Prisma.product$product_audiencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$product_audiencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_audiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  product_home_sections<T extends Prisma.product$product_home_sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$product_home_sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_home_sectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  product_attributes<T extends Prisma.product$product_attributesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$product_attributesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_attributePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  product_unit_maps<T extends Prisma.product$product_unit_mapsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product$product_unit_mapsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_unit_mapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2229,6 +3571,9 @@ export interface productFieldRefs {
   readonly color_id: Prisma.FieldRef<"product", 'Int'>
   readonly created_at: Prisma.FieldRef<"product", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"product", 'DateTime'>
+  readonly availability_id: Prisma.FieldRef<"product", 'Int'>
+  readonly stock_profile_id: Prisma.FieldRef<"product", 'Int'>
+  readonly arrival_date: Prisma.FieldRef<"product", 'DateTime'>
 }
     
 
@@ -2799,6 +4144,140 @@ export type product$favouriteArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.User_favoriteScalarFieldEnum | Prisma.User_favoriteScalarFieldEnum[]
+}
+
+/**
+ * product.availability
+ */
+export type product$availabilityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_availability
+   */
+  select?: Prisma.product_availabilitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_availability
+   */
+  omit?: Prisma.product_availabilityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_availabilityInclude<ExtArgs> | null
+  where?: Prisma.product_availabilityWhereInput
+}
+
+/**
+ * product.stock_profile
+ */
+export type product$stock_profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_stock_profile
+   */
+  select?: Prisma.product_stock_profileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_stock_profile
+   */
+  omit?: Prisma.product_stock_profileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_stock_profileInclude<ExtArgs> | null
+  where?: Prisma.product_stock_profileWhereInput
+}
+
+/**
+ * product.product_audiences
+ */
+export type product$product_audiencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_audience
+   */
+  select?: Prisma.product_audienceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_audience
+   */
+  omit?: Prisma.product_audienceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_audienceInclude<ExtArgs> | null
+  where?: Prisma.product_audienceWhereInput
+  orderBy?: Prisma.product_audienceOrderByWithRelationInput | Prisma.product_audienceOrderByWithRelationInput[]
+  cursor?: Prisma.product_audienceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_audienceScalarFieldEnum | Prisma.Product_audienceScalarFieldEnum[]
+}
+
+/**
+ * product.product_home_sections
+ */
+export type product$product_home_sectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_home_section
+   */
+  select?: Prisma.product_home_sectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_home_section
+   */
+  omit?: Prisma.product_home_sectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_home_sectionInclude<ExtArgs> | null
+  where?: Prisma.product_home_sectionWhereInput
+  orderBy?: Prisma.product_home_sectionOrderByWithRelationInput | Prisma.product_home_sectionOrderByWithRelationInput[]
+  cursor?: Prisma.product_home_sectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_home_sectionScalarFieldEnum | Prisma.Product_home_sectionScalarFieldEnum[]
+}
+
+/**
+ * product.product_attributes
+ */
+export type product$product_attributesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_attribute
+   */
+  select?: Prisma.product_attributeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_attribute
+   */
+  omit?: Prisma.product_attributeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_attributeInclude<ExtArgs> | null
+  where?: Prisma.product_attributeWhereInput
+  orderBy?: Prisma.product_attributeOrderByWithRelationInput | Prisma.product_attributeOrderByWithRelationInput[]
+  cursor?: Prisma.product_attributeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_attributeScalarFieldEnum | Prisma.Product_attributeScalarFieldEnum[]
+}
+
+/**
+ * product.product_unit_maps
+ */
+export type product$product_unit_mapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_unit_map
+   */
+  select?: Prisma.product_unit_mapSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_unit_map
+   */
+  omit?: Prisma.product_unit_mapOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_unit_mapInclude<ExtArgs> | null
+  where?: Prisma.product_unit_mapWhereInput
+  orderBy?: Prisma.product_unit_mapOrderByWithRelationInput | Prisma.product_unit_mapOrderByWithRelationInput[]
+  cursor?: Prisma.product_unit_mapWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_unit_mapScalarFieldEnum | Prisma.Product_unit_mapScalarFieldEnum[]
 }
 
 /**

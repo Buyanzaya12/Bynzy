@@ -37,6 +37,7 @@ export type BrandSumAggregateOutputType = {
 export type BrandMinAggregateOutputType = {
   id: number | null
   name: string | null
+  image_url: string | null
   code: string | null
   created_at: Date | null
   updated_at: Date | null
@@ -45,6 +46,7 @@ export type BrandMinAggregateOutputType = {
 export type BrandMaxAggregateOutputType = {
   id: number | null
   name: string | null
+  image_url: string | null
   code: string | null
   created_at: Date | null
   updated_at: Date | null
@@ -53,6 +55,7 @@ export type BrandMaxAggregateOutputType = {
 export type BrandCountAggregateOutputType = {
   id: number
   name: number
+  image_url: number
   code: number
   created_at: number
   updated_at: number
@@ -71,6 +74,7 @@ export type BrandSumAggregateInputType = {
 export type BrandMinAggregateInputType = {
   id?: true
   name?: true
+  image_url?: true
   code?: true
   created_at?: true
   updated_at?: true
@@ -79,6 +83,7 @@ export type BrandMinAggregateInputType = {
 export type BrandMaxAggregateInputType = {
   id?: true
   name?: true
+  image_url?: true
   code?: true
   created_at?: true
   updated_at?: true
@@ -87,6 +92,7 @@ export type BrandMaxAggregateInputType = {
 export type BrandCountAggregateInputType = {
   id?: true
   name?: true
+  image_url?: true
   code?: true
   created_at?: true
   updated_at?: true
@@ -182,6 +188,7 @@ export type brandGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type BrandGroupByOutputType = {
   id: number
   name: string
+  image_url: string | null
   code: string
   created_at: Date
   updated_at: Date
@@ -213,6 +220,7 @@ export type brandWhereInput = {
   NOT?: Prisma.brandWhereInput | Prisma.brandWhereInput[]
   id?: Prisma.IntFilter<"brand"> | number
   name?: Prisma.StringFilter<"brand"> | string
+  image_url?: Prisma.StringNullableFilter<"brand"> | string | null
   code?: Prisma.StringFilter<"brand"> | string
   created_at?: Prisma.DateTimeFilter<"brand"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"brand"> | Date | string
@@ -222,6 +230,7 @@ export type brandWhereInput = {
 export type brandOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  image_url?: Prisma.SortOrderInput | Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -235,6 +244,7 @@ export type brandWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.brandWhereInput[]
   NOT?: Prisma.brandWhereInput | Prisma.brandWhereInput[]
   name?: Prisma.StringFilter<"brand"> | string
+  image_url?: Prisma.StringNullableFilter<"brand"> | string | null
   created_at?: Prisma.DateTimeFilter<"brand"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"brand"> | Date | string
   products?: Prisma.ProductListRelationFilter
@@ -243,6 +253,7 @@ export type brandWhereUniqueInput = Prisma.AtLeast<{
 export type brandOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  image_url?: Prisma.SortOrderInput | Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -259,6 +270,7 @@ export type brandScalarWhereWithAggregatesInput = {
   NOT?: Prisma.brandScalarWhereWithAggregatesInput | Prisma.brandScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"brand"> | number
   name?: Prisma.StringWithAggregatesFilter<"brand"> | string
+  image_url?: Prisma.StringNullableWithAggregatesFilter<"brand"> | string | null
   code?: Prisma.StringWithAggregatesFilter<"brand"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"brand"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"brand"> | Date | string
@@ -266,6 +278,7 @@ export type brandScalarWhereWithAggregatesInput = {
 
 export type brandCreateInput = {
   name: string
+  image_url?: string | null
   code: string
   created_at?: Date | string
   updated_at?: Date | string
@@ -275,6 +288,7 @@ export type brandCreateInput = {
 export type brandUncheckedCreateInput = {
   id?: number
   name: string
+  image_url?: string | null
   code: string
   created_at?: Date | string
   updated_at?: Date | string
@@ -283,6 +297,7 @@ export type brandUncheckedCreateInput = {
 
 export type brandUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -292,6 +307,7 @@ export type brandUpdateInput = {
 export type brandUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -301,6 +317,7 @@ export type brandUncheckedUpdateInput = {
 export type brandCreateManyInput = {
   id?: number
   name: string
+  image_url?: string | null
   code: string
   created_at?: Date | string
   updated_at?: Date | string
@@ -308,6 +325,7 @@ export type brandCreateManyInput = {
 
 export type brandUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -316,6 +334,7 @@ export type brandUpdateManyMutationInput = {
 export type brandUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -324,6 +343,7 @@ export type brandUncheckedUpdateManyInput = {
 export type brandCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  image_url?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -336,6 +356,7 @@ export type brandAvgOrderByAggregateInput = {
 export type brandMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  image_url?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -344,6 +365,7 @@ export type brandMaxOrderByAggregateInput = {
 export type brandMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  image_url?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -376,6 +398,7 @@ export type brandUpdateOneWithoutProductsNestedInput = {
 
 export type brandCreateWithoutProductsInput = {
   name: string
+  image_url?: string | null
   code: string
   created_at?: Date | string
   updated_at?: Date | string
@@ -384,6 +407,7 @@ export type brandCreateWithoutProductsInput = {
 export type brandUncheckedCreateWithoutProductsInput = {
   id?: number
   name: string
+  image_url?: string | null
   code: string
   created_at?: Date | string
   updated_at?: Date | string
@@ -407,6 +431,7 @@ export type brandUpdateToOneWithWhereWithoutProductsInput = {
 
 export type brandUpdateWithoutProductsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -415,6 +440,7 @@ export type brandUpdateWithoutProductsInput = {
 export type brandUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -454,6 +480,7 @@ export type BrandCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.
 export type brandSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  image_url?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -464,6 +491,7 @@ export type brandSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type brandSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  image_url?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -472,6 +500,7 @@ export type brandSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type brandSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  image_url?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -480,12 +509,13 @@ export type brandSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type brandSelectScalar = {
   id?: boolean
   name?: boolean
+  image_url?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type brandOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "created_at" | "updated_at", ExtArgs["result"]["brand"]>
+export type brandOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "image_url" | "code" | "created_at" | "updated_at", ExtArgs["result"]["brand"]>
 export type brandInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   products?: boolean | Prisma.brand$productsArgs<ExtArgs>
   _count?: boolean | Prisma.BrandCountOutputTypeDefaultArgs<ExtArgs>
@@ -501,6 +531,7 @@ export type $brandPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
+    image_url: string | null
     code: string
     created_at: Date
     updated_at: Date
@@ -930,6 +961,7 @@ export interface Prisma__brandClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface brandFieldRefs {
   readonly id: Prisma.FieldRef<"brand", 'Int'>
   readonly name: Prisma.FieldRef<"brand", 'String'>
+  readonly image_url: Prisma.FieldRef<"brand", 'String'>
   readonly code: Prisma.FieldRef<"brand", 'String'>
   readonly created_at: Prisma.FieldRef<"brand", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"brand", 'DateTime'>
