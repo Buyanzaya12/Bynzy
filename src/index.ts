@@ -9,6 +9,13 @@ import authRoutes from "./routes/auth";
 import categoryRoutes from "./routes/category";
 import productRoutes from "./routes/product";
 import typeRoutes from "./routes/type";
+import audienceRoutes from "./routes/audience";
+import favRoutes from "./routes/fav";
+import homesectionRoutes from "./routes/homesection";
+import productattributeRoutes from "./routes/productattribute";
+import productavailabilityRoutes from "./routes/productavailability";
+import productunitRoutes from "./routes/productunit";
+
 
 const app = express();
 
@@ -28,6 +35,13 @@ app.use("/admin", adminRoutes);
 app.use("/category", categoryRoutes);
 app.use("/product", productRoutes);
 app.use("/type", typeRoutes);
+app.use("/audience", audienceRoutes);
+app.use("/fav", favRoutes);
+app.use("/homesection", homesectionRoutes);
+app.use("/productattribute", productattributeRoutes);
+app.use("/productavailability", productavailabilityRoutes);
+app.use("/productunit", productunitRoutes);
+
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });

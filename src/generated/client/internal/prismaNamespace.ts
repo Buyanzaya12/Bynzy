@@ -413,8 +413,10 @@ export const ModelName = {
   product_attribute_type_translation: 'product_attribute_type_translation',
   product_attribute: 'product_attribute',
   audience: 'audience',
+  audience_translation: 'audience_translation',
   product_audience: 'product_audience',
   home_section: 'home_section',
+  home_section_translation: 'home_section_translation',
   product_home_section: 'product_home_section',
   product_stock: 'product_stock',
   product_stock_profile: 'product_stock_profile',
@@ -435,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "audience" | "product_audience" | "home_section" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
+    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2141,6 +2143,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    audience_translation: {
+      payload: Prisma.$audience_translationPayload<ExtArgs>
+      fields: Prisma.audience_translationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.audience_translationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.audience_translationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>
+        }
+        findFirst: {
+          args: Prisma.audience_translationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.audience_translationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>
+        }
+        findMany: {
+          args: Prisma.audience_translationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>[]
+        }
+        create: {
+          args: Prisma.audience_translationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>
+        }
+        createMany: {
+          args: Prisma.audience_translationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.audience_translationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>[]
+        }
+        delete: {
+          args: Prisma.audience_translationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>
+        }
+        update: {
+          args: Prisma.audience_translationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>
+        }
+        deleteMany: {
+          args: Prisma.audience_translationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.audience_translationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.audience_translationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>[]
+        }
+        upsert: {
+          args: Prisma.audience_translationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$audience_translationPayload>
+        }
+        aggregate: {
+          args: Prisma.Audience_translationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAudience_translation>
+        }
+        groupBy: {
+          args: Prisma.audience_translationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Audience_translationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.audience_translationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Audience_translationCountAggregateOutputType> | number
+        }
+      }
+    }
     product_audience: {
       payload: Prisma.$product_audiencePayload<ExtArgs>
       fields: Prisma.product_audienceFieldRefs
@@ -2286,6 +2362,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.home_sectionCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.Home_sectionCountAggregateOutputType> | number
+        }
+      }
+    }
+    home_section_translation: {
+      payload: Prisma.$home_section_translationPayload<ExtArgs>
+      fields: Prisma.home_section_translationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.home_section_translationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.home_section_translationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>
+        }
+        findFirst: {
+          args: Prisma.home_section_translationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.home_section_translationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>
+        }
+        findMany: {
+          args: Prisma.home_section_translationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>[]
+        }
+        create: {
+          args: Prisma.home_section_translationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>
+        }
+        createMany: {
+          args: Prisma.home_section_translationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.home_section_translationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>[]
+        }
+        delete: {
+          args: Prisma.home_section_translationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>
+        }
+        update: {
+          args: Prisma.home_section_translationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>
+        }
+        deleteMany: {
+          args: Prisma.home_section_translationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.home_section_translationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.home_section_translationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>[]
+        }
+        upsert: {
+          args: Prisma.home_section_translationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$home_section_translationPayload>
+        }
+        aggregate: {
+          args: Prisma.Home_section_translationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHome_section_translation>
+        }
+        groupBy: {
+          args: Prisma.home_section_translationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Home_section_translationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.home_section_translationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Home_section_translationCountAggregateOutputType> | number
         }
       }
     }
@@ -2949,12 +3099,21 @@ export type Product_attributeScalarFieldEnum = (typeof Product_attributeScalarFi
 export const AudienceScalarFieldEnum = {
   id: 'id',
   code: 'code',
-  name: 'name',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type AudienceScalarFieldEnum = (typeof AudienceScalarFieldEnum)[keyof typeof AudienceScalarFieldEnum]
+
+
+export const Audience_translationScalarFieldEnum = {
+  id: 'id',
+  audience_id: 'audience_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Audience_translationScalarFieldEnum = (typeof Audience_translationScalarFieldEnum)[keyof typeof Audience_translationScalarFieldEnum]
 
 
 export const Product_audienceScalarFieldEnum = {
@@ -2970,13 +3129,22 @@ export type Product_audienceScalarFieldEnum = (typeof Product_audienceScalarFiel
 
 export const Home_sectionScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   code: 'code',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type Home_sectionScalarFieldEnum = (typeof Home_sectionScalarFieldEnum)[keyof typeof Home_sectionScalarFieldEnum]
+
+
+export const Home_section_translationScalarFieldEnum = {
+  id: 'id',
+  section_id: 'section_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Home_section_translationScalarFieldEnum = (typeof Home_section_translationScalarFieldEnum)[keyof typeof Home_section_translationScalarFieldEnum]
 
 
 export const Product_home_sectionScalarFieldEnum = {
@@ -3271,8 +3439,10 @@ export type GlobalOmitConfig = {
   product_attribute_type_translation?: Prisma.product_attribute_type_translationOmit
   product_attribute?: Prisma.product_attributeOmit
   audience?: Prisma.audienceOmit
+  audience_translation?: Prisma.audience_translationOmit
   product_audience?: Prisma.product_audienceOmit
   home_section?: Prisma.home_sectionOmit
+  home_section_translation?: Prisma.home_section_translationOmit
   product_home_section?: Prisma.product_home_sectionOmit
   product_stock?: Prisma.product_stockOmit
   product_stock_profile?: Prisma.product_stock_profileOmit

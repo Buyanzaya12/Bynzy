@@ -158,6 +158,11 @@ export type product_attribute = Prisma.product_attributeModel
  */
 export type audience = Prisma.audienceModel
 /**
+ * Model audience_translation
+ * 
+ */
+export type audience_translation = Prisma.audience_translationModel
+/**
  * Model product_audience
  * 
  */
@@ -167,6 +172,11 @@ export type product_audience = Prisma.product_audienceModel
  * 
  */
 export type home_section = Prisma.home_sectionModel
+/**
+ * Model home_section_translation
+ * 
+ */
+export type home_section_translation = Prisma.home_section_translationModel
 /**
  * Model product_home_section
  * 

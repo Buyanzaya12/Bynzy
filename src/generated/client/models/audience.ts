@@ -37,7 +37,6 @@ export type AudienceSumAggregateOutputType = {
 export type AudienceMinAggregateOutputType = {
   id: number | null
   code: string | null
-  name: string | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -45,7 +44,6 @@ export type AudienceMinAggregateOutputType = {
 export type AudienceMaxAggregateOutputType = {
   id: number | null
   code: string | null
-  name: string | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -53,7 +51,6 @@ export type AudienceMaxAggregateOutputType = {
 export type AudienceCountAggregateOutputType = {
   id: number
   code: number
-  name: number
   created_at: number
   updated_at: number
   _all: number
@@ -71,7 +68,6 @@ export type AudienceSumAggregateInputType = {
 export type AudienceMinAggregateInputType = {
   id?: true
   code?: true
-  name?: true
   created_at?: true
   updated_at?: true
 }
@@ -79,7 +75,6 @@ export type AudienceMinAggregateInputType = {
 export type AudienceMaxAggregateInputType = {
   id?: true
   code?: true
-  name?: true
   created_at?: true
   updated_at?: true
 }
@@ -87,7 +82,6 @@ export type AudienceMaxAggregateInputType = {
 export type AudienceCountAggregateInputType = {
   id?: true
   code?: true
-  name?: true
   created_at?: true
   updated_at?: true
   _all?: true
@@ -182,7 +176,6 @@ export type audienceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type AudienceGroupByOutputType = {
   id: number
   code: string
-  name: string
   created_at: Date
   updated_at: Date
   _count: AudienceCountAggregateOutputType | null
@@ -213,18 +206,18 @@ export type audienceWhereInput = {
   NOT?: Prisma.audienceWhereInput | Prisma.audienceWhereInput[]
   id?: Prisma.IntFilter<"audience"> | number
   code?: Prisma.StringFilter<"audience"> | string
-  name?: Prisma.StringFilter<"audience"> | string
   created_at?: Prisma.DateTimeFilter<"audience"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"audience"> | Date | string
+  translations?: Prisma.Audience_translationListRelationFilter
   product_audiences?: Prisma.Product_audienceListRelationFilter
 }
 
 export type audienceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  translations?: Prisma.audience_translationOrderByRelationAggregateInput
   product_audiences?: Prisma.product_audienceOrderByRelationAggregateInput
 }
 
@@ -234,16 +227,15 @@ export type audienceWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.audienceWhereInput | Prisma.audienceWhereInput[]
   OR?: Prisma.audienceWhereInput[]
   NOT?: Prisma.audienceWhereInput | Prisma.audienceWhereInput[]
-  name?: Prisma.StringFilter<"audience"> | string
   created_at?: Prisma.DateTimeFilter<"audience"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"audience"> | Date | string
+  translations?: Prisma.Audience_translationListRelationFilter
   product_audiences?: Prisma.Product_audienceListRelationFilter
 }, "id" | "code">
 
 export type audienceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   _count?: Prisma.audienceCountOrderByAggregateInput
@@ -259,56 +251,53 @@ export type audienceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.audienceScalarWhereWithAggregatesInput | Prisma.audienceScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"audience"> | number
   code?: Prisma.StringWithAggregatesFilter<"audience"> | string
-  name?: Prisma.StringWithAggregatesFilter<"audience"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"audience"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"audience"> | Date | string
 }
 
 export type audienceCreateInput = {
   code: string
-  name: string
   created_at?: Date | string
   updated_at?: Date | string
+  translations?: Prisma.audience_translationCreateNestedManyWithoutAudienceInput
   product_audiences?: Prisma.product_audienceCreateNestedManyWithoutAudienceInput
 }
 
 export type audienceUncheckedCreateInput = {
   id?: number
   code: string
-  name: string
   created_at?: Date | string
   updated_at?: Date | string
+  translations?: Prisma.audience_translationUncheckedCreateNestedManyWithoutAudienceInput
   product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutAudienceInput
 }
 
 export type audienceUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.audience_translationUpdateManyWithoutAudienceNestedInput
   product_audiences?: Prisma.product_audienceUpdateManyWithoutAudienceNestedInput
 }
 
 export type audienceUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.audience_translationUncheckedUpdateManyWithoutAudienceNestedInput
   product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutAudienceNestedInput
 }
 
 export type audienceCreateManyInput = {
   id?: number
   code: string
-  name: string
   created_at?: Date | string
   updated_at?: Date | string
 }
 
 export type audienceUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -316,7 +305,6 @@ export type audienceUpdateManyMutationInput = {
 export type audienceUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -324,7 +312,6 @@ export type audienceUncheckedUpdateManyInput = {
 export type audienceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -336,7 +323,6 @@ export type audienceAvgOrderByAggregateInput = {
 export type audienceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -344,7 +330,6 @@ export type audienceMaxOrderByAggregateInput = {
 export type audienceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -356,6 +341,20 @@ export type audienceSumOrderByAggregateInput = {
 export type AudienceScalarRelationFilter = {
   is?: Prisma.audienceWhereInput
   isNot?: Prisma.audienceWhereInput
+}
+
+export type audienceCreateNestedOneWithoutTranslationsInput = {
+  create?: Prisma.XOR<Prisma.audienceCreateWithoutTranslationsInput, Prisma.audienceUncheckedCreateWithoutTranslationsInput>
+  connectOrCreate?: Prisma.audienceCreateOrConnectWithoutTranslationsInput
+  connect?: Prisma.audienceWhereUniqueInput
+}
+
+export type audienceUpdateOneRequiredWithoutTranslationsNestedInput = {
+  create?: Prisma.XOR<Prisma.audienceCreateWithoutTranslationsInput, Prisma.audienceUncheckedCreateWithoutTranslationsInput>
+  connectOrCreate?: Prisma.audienceCreateOrConnectWithoutTranslationsInput
+  upsert?: Prisma.audienceUpsertWithoutTranslationsInput
+  connect?: Prisma.audienceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.audienceUpdateToOneWithWhereWithoutTranslationsInput, Prisma.audienceUpdateWithoutTranslationsInput>, Prisma.audienceUncheckedUpdateWithoutTranslationsInput>
 }
 
 export type audienceCreateNestedOneWithoutProduct_audiencesInput = {
@@ -372,19 +371,65 @@ export type audienceUpdateOneRequiredWithoutProduct_audiencesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.audienceUpdateToOneWithWhereWithoutProduct_audiencesInput, Prisma.audienceUpdateWithoutProduct_audiencesInput>, Prisma.audienceUncheckedUpdateWithoutProduct_audiencesInput>
 }
 
-export type audienceCreateWithoutProduct_audiencesInput = {
+export type audienceCreateWithoutTranslationsInput = {
   code: string
-  name: string
   created_at?: Date | string
   updated_at?: Date | string
+  product_audiences?: Prisma.product_audienceCreateNestedManyWithoutAudienceInput
+}
+
+export type audienceUncheckedCreateWithoutTranslationsInput = {
+  id?: number
+  code: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  product_audiences?: Prisma.product_audienceUncheckedCreateNestedManyWithoutAudienceInput
+}
+
+export type audienceCreateOrConnectWithoutTranslationsInput = {
+  where: Prisma.audienceWhereUniqueInput
+  create: Prisma.XOR<Prisma.audienceCreateWithoutTranslationsInput, Prisma.audienceUncheckedCreateWithoutTranslationsInput>
+}
+
+export type audienceUpsertWithoutTranslationsInput = {
+  update: Prisma.XOR<Prisma.audienceUpdateWithoutTranslationsInput, Prisma.audienceUncheckedUpdateWithoutTranslationsInput>
+  create: Prisma.XOR<Prisma.audienceCreateWithoutTranslationsInput, Prisma.audienceUncheckedCreateWithoutTranslationsInput>
+  where?: Prisma.audienceWhereInput
+}
+
+export type audienceUpdateToOneWithWhereWithoutTranslationsInput = {
+  where?: Prisma.audienceWhereInput
+  data: Prisma.XOR<Prisma.audienceUpdateWithoutTranslationsInput, Prisma.audienceUncheckedUpdateWithoutTranslationsInput>
+}
+
+export type audienceUpdateWithoutTranslationsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product_audiences?: Prisma.product_audienceUpdateManyWithoutAudienceNestedInput
+}
+
+export type audienceUncheckedUpdateWithoutTranslationsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product_audiences?: Prisma.product_audienceUncheckedUpdateManyWithoutAudienceNestedInput
+}
+
+export type audienceCreateWithoutProduct_audiencesInput = {
+  code: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  translations?: Prisma.audience_translationCreateNestedManyWithoutAudienceInput
 }
 
 export type audienceUncheckedCreateWithoutProduct_audiencesInput = {
   id?: number
   code: string
-  name: string
   created_at?: Date | string
   updated_at?: Date | string
+  translations?: Prisma.audience_translationUncheckedCreateNestedManyWithoutAudienceInput
 }
 
 export type audienceCreateOrConnectWithoutProduct_audiencesInput = {
@@ -405,17 +450,17 @@ export type audienceUpdateToOneWithWhereWithoutProduct_audiencesInput = {
 
 export type audienceUpdateWithoutProduct_audiencesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.audience_translationUpdateManyWithoutAudienceNestedInput
 }
 
 export type audienceUncheckedUpdateWithoutProduct_audiencesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.audience_translationUncheckedUpdateManyWithoutAudienceNestedInput
 }
 
 
@@ -424,10 +469,12 @@ export type audienceUncheckedUpdateWithoutProduct_audiencesInput = {
  */
 
 export type AudienceCountOutputType = {
+  translations: number
   product_audiences: number
 }
 
 export type AudienceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  translations?: boolean | AudienceCountOutputTypeCountTranslationsArgs
   product_audiences?: boolean | AudienceCountOutputTypeCountProduct_audiencesArgs
 }
 
@@ -444,6 +491,13 @@ export type AudienceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * AudienceCountOutputType without action
  */
+export type AudienceCountOutputTypeCountTranslationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.audience_translationWhereInput
+}
+
+/**
+ * AudienceCountOutputType without action
+ */
 export type AudienceCountOutputTypeCountProduct_audiencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.product_audienceWhereInput
 }
@@ -452,9 +506,9 @@ export type AudienceCountOutputTypeCountProduct_audiencesArgs<ExtArgs extends ru
 export type audienceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
-  name?: boolean
   created_at?: boolean
   updated_at?: boolean
+  translations?: boolean | Prisma.audience$translationsArgs<ExtArgs>
   product_audiences?: boolean | Prisma.audience$product_audiencesArgs<ExtArgs>
   _count?: boolean | Prisma.AudienceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["audience"]>
@@ -462,7 +516,6 @@ export type audienceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type audienceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
-  name?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["audience"]>
@@ -470,7 +523,6 @@ export type audienceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type audienceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
-  name?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["audience"]>
@@ -478,13 +530,13 @@ export type audienceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type audienceSelectScalar = {
   id?: boolean
   code?: boolean
-  name?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type audienceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "created_at" | "updated_at", ExtArgs["result"]["audience"]>
+export type audienceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "created_at" | "updated_at", ExtArgs["result"]["audience"]>
 export type audienceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  translations?: boolean | Prisma.audience$translationsArgs<ExtArgs>
   product_audiences?: boolean | Prisma.audience$product_audiencesArgs<ExtArgs>
   _count?: boolean | Prisma.AudienceCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -494,12 +546,12 @@ export type audienceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $audiencePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "audience"
   objects: {
+    translations: Prisma.$audience_translationPayload<ExtArgs>[]
     product_audiences: Prisma.$product_audiencePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     code: string
-    name: string
     created_at: Date
     updated_at: Date
   }, ExtArgs["result"]["audience"]>
@@ -896,6 +948,7 @@ readonly fields: audienceFieldRefs;
  */
 export interface Prisma__audienceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  translations<T extends Prisma.audience$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.audience$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$audience_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   product_audiences<T extends Prisma.audience$product_audiencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.audience$product_audiencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_audiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -928,7 +981,6 @@ export interface Prisma__audienceClient<T, Null = never, ExtArgs extends runtime
 export interface audienceFieldRefs {
   readonly id: Prisma.FieldRef<"audience", 'Int'>
   readonly code: Prisma.FieldRef<"audience", 'String'>
-  readonly name: Prisma.FieldRef<"audience", 'String'>
   readonly created_at: Prisma.FieldRef<"audience", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"audience", 'DateTime'>
 }
@@ -1316,6 +1368,30 @@ export type audienceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many audiences to delete.
    */
   limit?: number
+}
+
+/**
+ * audience.translations
+ */
+export type audience$translationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the audience_translation
+   */
+  select?: Prisma.audience_translationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the audience_translation
+   */
+  omit?: Prisma.audience_translationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.audience_translationInclude<ExtArgs> | null
+  where?: Prisma.audience_translationWhereInput
+  orderBy?: Prisma.audience_translationOrderByWithRelationInput | Prisma.audience_translationOrderByWithRelationInput[]
+  cursor?: Prisma.audience_translationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Audience_translationScalarFieldEnum | Prisma.Audience_translationScalarFieldEnum[]
 }
 
 /**

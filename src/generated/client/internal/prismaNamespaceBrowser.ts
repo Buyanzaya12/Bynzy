@@ -72,8 +72,10 @@ export const ModelName = {
   product_attribute_type_translation: 'product_attribute_type_translation',
   product_attribute: 'product_attribute',
   audience: 'audience',
+  audience_translation: 'audience_translation',
   product_audience: 'product_audience',
   home_section: 'home_section',
+  home_section_translation: 'home_section_translation',
   product_home_section: 'product_home_section',
   product_stock: 'product_stock',
   product_stock_profile: 'product_stock_profile',
@@ -348,12 +350,21 @@ export type Product_attributeScalarFieldEnum = (typeof Product_attributeScalarFi
 export const AudienceScalarFieldEnum = {
   id: 'id',
   code: 'code',
-  name: 'name',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type AudienceScalarFieldEnum = (typeof AudienceScalarFieldEnum)[keyof typeof AudienceScalarFieldEnum]
+
+
+export const Audience_translationScalarFieldEnum = {
+  id: 'id',
+  audience_id: 'audience_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Audience_translationScalarFieldEnum = (typeof Audience_translationScalarFieldEnum)[keyof typeof Audience_translationScalarFieldEnum]
 
 
 export const Product_audienceScalarFieldEnum = {
@@ -369,13 +380,22 @@ export type Product_audienceScalarFieldEnum = (typeof Product_audienceScalarFiel
 
 export const Home_sectionScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   code: 'code',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type Home_sectionScalarFieldEnum = (typeof Home_sectionScalarFieldEnum)[keyof typeof Home_sectionScalarFieldEnum]
+
+
+export const Home_section_translationScalarFieldEnum = {
+  id: 'id',
+  section_id: 'section_id',
+  language: 'language',
+  name: 'name'
+} as const
+
+export type Home_section_translationScalarFieldEnum = (typeof Home_section_translationScalarFieldEnum)[keyof typeof Home_section_translationScalarFieldEnum]
 
 
 export const Product_home_sectionScalarFieldEnum = {

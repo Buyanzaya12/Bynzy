@@ -102,6 +102,8 @@ model type {
 }
 
 model type_translation {
+
+
     id       Int      @id @default(autoincrement())
     type_id  Int
     language Language
@@ -300,12 +302,22 @@ model product_attribute {
 model audience {
     id               Int                @id @default(autoincrement())
     code             String             @unique
-    name             String
+    translations     audience_translation[]
     product_audiences product_audience[]
     created_at       DateTime           @default(now())
     updated_at       DateTime           @updatedAt
 }
 
+model audience_translation {
+    id         Int      @id @default(autoincrement())
+    audience_id Int
+    language   Language
+    name       String
+
+    audience audience @relation(fields: [audience_id], references: [id])
+
+    @@unique([audience_id, language])
+}
 model product_audience {
     id          Int @id @default(autoincrement())
     product_id  Int
@@ -322,13 +334,23 @@ model product_audience {
 
 model home_section {
     id       Int                    @id @default(autoincrement())
-    name     String
-    code     String
+    translations     home_section_translation[]
+    code     String @unique
     products product_home_section[]
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }
 
+model home_section_translation {
+    id         Int      @id @default(autoincrement())
+    section_id Int
+    language   Language
+    name       String
+
+    section home_section @relation(fields: [section_id], references: [id])
+
+    @@unique([section_id, language])
+}
 model product_home_section {
     id         Int          @id @default(autoincrement())
     section_id Int

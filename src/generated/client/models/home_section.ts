@@ -36,7 +36,6 @@ export type Home_sectionSumAggregateOutputType = {
 
 export type Home_sectionMinAggregateOutputType = {
   id: number | null
-  name: string | null
   code: string | null
   created_at: Date | null
   updated_at: Date | null
@@ -44,7 +43,6 @@ export type Home_sectionMinAggregateOutputType = {
 
 export type Home_sectionMaxAggregateOutputType = {
   id: number | null
-  name: string | null
   code: string | null
   created_at: Date | null
   updated_at: Date | null
@@ -52,7 +50,6 @@ export type Home_sectionMaxAggregateOutputType = {
 
 export type Home_sectionCountAggregateOutputType = {
   id: number
-  name: number
   code: number
   created_at: number
   updated_at: number
@@ -70,7 +67,6 @@ export type Home_sectionSumAggregateInputType = {
 
 export type Home_sectionMinAggregateInputType = {
   id?: true
-  name?: true
   code?: true
   created_at?: true
   updated_at?: true
@@ -78,7 +74,6 @@ export type Home_sectionMinAggregateInputType = {
 
 export type Home_sectionMaxAggregateInputType = {
   id?: true
-  name?: true
   code?: true
   created_at?: true
   updated_at?: true
@@ -86,7 +81,6 @@ export type Home_sectionMaxAggregateInputType = {
 
 export type Home_sectionCountAggregateInputType = {
   id?: true
-  name?: true
   code?: true
   created_at?: true
   updated_at?: true
@@ -181,7 +175,6 @@ export type home_sectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 
 export type Home_sectionGroupByOutputType = {
   id: number
-  name: string
   code: string
   created_at: Date
   updated_at: Date
@@ -212,37 +205,36 @@ export type home_sectionWhereInput = {
   OR?: Prisma.home_sectionWhereInput[]
   NOT?: Prisma.home_sectionWhereInput | Prisma.home_sectionWhereInput[]
   id?: Prisma.IntFilter<"home_section"> | number
-  name?: Prisma.StringFilter<"home_section"> | string
   code?: Prisma.StringFilter<"home_section"> | string
   created_at?: Prisma.DateTimeFilter<"home_section"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"home_section"> | Date | string
+  translations?: Prisma.Home_section_translationListRelationFilter
   products?: Prisma.Product_home_sectionListRelationFilter
 }
 
 export type home_sectionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  translations?: Prisma.home_section_translationOrderByRelationAggregateInput
   products?: Prisma.product_home_sectionOrderByRelationAggregateInput
 }
 
 export type home_sectionWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  code?: string
   AND?: Prisma.home_sectionWhereInput | Prisma.home_sectionWhereInput[]
   OR?: Prisma.home_sectionWhereInput[]
   NOT?: Prisma.home_sectionWhereInput | Prisma.home_sectionWhereInput[]
-  name?: Prisma.StringFilter<"home_section"> | string
-  code?: Prisma.StringFilter<"home_section"> | string
   created_at?: Prisma.DateTimeFilter<"home_section"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"home_section"> | Date | string
+  translations?: Prisma.Home_section_translationListRelationFilter
   products?: Prisma.Product_home_sectionListRelationFilter
-}, "id">
+}, "id" | "code">
 
 export type home_sectionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -258,56 +250,53 @@ export type home_sectionScalarWhereWithAggregatesInput = {
   OR?: Prisma.home_sectionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.home_sectionScalarWhereWithAggregatesInput | Prisma.home_sectionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"home_section"> | number
-  name?: Prisma.StringWithAggregatesFilter<"home_section"> | string
   code?: Prisma.StringWithAggregatesFilter<"home_section"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"home_section"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"home_section"> | Date | string
 }
 
 export type home_sectionCreateInput = {
-  name: string
   code: string
   created_at?: Date | string
   updated_at?: Date | string
+  translations?: Prisma.home_section_translationCreateNestedManyWithoutSectionInput
   products?: Prisma.product_home_sectionCreateNestedManyWithoutSectionInput
 }
 
 export type home_sectionUncheckedCreateInput = {
   id?: number
-  name: string
   code: string
   created_at?: Date | string
   updated_at?: Date | string
+  translations?: Prisma.home_section_translationUncheckedCreateNestedManyWithoutSectionInput
   products?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutSectionInput
 }
 
 export type home_sectionUpdateInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.home_section_translationUpdateManyWithoutSectionNestedInput
   products?: Prisma.product_home_sectionUpdateManyWithoutSectionNestedInput
 }
 
 export type home_sectionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.home_section_translationUncheckedUpdateManyWithoutSectionNestedInput
   products?: Prisma.product_home_sectionUncheckedUpdateManyWithoutSectionNestedInput
 }
 
 export type home_sectionCreateManyInput = {
   id?: number
-  name: string
   code: string
   created_at?: Date | string
   updated_at?: Date | string
 }
 
 export type home_sectionUpdateManyMutationInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -315,7 +304,6 @@ export type home_sectionUpdateManyMutationInput = {
 
 export type home_sectionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -323,7 +311,6 @@ export type home_sectionUncheckedUpdateManyInput = {
 
 export type home_sectionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -335,7 +322,6 @@ export type home_sectionAvgOrderByAggregateInput = {
 
 export type home_sectionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -343,7 +329,6 @@ export type home_sectionMaxOrderByAggregateInput = {
 
 export type home_sectionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -356,6 +341,20 @@ export type home_sectionSumOrderByAggregateInput = {
 export type Home_sectionScalarRelationFilter = {
   is?: Prisma.home_sectionWhereInput
   isNot?: Prisma.home_sectionWhereInput
+}
+
+export type home_sectionCreateNestedOneWithoutTranslationsInput = {
+  create?: Prisma.XOR<Prisma.home_sectionCreateWithoutTranslationsInput, Prisma.home_sectionUncheckedCreateWithoutTranslationsInput>
+  connectOrCreate?: Prisma.home_sectionCreateOrConnectWithoutTranslationsInput
+  connect?: Prisma.home_sectionWhereUniqueInput
+}
+
+export type home_sectionUpdateOneRequiredWithoutTranslationsNestedInput = {
+  create?: Prisma.XOR<Prisma.home_sectionCreateWithoutTranslationsInput, Prisma.home_sectionUncheckedCreateWithoutTranslationsInput>
+  connectOrCreate?: Prisma.home_sectionCreateOrConnectWithoutTranslationsInput
+  upsert?: Prisma.home_sectionUpsertWithoutTranslationsInput
+  connect?: Prisma.home_sectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.home_sectionUpdateToOneWithWhereWithoutTranslationsInput, Prisma.home_sectionUpdateWithoutTranslationsInput>, Prisma.home_sectionUncheckedUpdateWithoutTranslationsInput>
 }
 
 export type home_sectionCreateNestedOneWithoutProductsInput = {
@@ -372,19 +371,65 @@ export type home_sectionUpdateOneRequiredWithoutProductsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.home_sectionUpdateToOneWithWhereWithoutProductsInput, Prisma.home_sectionUpdateWithoutProductsInput>, Prisma.home_sectionUncheckedUpdateWithoutProductsInput>
 }
 
-export type home_sectionCreateWithoutProductsInput = {
-  name: string
+export type home_sectionCreateWithoutTranslationsInput = {
   code: string
   created_at?: Date | string
   updated_at?: Date | string
+  products?: Prisma.product_home_sectionCreateNestedManyWithoutSectionInput
+}
+
+export type home_sectionUncheckedCreateWithoutTranslationsInput = {
+  id?: number
+  code: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  products?: Prisma.product_home_sectionUncheckedCreateNestedManyWithoutSectionInput
+}
+
+export type home_sectionCreateOrConnectWithoutTranslationsInput = {
+  where: Prisma.home_sectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.home_sectionCreateWithoutTranslationsInput, Prisma.home_sectionUncheckedCreateWithoutTranslationsInput>
+}
+
+export type home_sectionUpsertWithoutTranslationsInput = {
+  update: Prisma.XOR<Prisma.home_sectionUpdateWithoutTranslationsInput, Prisma.home_sectionUncheckedUpdateWithoutTranslationsInput>
+  create: Prisma.XOR<Prisma.home_sectionCreateWithoutTranslationsInput, Prisma.home_sectionUncheckedCreateWithoutTranslationsInput>
+  where?: Prisma.home_sectionWhereInput
+}
+
+export type home_sectionUpdateToOneWithWhereWithoutTranslationsInput = {
+  where?: Prisma.home_sectionWhereInput
+  data: Prisma.XOR<Prisma.home_sectionUpdateWithoutTranslationsInput, Prisma.home_sectionUncheckedUpdateWithoutTranslationsInput>
+}
+
+export type home_sectionUpdateWithoutTranslationsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  products?: Prisma.product_home_sectionUpdateManyWithoutSectionNestedInput
+}
+
+export type home_sectionUncheckedUpdateWithoutTranslationsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  products?: Prisma.product_home_sectionUncheckedUpdateManyWithoutSectionNestedInput
+}
+
+export type home_sectionCreateWithoutProductsInput = {
+  code: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  translations?: Prisma.home_section_translationCreateNestedManyWithoutSectionInput
 }
 
 export type home_sectionUncheckedCreateWithoutProductsInput = {
   id?: number
-  name: string
   code: string
   created_at?: Date | string
   updated_at?: Date | string
+  translations?: Prisma.home_section_translationUncheckedCreateNestedManyWithoutSectionInput
 }
 
 export type home_sectionCreateOrConnectWithoutProductsInput = {
@@ -404,18 +449,18 @@ export type home_sectionUpdateToOneWithWhereWithoutProductsInput = {
 }
 
 export type home_sectionUpdateWithoutProductsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.home_section_translationUpdateManyWithoutSectionNestedInput
 }
 
 export type home_sectionUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.home_section_translationUncheckedUpdateManyWithoutSectionNestedInput
 }
 
 
@@ -424,10 +469,12 @@ export type home_sectionUncheckedUpdateWithoutProductsInput = {
  */
 
 export type Home_sectionCountOutputType = {
+  translations: number
   products: number
 }
 
 export type Home_sectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  translations?: boolean | Home_sectionCountOutputTypeCountTranslationsArgs
   products?: boolean | Home_sectionCountOutputTypeCountProductsArgs
 }
 
@@ -444,6 +491,13 @@ export type Home_sectionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
 /**
  * Home_sectionCountOutputType without action
  */
+export type Home_sectionCountOutputTypeCountTranslationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.home_section_translationWhereInput
+}
+
+/**
+ * Home_sectionCountOutputType without action
+ */
 export type Home_sectionCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.product_home_sectionWhereInput
 }
@@ -451,17 +505,16 @@ export type Home_sectionCountOutputTypeCountProductsArgs<ExtArgs extends runtime
 
 export type home_sectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
+  translations?: boolean | Prisma.home_section$translationsArgs<ExtArgs>
   products?: boolean | Prisma.home_section$productsArgs<ExtArgs>
   _count?: boolean | Prisma.Home_sectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["home_section"]>
 
 export type home_sectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -469,7 +522,6 @@ export type home_sectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 
 export type home_sectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -477,14 +529,14 @@ export type home_sectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 
 export type home_sectionSelectScalar = {
   id?: boolean
-  name?: boolean
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type home_sectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "created_at" | "updated_at", ExtArgs["result"]["home_section"]>
+export type home_sectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "created_at" | "updated_at", ExtArgs["result"]["home_section"]>
 export type home_sectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  translations?: boolean | Prisma.home_section$translationsArgs<ExtArgs>
   products?: boolean | Prisma.home_section$productsArgs<ExtArgs>
   _count?: boolean | Prisma.Home_sectionCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -494,11 +546,11 @@ export type home_sectionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $home_sectionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "home_section"
   objects: {
+    translations: Prisma.$home_section_translationPayload<ExtArgs>[]
     products: Prisma.$product_home_sectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    name: string
     code: string
     created_at: Date
     updated_at: Date
@@ -896,6 +948,7 @@ readonly fields: home_sectionFieldRefs;
  */
 export interface Prisma__home_sectionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  translations<T extends Prisma.home_section$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.home_section$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$home_section_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   products<T extends Prisma.home_section$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.home_section$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_home_sectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -927,7 +980,6 @@ export interface Prisma__home_sectionClient<T, Null = never, ExtArgs extends run
  */
 export interface home_sectionFieldRefs {
   readonly id: Prisma.FieldRef<"home_section", 'Int'>
-  readonly name: Prisma.FieldRef<"home_section", 'String'>
   readonly code: Prisma.FieldRef<"home_section", 'String'>
   readonly created_at: Prisma.FieldRef<"home_section", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"home_section", 'DateTime'>
@@ -1316,6 +1368,30 @@ export type home_sectionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many home_sections to delete.
    */
   limit?: number
+}
+
+/**
+ * home_section.translations
+ */
+export type home_section$translationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the home_section_translation
+   */
+  select?: Prisma.home_section_translationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the home_section_translation
+   */
+  omit?: Prisma.home_section_translationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.home_section_translationInclude<ExtArgs> | null
+  where?: Prisma.home_section_translationWhereInput
+  orderBy?: Prisma.home_section_translationOrderByWithRelationInput | Prisma.home_section_translationOrderByWithRelationInput[]
+  cursor?: Prisma.home_section_translationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Home_section_translationScalarFieldEnum | Prisma.Home_section_translationScalarFieldEnum[]
 }
 
 /**
