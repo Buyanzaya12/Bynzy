@@ -2,10 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
 // CREATE PRODUCT ATTRIBUTE
-export const createProductAttribute = async (
-  req: Request,
-  res: Response
-) => {
+export const createProductAttribute = async (req: Request, res: Response) => {
   try {
     const { product_id, type_id, value } = req.body;
 
@@ -49,16 +46,23 @@ export const createProductAttribute = async (
 };
 
 // GET ALL PRODUCT ATTRIBUTES
-export const getProductAttributes = async (
-  _req: Request,
-  res: Response
-) => {
+export const getProductAttributes = async (_req: Request, res: Response) => {
   try {
     const attributes = await prisma.product_attribute.findMany({
       include: {
-        product: true,
-        type: true,
+        product: {
+          include: {
+            translations: true,
+          },
+        },
+
+        type: {
+          include: {
+            translations: true,
+          },
+        },
       },
+
       orderBy: {
         created_at: "desc",
       },
@@ -78,10 +82,7 @@ export const getProductAttributes = async (
 };
 
 // GET SINGLE PRODUCT ATTRIBUTE
-export const getProductAttributeById = async (
-  req: Request,
-  res: Response
-) => {
+export const getProductAttributeById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -90,8 +91,17 @@ export const getProductAttributeById = async (
         id: Number(id),
       },
       include: {
-        product: true,
-        type: true,
+        product: {
+          include: {
+            translations: true,
+          },
+        },
+
+        type: {
+          include: {
+            translations: true,
+          },
+        },
       },
     });
 
@@ -116,10 +126,7 @@ export const getProductAttributeById = async (
 };
 
 // UPDATE PRODUCT ATTRIBUTE
-export const updateProductAttribute = async (
-  req: Request,
-  res: Response
-) => {
+export const updateProductAttribute = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { value, type_id } = req.body;
@@ -152,10 +159,7 @@ export const updateProductAttribute = async (
 };
 
 // DELETE PRODUCT ATTRIBUTE
-export const deleteProductAttribute = async (
-  req: Request,
-  res: Response
-) => {
+export const deleteProductAttribute = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

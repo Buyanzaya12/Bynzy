@@ -7,7 +7,7 @@ export const createHomeSection = async (
   res: Response
 ) => {
   try {
-    const { name, code } = req.body;
+    const { code, translations } = req.body;
 
     const existingSection = await prisma.home_section.findUnique({
       where: {
@@ -24,8 +24,15 @@ export const createHomeSection = async (
 
     const section = await prisma.home_section.create({
       data: {
-        name,
         code,
+
+        translations: {
+          create: translations,
+        },
+      },
+
+      include: {
+        translations: true,
       },
     });
 
@@ -50,12 +57,15 @@ export const getHomeSections = async (
   try {
     const sections = await prisma.home_section.findMany({
       include: {
+        translations: true,
+
         products: {
           include: {
             product: true,
           },
         },
       },
+
       orderBy: {
         created_at: "desc",
       },
@@ -86,7 +96,10 @@ export const getHomeSectionById = async (
       where: {
         id: Number(id),
       },
+
       include: {
+        translations: true,
+
         products: {
           include: {
             product: {
@@ -127,15 +140,29 @@ export const updateHomeSection = async (
 ) => {
   try {
     const { id } = req.params;
-    const { name, code } = req.body;
+    const { code, translations } = req.body;
+
+    await prisma.home_section_translation.deleteMany({
+      where: {
+        section_id: Number(id),
+      },
+    });
 
     const section = await prisma.home_section.update({
       where: {
         id: Number(id),
       },
+
       data: {
-        name,
         code,
+
+        translations: {
+          create: translations,
+        },
+      },
+
+      include: {
+        translations: true,
       },
     });
 
@@ -159,6 +186,12 @@ export const deleteHomeSection = async (
 ) => {
   try {
     const { id } = req.params;
+
+    await prisma.home_section_translation.deleteMany({
+      where: {
+        section_id: Number(id),
+      },
+    });
 
     await prisma.home_section.delete({
       where: {

@@ -47,34 +47,36 @@ export const addType = async (req: Request, res: Response): Promise<void> => {
 // ─────────────────────────────
 // GET TYPES
 // ─────────────────────────────
-export const getTypes = async (req: Request, res: Response): Promise<void> => {
+export const getTypes = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
-    const lang = (req.query.lang as string) || "EN";
-
     const types = await prisma.type.findMany({
-      orderBy: { created_at: "desc" },
+      orderBy: {
+        created_at: "desc",
+      },
+
       include: {
         translations: true,
-        category: true,
+
+        category: {
+          include: {
+            translations: true,
+          },
+        },
       },
     });
 
-    const formatted = types.map((t) => {
-      const tr =
-        t.translations.find((x) => x.language === lang) || t.translations[0];
-
-      return {
-        id: t.id,
-        code: t.code,
-        category: t.category,
-        name: tr?.name || "",
-      };
+    res.status(200).json({
+      data: types,
     });
-
-    res.status(200).json({ data: formatted });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to retrieve types" });
+
+    res.status(500).json({
+      error: "Failed to retrieve types",
+    });
   }
 };
 

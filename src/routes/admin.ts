@@ -5,6 +5,7 @@ import {
   deleteBrand,
   updateBrand,
 } from "../controller/admin/brand";
+import multer from "multer";
 
 import { addCategory, getCategories } from "../controller/admin/category";
 
@@ -17,7 +18,9 @@ import { adminMiddleware } from "../middleware/auth.middleware";
 import { register, login } from "../controller/auth";
 
 const router = Router();
-
+const upload = multer({
+  storage: multer.memoryStorage(),
+});
 // 🔐 ALL ADMIN ROUTES PROTECTED
 router.use(adminMiddleware);
 

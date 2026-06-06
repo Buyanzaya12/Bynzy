@@ -54,34 +54,29 @@ export const addColor = async (req: Request, res: Response): Promise<void> => {
 /**
  * GET COLORS
  */
-export const getColors = async (req: Request, res: Response): Promise<void> => {
+export const getColors = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
-    const lang = (req.query.lang as string) || "EN";
-
     const colors = await prisma.color.findMany({
-      orderBy: { created_at: "desc" },
+      orderBy: {
+        created_at: "desc",
+      },
       include: {
         translations: true,
       },
     });
 
-    const formatted = colors.map((color) => {
-      const translation =
-        color.translations.find((t) => t.language === lang) ||
-        color.translations[0];
-
-      return {
-        id: color.id,
-        code: color.code,
-        image_url: color.image_url || null, // ✅ include image
-        name: translation?.name || "",
-      };
+    res.status(200).json({
+      data: colors,
     });
-
-    res.status(200).json({ data: formatted });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to retrieve colors" });
+
+    res.status(500).json({
+      error: "Failed to retrieve colors",
+    });
   }
 };
 

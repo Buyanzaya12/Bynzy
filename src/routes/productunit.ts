@@ -1,23 +1,23 @@
 import express from "express";
 
 import {
-  createProductAvailability,
-  deleteProductAvailability,
-  getProductAvailabilityById,
-  getProductAvailabilities,
-  updateProductAvailability,
-} from "../controller/admin/productavailability";
+  createProductUnit,
+  deleteProductUnit,
+  getProductUnitById,
+  getProductUnits,
+  updateProductUnit,
+} from "../controller/admin/productunit";
 
 const router = express.Router();
 
-router.post("/", createProductAvailability);
+router.post("/", createProductUnit);
 
-router.get("/", getProductAvailabilities);
+router.get("/", getProductUnits);
 
-router.get("/:id", getProductAvailabilityById);
+router.get("/:id", getProductUnitById);
 
-router.put("/:id", updateProductAvailability);
+router.put("/:id", updateProductUnit);
 
-router.delete("/:id", deleteProductAvailability);
+router.delete("/:id", deleteProductUnit);
 
 export default router;

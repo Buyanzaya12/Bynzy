@@ -1,3 +1,72 @@
+// import { Request, Response, NextFunction } from "express";
+// import jwt from "jsonwebtoken";
+
+// const JWT_SECRET = process.env.JWT_SECRET || "secret";
+
+// export interface AuthRequest extends Request {
+//   user?: {
+//     id: number;
+//     role: string;
+//   };
+// }
+
+// export const authMiddleware = (
+//   req: AuthRequest,
+//   res: Response,
+//   next: NextFunction,
+// ) => {
+//   try {
+//     const authHeader = req.headers.authorization;
+
+//     if (!authHeader) {
+//       return res.status(401).json({ error: "No token provided" });
+//     }
+
+//     const token = authHeader.split(" ")[1];
+
+//     const decoded = jwt.verify(token, JWT_SECRET) as {
+//       id: number;
+//       role: string;
+//     };
+
+//     req.user = decoded; // ✅ NO role check
+
+//     next();
+//   } catch {
+//     return res.status(401).json({ error: "Unauthorized" });
+//   }
+// };
+
+// export const adminMiddleware = (
+//   req: AuthRequest,
+//   res: Response,
+//   next: NextFunction,
+// ) => {
+//   try {
+//     const authHeader = req.headers.authorization;
+
+//     if (!authHeader) {
+//       return res.status(401).json({ error: "No token provided" });
+//     }
+
+//     const token = authHeader.split(" ")[1];
+
+//     const decoded = jwt.verify(token, JWT_SECRET) as {
+//       id: number;
+//       role: string;
+//     };
+
+//     if (decoded.role !== "ADMIN") {
+//       return res.status(403).json({ error: "Admin only access" });
+//     }
+
+//     req.user = decoded;
+
+//     next();
+//   } catch {
+//     return res.status(401).json({ error: "Unauthorized" });
+//   }
+// };
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
@@ -18,6 +87,8 @@ export const authMiddleware = (
   try {
     const authHeader = req.headers.authorization;
 
+    console.log("AUTH HEADER:", authHeader);
+
     if (!authHeader) {
       return res.status(401).json({ error: "No token provided" });
     }
@@ -29,11 +100,18 @@ export const authMiddleware = (
       role: string;
     };
 
-    req.user = decoded; // ✅ NO role check
+    console.log("DECODED:", decoded);
+
+    req.user = decoded;
 
     next();
-  } catch {
-    return res.status(401).json({ error: "Unauthorized" });
+  } catch (err) {
+    console.error("AUTH ERROR:", err);
+
+    return res.status(401).json({
+      error: "Unauthorized",
+      details: err instanceof Error ? err.message : err,
+    });
   }
 };
 
@@ -45,6 +123,8 @@ export const adminMiddleware = (
   try {
     const authHeader = req.headers.authorization;
 
+    console.log("ADMIN HEADER:", authHeader);
+
     if (!authHeader) {
       return res.status(401).json({ error: "No token provided" });
     }
@@ -56,14 +136,24 @@ export const adminMiddleware = (
       role: string;
     };
 
+    console.log("ADMIN DECODED:", decoded);
+
     if (decoded.role !== "ADMIN") {
-      return res.status(403).json({ error: "Admin only access" });
+      return res.status(403).json({
+        error: "Admin only access",
+        role: decoded.role,
+      });
     }
 
     req.user = decoded;
 
     next();
-  } catch {
-    return res.status(401).json({ error: "Unauthorized" });
+  } catch (err) {
+    console.error("ADMIN ERROR:", err);
+
+    return res.status(401).json({
+      error: "Unauthorized",
+      details: err instanceof Error ? err.message : err,
+    });
   }
 };

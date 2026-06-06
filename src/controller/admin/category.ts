@@ -40,31 +40,25 @@ export const addCategory = async (req: Request, res: Response) => {
 };
 export const getCategories = async (req: Request, res: Response) => {
   try {
-    const lang = (req.query.lang as string) || "EN";
-
     const categories = await prisma.category.findMany({
-      orderBy: { created_at: "desc" },
+      orderBy: {
+        created_at: "desc",
+      },
       include: {
         translations: true,
         types: true,
       },
     });
 
-    const formatted = categories.map((c) => {
-      const translation = c.translations.find((t) => t.language === lang);
-
-      return {
-        id: c.id,
-        code: c.code,
-        name: translation?.name || c.translations[0]?.name || "",
-        types: c.types,
-      };
+    return res.status(200).json({
+      data: categories,
     });
-
-    res.status(200).json({ data: formatted });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to retrieve categories" });
+
+    return res.status(500).json({
+      error: "Failed to retrieve categories",
+    });
   }
 };
 

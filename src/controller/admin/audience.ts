@@ -1,11 +1,10 @@
-
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
-
+// CREATE
 export const createAudience = async (req: Request, res: Response) => {
   try {
-    const { code, name } = req.body;
+    const { code, translations } = req.body;
 
     const existingAudience = await prisma.audience.findUnique({
       where: { code },
@@ -21,7 +20,14 @@ export const createAudience = async (req: Request, res: Response) => {
     const audience = await prisma.audience.create({
       data: {
         code,
-        name,
+
+        translations: {
+          create: translations,
+        },
+      },
+
+      include: {
+        translations: true,
       },
     });
 
@@ -38,10 +44,14 @@ export const createAudience = async (req: Request, res: Response) => {
   }
 };
 
-// GET ALL AUDIENCES
+// GET ALL
 export const getAudiences = async (_req: Request, res: Response) => {
   try {
     const audiences = await prisma.audience.findMany({
+      include: {
+        translations: true,
+      },
+
       orderBy: {
         created_at: "desc",
       },
@@ -60,7 +70,7 @@ export const getAudiences = async (_req: Request, res: Response) => {
   }
 };
 
-// GET SINGLE AUDIENCE
+// GET ONE
 export const getAudienceById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -69,7 +79,10 @@ export const getAudienceById = async (req: Request, res: Response) => {
       where: {
         id: Number(id),
       },
+
       include: {
+        translations: true,
+
         product_audiences: {
           include: {
             product: true,
@@ -98,19 +111,33 @@ export const getAudienceById = async (req: Request, res: Response) => {
   }
 };
 
-// UPDATE AUDIENCE
+// UPDATE
 export const updateAudience = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { code, name } = req.body;
+    const { code, translations } = req.body;
+
+    await prisma.audience_translation.deleteMany({
+      where: {
+        audience_id: Number(id),
+      },
+    });
 
     const audience = await prisma.audience.update({
       where: {
         id: Number(id),
       },
+
       data: {
         code,
-        name,
+
+        translations: {
+          create: translations,
+        },
+      },
+
+      include: {
+        translations: true,
       },
     });
 
@@ -127,7 +154,7 @@ export const updateAudience = async (req: Request, res: Response) => {
   }
 };
 
-// DELETE AUDIENCE
+// DELETE
 export const deleteAudience = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -150,8 +177,3 @@ export const deleteAudience = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-
-
-

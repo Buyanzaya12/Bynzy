@@ -2,10 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
 // CREATE PRODUCT UNIT
-export const createProductUnit = async (
-  req: Request,
-  res: Response
-) => {
+export const createProductUnit = async (req: Request, res: Response) => {
   try {
     const { code, translations } = req.body;
 
@@ -27,7 +24,11 @@ export const createProductUnit = async (
         code,
 
         translations: {
-          create: translations,
+          create: translations.map((t: any) => ({
+            language: t.language,
+            name: t.name,
+            short_name: t.short_name,
+          })),
         },
       },
 
@@ -40,20 +41,21 @@ export const createProductUnit = async (
       success: true,
       data: unit,
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.error("==============");
+    console.error(error);
+    console.error(error.message);
+    console.error("==============");
+
     return res.status(500).json({
       success: false,
-      message: "Failed to create product unit",
-      error,
+      message: error.message,
     });
   }
 };
 
 // GET ALL PRODUCT UNITS
-export const getProductUnits = async (
-  _req: Request,
-  res: Response
-) => {
+export const getProductUnits = async (_req: Request, res: Response) => {
   try {
     const units = await prisma.product_unit.findMany({
       include: {
@@ -84,10 +86,7 @@ export const getProductUnits = async (
 };
 
 // GET SINGLE PRODUCT UNIT
-export const getProductUnitById = async (
-  req: Request,
-  res: Response
-) => {
+export const getProductUnitById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -133,13 +132,10 @@ export const getProductUnitById = async (
 };
 
 // UPDATE PRODUCT UNIT
-export const updateProductUnit = async (
-  req: Request,
-  res: Response
-) => {
+export const updateProductUnit = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { code } = req.body;
+    const { code, translations } = req.body;
 
     const unit = await prisma.product_unit.update({
       where: {
@@ -148,6 +144,11 @@ export const updateProductUnit = async (
 
       data: {
         code,
+
+        translations: {
+          deleteMany: {},
+          create: translations,
+        },
       },
 
       include: {
@@ -169,10 +170,7 @@ export const updateProductUnit = async (
 };
 
 // DELETE PRODUCT UNIT
-export const deleteProductUnit = async (
-  req: Request,
-  res: Response
-) => {
+export const deleteProductUnit = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

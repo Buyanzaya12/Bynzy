@@ -13,9 +13,9 @@ import audienceRoutes from "./routes/audience";
 import favRoutes from "./routes/fav";
 import homesectionRoutes from "./routes/homesection";
 import productattributeRoutes from "./routes/productattribute";
+import productattributetypeRoutes from "./routes/productattributetype";
 import productavailabilityRoutes from "./routes/productavailability";
 import productunitRoutes from "./routes/productunit";
-
 
 const app = express();
 
@@ -40,6 +40,7 @@ app.use("/fav", favRoutes);
 app.use("/homesection", homesectionRoutes);
 app.use("/productattribute", productattributeRoutes);
 app.use("/productavailability", productavailabilityRoutes);
+app.use("/productattributetype", productattributetypeRoutes);
 app.use("/productunit", productunitRoutes);
 
 app.get("/", (req, res) => {
