@@ -7,6 +7,8 @@ const generateCode = (name: string) => {
 
 export const addProduct = async (req: Request, res: Response) => {
   try {
+    console.log("========== PRODUCT REQUEST ==========");
+    console.log(JSON.stringify(req.body, null, 2));
     const {
       code,
       price,
@@ -45,7 +47,8 @@ export const addProduct = async (req: Request, res: Response) => {
         error: "EN translation is required",
       });
     }
-
+    console.log("IMAGES RECEIVED:", images);
+    console.log("TRANSLATIONS:", translations);
     const product = await prisma.product.create({
       data: {
         code,
@@ -172,7 +175,7 @@ export const addProduct = async (req: Request, res: Response) => {
         },
       },
     });
-
+    console.log("CREATED PRODUCT IMAGES:", product.images);
     return res.status(201).json({
       data: product,
     });
