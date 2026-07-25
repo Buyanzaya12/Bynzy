@@ -7,13 +7,22 @@ import {
 } from "../controller/admin/brand";
 import multer from "multer";
 
-import { addCategory, getCategories } from "../controller/admin/category";
+import {
+  addCategory,
+  getCategories,
+  deleteCategory,
+  updateCategory,
+} from "../controller/admin/category";
 
 import { addColor, getColors } from "../controller/admin/color";
 
-import { addType, getTypes } from "../controller/admin/type";
+import { addType, getTypes, deleteType, updateType } from "../controller/admin/type";
 
-import { addProduct } from "../controller/admin/product";
+import {
+  addProduct,
+  deleteProduct,
+  getProducts,
+} from "../controller/admin/product";
 import { adminMiddleware } from "../middleware/auth.middleware";
 import { register, login } from "../controller/auth";
 
@@ -32,8 +41,9 @@ router.put("/brand/:id", updateBrand);
 
 // CATEGORY
 router.post("/category", addCategory);
-
+router.put("/category/:id", updateCategory);
 router.get("/category", getCategories);
+router.delete("/category/:id", deleteCategory);
 
 // COLOR
 router.post("/color", addColor);
@@ -42,8 +52,12 @@ router.get("/color", getColors);
 // TYPE
 router.post("/type", addType);
 router.get("/type", getTypes);
+router.delete("/type/:id", deleteType);
+router.put("/type/:id", updateType);
 
 // PRODUCT
 router.post("/product", addProduct);
+router.get("/product", getProducts);
+router.delete("/product/:id", deleteProduct);
 
 export default router;

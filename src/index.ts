@@ -16,6 +16,7 @@ import productattributeRoutes from "./routes/productattribute";
 import productattributetypeRoutes from "./routes/productattributetype";
 import productavailabilityRoutes from "./routes/productavailability";
 import productunitRoutes from "./routes/productunit";
+import cartRoutes from "./routes/cart";
 
 const app = express();
 
@@ -42,7 +43,7 @@ app.use("/productattribute", productattributeRoutes);
 app.use("/productavailability", productavailabilityRoutes);
 app.use("/productattributetype", productattributetypeRoutes);
 app.use("/productunit", productunitRoutes);
-
+app.use("/cart", cartRoutes);
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });

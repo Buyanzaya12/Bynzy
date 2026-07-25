@@ -1,10 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
-const generateCode = (name: string) => {
-  return name.toLowerCase().trim().replace(/\s+/g, "_").replace(/[^\w]/g, "");
-};
-
 export const addCategory = async (req: Request, res: Response) => {
   try {
     const { code, translations } = req.body;
@@ -20,7 +16,6 @@ export const addCategory = async (req: Request, res: Response) => {
     const category = await prisma.category.create({
       data: {
         code,
-
         translations: {
           create: translations.map((t: any) => ({
             language: t.language,
@@ -33,25 +28,67 @@ export const addCategory = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(201).json({ data: category });
+    return res.status(201).json({
+      data: category,
+    });
   } catch (e: any) {
-    res.status(500).json({ error: e.message });
+    return res.status(500).json({
+      error: e.message,
+    });
   }
 };
+
 export const getCategories = async (req: Request, res: Response) => {
   try {
+    const lang = String(req.query.lang || "EN").toUpperCase();
+
     const categories = await prisma.category.findMany({
       orderBy: {
         created_at: "desc",
       },
+
       include: {
         translations: true,
-        types: true,
+        types: {
+          include: {
+            translations: {
+              where: {
+                language: lang as any,
+              },
+            },
+          },
+        },
       },
     });
 
+    const data = categories.map((category) => ({
+      id: category.id,
+
+      code: category.code,
+
+      slug: category.code,
+
+      // Keep this for pages that only need one language
+      name: category.translations[0]?.name ?? category.code,
+
+      // ✅ Send translations to frontend
+      translations: category.translations,
+
+      types: category.types.map((type) => ({
+        id: type.id,
+
+        code: type.code,
+
+        slug: type.code,
+
+        name: type.translations[0]?.name ?? type.code,
+
+        translations: type.translations,
+      })),
+    }));
+
     return res.status(200).json({
-      data: categories,
+      data,
     });
   } catch (error) {
     console.error(error);
@@ -67,46 +104,59 @@ export const deleteCategory = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
 
     if (!id) {
-      return res.status(400).json({ error: "Valid ID required" });
+      return res.status(400).json({
+        error: "Valid ID required",
+      });
     }
 
     await prisma.category.delete({
-      where: { id },
+      where: {
+        id,
+      },
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Category deleted successfully",
     });
   } catch (error: any) {
     console.error(error);
 
     if (error.code === "P2025") {
-      return res.status(404).json({ error: "Category not found" });
+      return res.status(404).json({
+        error: "Category not found",
+      });
     }
 
-    res.status(500).json({ error: "Failed to delete category" });
+    return res.status(500).json({
+      error: "Failed to delete category",
+    });
   }
 };
 
 export const updateCategory = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
+
     const { code, translations } = req.body;
 
     if (!id) {
-      return res.status(400).json({ error: "Valid ID required" });
+      return res.status(400).json({
+        error: "Valid ID required",
+      });
     }
 
     const category = await prisma.category.update({
-      where: { id },
+      where: {
+        id,
+      },
 
       data: {
         code: code ?? undefined,
 
-        // 🔥 replace all translations
         translations: translations
           ? {
               deleteMany: {},
+
               create: translations.map((t: any) => ({
                 language: t.language,
                 name: t.name,
@@ -120,7 +170,7 @@ export const updateCategory = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Category updated successfully",
       data: category,
     });
@@ -128,15 +178,19 @@ export const updateCategory = async (req: Request, res: Response) => {
     console.error(error);
 
     if (error.code === "P2025") {
-      return res.status(404).json({ error: "Category not found" });
+      return res.status(404).json({
+        error: "Category not found",
+      });
     }
 
     if (error.code === "P2002") {
-      return res
-        .status(400)
-        .json({ error: "Duplicate code or translation conflict" });
+      return res.status(400).json({
+        error: "Duplicate code or translation conflict",
+      });
     }
 
-    res.status(500).json({ error: "Failed to update category" });
+    return res.status(500).json({
+      error: "Failed to update category",
+    });
   }
 };

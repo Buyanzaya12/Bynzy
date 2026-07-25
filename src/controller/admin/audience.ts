@@ -169,11 +169,14 @@ export const deleteAudience = async (req: Request, res: Response) => {
       success: true,
       message: "Audience deleted successfully",
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.error(error);
+
     return res.status(500).json({
       success: false,
-      message: "Failed to delete audience",
-      error,
+      code: error.code,
+      meta: error.meta,
+      message: error.message,
     });
   }
 };

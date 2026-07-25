@@ -97,7 +97,7 @@ export const getBrandById = async (req: Request, res: Response) => {
 export const updateBrand = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, code } = req.body;
+    const { name, code, image_url } = req.body;
 
     const file = req.file as Express.Multer.File | undefined;
 
@@ -115,24 +115,7 @@ export const updateBrand = async (req: Request, res: Response) => {
       });
     }
 
-    let image_url: string | undefined;
-
-
-    if (file) {
-      const uploadResult = await new Promise<any>((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream(
-          { folder: "brands" },
-          (error, result) => {
-            if (error) reject(error);
-            else resolve(result);
-          },
-        );
-
-        stream.end(file.buffer);
-      });
-
-      image_url = uploadResult.secure_url;
-    }
+  
     const brand = await prisma.brand.update({
       where: { id: Number(id) },
       data: {
