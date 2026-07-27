@@ -153,6 +153,11 @@ export type product_attribute_type_translation = Prisma.product_attribute_type_t
  */
 export type product_attribute = Prisma.product_attributeModel
 /**
+ * Model product_attribute_translation
+ * 
+ */
+export type product_attribute_translation = Prisma.product_attribute_translationModel
+/**
  * Model audience
  * 
  */

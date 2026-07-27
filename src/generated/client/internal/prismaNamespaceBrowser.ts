@@ -71,6 +71,7 @@ export const ModelName = {
   product_attribute_type: 'product_attribute_type',
   product_attribute_type_translation: 'product_attribute_type_translation',
   product_attribute: 'product_attribute',
+  product_attribute_translation: 'product_attribute_translation',
   audience: 'audience',
   audience_translation: 'audience_translation',
   product_audience: 'product_audience',
@@ -339,12 +340,21 @@ export const Product_attributeScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
   type_id: 'type_id',
-  value: 'value',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type Product_attributeScalarFieldEnum = (typeof Product_attributeScalarFieldEnum)[keyof typeof Product_attributeScalarFieldEnum]
+
+
+export const Product_attribute_translationScalarFieldEnum = {
+  id: 'id',
+  attribute_id: 'attribute_id',
+  language: 'language',
+  value: 'value'
+} as const
+
+export type Product_attribute_translationScalarFieldEnum = (typeof Product_attribute_translationScalarFieldEnum)[keyof typeof Product_attribute_translationScalarFieldEnum]
 
 
 export const AudienceScalarFieldEnum = {

@@ -412,6 +412,7 @@ export const ModelName = {
   product_attribute_type: 'product_attribute_type',
   product_attribute_type_translation: 'product_attribute_type_translation',
   product_attribute: 'product_attribute',
+  product_attribute_translation: 'product_attribute_translation',
   audience: 'audience',
   audience_translation: 'audience_translation',
   product_audience: 'product_audience',
@@ -437,7 +438,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
+    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "product_attribute_translation" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2069,6 +2070,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    product_attribute_translation: {
+      payload: Prisma.$product_attribute_translationPayload<ExtArgs>
+      fields: Prisma.product_attribute_translationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.product_attribute_translationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.product_attribute_translationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>
+        }
+        findFirst: {
+          args: Prisma.product_attribute_translationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.product_attribute_translationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>
+        }
+        findMany: {
+          args: Prisma.product_attribute_translationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>[]
+        }
+        create: {
+          args: Prisma.product_attribute_translationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>
+        }
+        createMany: {
+          args: Prisma.product_attribute_translationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.product_attribute_translationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>[]
+        }
+        delete: {
+          args: Prisma.product_attribute_translationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>
+        }
+        update: {
+          args: Prisma.product_attribute_translationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>
+        }
+        deleteMany: {
+          args: Prisma.product_attribute_translationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.product_attribute_translationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.product_attribute_translationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>[]
+        }
+        upsert: {
+          args: Prisma.product_attribute_translationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_attribute_translationPayload>
+        }
+        aggregate: {
+          args: Prisma.Product_attribute_translationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProduct_attribute_translation>
+        }
+        groupBy: {
+          args: Prisma.product_attribute_translationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Product_attribute_translationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.product_attribute_translationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Product_attribute_translationCountAggregateOutputType> | number
+        }
+      }
+    }
     audience: {
       payload: Prisma.$audiencePayload<ExtArgs>
       fields: Prisma.audienceFieldRefs
@@ -3088,12 +3163,21 @@ export const Product_attributeScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
   type_id: 'type_id',
-  value: 'value',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type Product_attributeScalarFieldEnum = (typeof Product_attributeScalarFieldEnum)[keyof typeof Product_attributeScalarFieldEnum]
+
+
+export const Product_attribute_translationScalarFieldEnum = {
+  id: 'id',
+  attribute_id: 'attribute_id',
+  language: 'language',
+  value: 'value'
+} as const
+
+export type Product_attribute_translationScalarFieldEnum = (typeof Product_attribute_translationScalarFieldEnum)[keyof typeof Product_attribute_translationScalarFieldEnum]
 
 
 export const AudienceScalarFieldEnum = {
@@ -3438,6 +3522,7 @@ export type GlobalOmitConfig = {
   product_attribute_type?: Prisma.product_attribute_typeOmit
   product_attribute_type_translation?: Prisma.product_attribute_type_translationOmit
   product_attribute?: Prisma.product_attributeOmit
+  product_attribute_translation?: Prisma.product_attribute_translationOmit
   audience?: Prisma.audienceOmit
   audience_translation?: Prisma.audience_translationOmit
   product_audience?: Prisma.product_audienceOmit

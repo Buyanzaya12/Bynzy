@@ -364,6 +364,7 @@ export const getProductByCode = async (
                 translations: true,
               },
             },
+            translations: true,
           },
         },
 
@@ -604,11 +605,16 @@ export const updateProduct = async (
 
               create: attributes.map((attr: any) => ({
                 type_id: Number(attr.type_id),
-                value: attr.value,
+
+                translations: {
+                  create: attr.translations.map((t: any) => ({
+                    language: t.language,
+                    value: t.value,
+                  })),
+                },
               })),
             }
           : undefined,
-
         // UNITS
         product_unit_maps: units
           ? {
@@ -669,6 +675,7 @@ export const updateProduct = async (
                 translations: true,
               },
             },
+            translations: true,
           },
         },
 

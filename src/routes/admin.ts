@@ -14,7 +14,7 @@ import {
   updateCategory,
 } from "../controller/admin/category";
 
-import { addColor, getColors } from "../controller/admin/color";
+import { addColor, getColors, updateColor, deleteColor } from "../controller/admin/color";
 
 import { addType, getTypes, deleteType, updateType } from "../controller/admin/type";
 
@@ -48,6 +48,8 @@ router.delete("/category/:id", deleteCategory);
 // COLOR
 router.post("/color", addColor);
 router.get("/color", getColors);
+router.put("/color/:id", updateColor);
+router.delete("/color/:id", deleteColor);
 
 // TYPE
 router.post("/type", addType);

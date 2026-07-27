@@ -4,17 +4,16 @@ import { prisma } from "../../lib/prisma";
 // CREATE PRODUCT AVAILABILITY
 export const createProductAvailability = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { code, translations } = req.body;
 
-    const existingAvailability =
-      await prisma.product_availability.findUnique({
-        where: {
-          code,
-        },
-      });
+    const existingAvailability = await prisma.product_availability.findUnique({
+      where: {
+        code,
+      },
+    });
 
     if (existingAvailability) {
       return res.status(400).json({
@@ -23,20 +22,19 @@ export const createProductAvailability = async (
       });
     }
 
-    const availability =
-      await prisma.product_availability.create({
-        data: {
-          code,
+    const availability = await prisma.product_availability.create({
+      data: {
+        code,
 
-          translations: {
-            create: translations,
-          },
+        translations: {
+          create: translations,
         },
+      },
 
-        include: {
-          translations: true,
-        },
-      });
+      include: {
+        translations: true,
+      },
+    });
 
     return res.status(201).json({
       success: true,
@@ -54,20 +52,19 @@ export const createProductAvailability = async (
 // GET ALL PRODUCT AVAILABILITIES
 export const getProductAvailabilities = async (
   _req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
-    const availabilities =
-      await prisma.product_availability.findMany({
-        include: {
-          translations: true,
-          products: true,
-        },
+    const availabilities = await prisma.product_availability.findMany({
+      include: {
+        translations: true,
+        products: true,
+      },
 
-        orderBy: {
-          created_at: "desc",
-        },
-      });
+      orderBy: {
+        created_at: "desc",
+      },
+    });
 
     return res.status(200).json({
       success: true,
@@ -85,28 +82,27 @@ export const getProductAvailabilities = async (
 // GET SINGLE PRODUCT AVAILABILITY
 export const getProductAvailabilityById = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
 
-    const availability =
-      await prisma.product_availability.findUnique({
-        where: {
-          id: Number(id),
-        },
+    const availability = await prisma.product_availability.findUnique({
+      where: {
+        id: Number(id),
+      },
 
-        include: {
-          translations: true,
+      include: {
+        translations: true,
 
-          products: {
-            include: {
-              translations: true,
-              images: true,
-            },
+        products: {
+          include: {
+            translations: true,
+            images: true,
           },
         },
-      });
+      },
+    });
 
     if (!availability) {
       return res.status(404).json({
@@ -131,32 +127,42 @@ export const getProductAvailabilityById = async (
 // UPDATE PRODUCT AVAILABILITY
 export const updateProductAvailability = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
-    const { code } = req.body;
+    const { code, translations } = req.body;
 
-    const availability =
-      await prisma.product_availability.update({
-        where: {
-          id: Number(id),
-        },
+    const availability = await prisma.product_availability.update({
+      where: {
+        id: Number(id),
+      },
 
-        data: {
-          code,
-        },
+      data: {
+        code,
 
-        include: {
-          translations: true,
+        translations: {
+          deleteMany: {},
+
+          create: translations.map((t: any) => ({
+            language: t.language,
+            name: t.name,
+          })),
         },
-      });
+      },
+
+      include: {
+        translations: true,
+      },
+    });
 
     return res.status(200).json({
       success: true,
       data: availability,
     });
   } catch (error) {
+    console.error(error);
+
     return res.status(500).json({
       success: false,
       message: "Failed to update product availability",
@@ -168,7 +174,7 @@ export const updateProductAvailability = async (
 // DELETE PRODUCT AVAILABILITY
 export const deleteProductAvailability = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;

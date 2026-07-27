@@ -263,42 +263,53 @@ model product_translation {
 }
 
 model product_attribute_type {
-    id                Int                                  @id @default(autoincrement())
-    code              String                               @unique
-    translations      product_attribute_type_translation[]
-    display_order     Int                                  @default(0)
-    product_attributes product_attribute[]
-    created_at        DateTime                             @default(now())
-    updated_at        DateTime                             @updatedAt
+  id                 Int                                   @id @default(autoincrement())
+  code               String                                @unique
+  display_order      Int                                   @default(0)
+
+  created_at         DateTime                              @default(now())
+  updated_at         DateTime                              @updatedAt
+
+  translations       product_attribute_type_translation[]
+  product_attributes product_attribute[]
 }
 
 model product_attribute_type_translation {
-    id       Int      @id @default(autoincrement())
-    type_id  Int
-    language Language
-    name     String
+  id       Int      @id @default(autoincrement())
+  type_id  Int
+  language Language
+  name     String
 
-    type product_attribute_type @relation(fields: [type_id], references: [id])
+  type product_attribute_type @relation(fields: [type_id], references: [id])
 
-    @@unique([type_id, language])
+  @@unique([type_id, language])
 }
 
 model product_attribute {
-    id         Int    @id @default(autoincrement())
-    product_id Int
-    type_id    Int
-    value      String
+  id         Int @id @default(autoincrement())
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+  product_id Int
+  type_id    Int
 
-    product product                @relation(fields: [product_id], references: [id])
-    type    product_attribute_type @relation(fields: [type_id], references: [id])
-    @@unique([product_id, type_id])
-    @@index([product_id])
-@@index([type_id])
+  product product @relation(fields: [product_id], references: [id])
+  type    product_attribute_type @relation(fields: [type_id], references: [id])
+
+  translations product_attribute_translation[]
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
 }
 
+model product_attribute_translation {
+  id           Int @id @default(autoincrement())
+
+  attribute_id Int
+  language     Language
+  value        String
+
+  attribute product_attribute @relation(  fields: [attribute_id], references: [id] )
+
+  @@unique([attribute_id, language])
+}
 model audience {
     id               Int                @id @default(autoincrement())
     code             String             @unique
