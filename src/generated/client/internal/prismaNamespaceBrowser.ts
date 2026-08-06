@@ -61,6 +61,8 @@ export const ModelName = {
   color: 'color',
   color_translation: 'color_translation',
   product: 'product',
+  product_variant: 'product_variant',
+  product_variant_image: 'product_variant_image',
   product_unit: 'product_unit',
   product_unit_translation: 'product_unit_translation',
   product_unit_map: 'product_unit_map',
@@ -239,6 +241,31 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const Product_variantScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  color_id: 'color_id',
+  price: 'price',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  quantity: 'quantity'
+} as const
+
+export type Product_variantScalarFieldEnum = (typeof Product_variantScalarFieldEnum)[keyof typeof Product_variantScalarFieldEnum]
+
+
+export const Product_variant_imageScalarFieldEnum = {
+  id: 'id',
+  variant_id: 'variant_id',
+  url: 'url',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  sort_order: 'sort_order'
+} as const
+
+export type Product_variant_imageScalarFieldEnum = (typeof Product_variant_imageScalarFieldEnum)[keyof typeof Product_variant_imageScalarFieldEnum]
 
 
 export const Product_unitScalarFieldEnum = {

@@ -113,7 +113,35 @@ export const addProduct = async (req: Request, res: Response) => {
           ? {
               create: attributes.map((attr: any) => ({
                 type_id: Number(attr.type_id),
-                value: attr.value,
+
+                translations: {
+                  create: [
+                    {
+                      language: "MN",
+                      value: attr.value,
+                    },
+                    {
+                      language: "EN",
+                      value: attr.value,
+                    },
+                    {
+                      language: "RU",
+                      value: attr.value,
+                    },
+                    {
+                      language: "ZH",
+                      value: attr.value,
+                    },
+                    {
+                      language: "DE",
+                      value: attr.value,
+                    },
+                    {
+                      language: "FR",
+                      value: attr.value,
+                    },
+                  ],
+                },
               })),
             }
           : undefined,
@@ -289,7 +317,6 @@ export const getProductByCode = async (
 ): Promise<void> => {
   try {
     const code = String(req.params.code);
-
     const lang = (req.query.lang as string) || "EN";
 
     if (!code) {
@@ -298,7 +325,7 @@ export const getProductByCode = async (
       });
       return;
     }
-    console.log("CODE RECEIVED:", code);
+
     const product = await prisma.product.findFirst({
       where: {
         code,
@@ -377,6 +404,18 @@ export const getProductByCode = async (
             },
           },
         },
+
+        product_variants: {
+          include: {
+            color: {
+              include: {
+                translations: true,
+              },
+            },
+
+            images: true,
+          },
+        },
       },
     });
 
@@ -387,26 +426,19 @@ export const getProductByCode = async (
       return;
     }
 
-    const translation =
-      product.translations.find((t) => t.language === lang) ||
-      product.translations.find((t) => t.language === "EN") ||
-      product.translations[0];
-
     res.status(200).json({
       data: {
         id: product.id,
 
         code: product.code,
 
+        translations: product.translations,
+
         price: product.price,
 
         discount: product.discount,
 
         arrival_date: product.arrival_date,
-
-        name: translation?.name || "",
-
-        description: translation?.description || "",
 
         images: product.images,
 
@@ -429,6 +461,36 @@ export const getProductByCode = async (
         attributes: product.product_attributes,
 
         units: product.product_unit_maps,
+
+        variants: product.product_variants.map((variant: any) => ({
+          id: variant.id,
+
+          price: variant.price
+            ? Number(variant.price)
+            : Number(product.price),
+
+          quantity: variant.quantity,
+
+          color: variant.color
+            ? {
+                id: variant.color.id,
+
+                image_url: variant.color.image_url,
+
+                name:
+                  variant.color.translations.find(
+                    (t: any) => t.language === lang,
+                  )?.name ??
+                  variant.color.translations.find(
+                    (t: any) => t.language === "EN",
+                  )?.name ??
+                  variant.color.translations[0]?.name ??
+                  "",
+              }
+            : null,
+
+          images: variant.images,
+        })),
       },
     });
   } catch (error) {
@@ -511,6 +573,20 @@ export const updateProduct = async (
       attributes,
       units,
     } = req.body;
+
+    await prisma.product_attribute_translation.deleteMany({
+      where: {
+        attribute: {
+          product_id: id,
+        },
+      },
+    });
+
+    await prisma.product_attribute.deleteMany({
+      where: {
+        product_id: id,
+      },
+    });
 
     const product = await prisma.product.update({
       where: {
@@ -599,22 +675,7 @@ export const updateProduct = async (
           : undefined,
 
         // ATTRIBUTES
-        product_attributes: attributes
-          ? {
-              deleteMany: {},
 
-              create: attributes.map((attr: any) => ({
-                type_id: Number(attr.type_id),
-
-                translations: {
-                  create: attr.translations.map((t: any) => ({
-                    language: t.language,
-                    value: t.value,
-                  })),
-                },
-              })),
-            }
-          : undefined,
         // UNITS
         product_unit_maps: units
           ? {

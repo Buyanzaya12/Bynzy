@@ -103,6 +103,16 @@ export type color_translation = Prisma.color_translationModel
  */
 export type product = Prisma.productModel
 /**
+ * Model product_variant
+ * 
+ */
+export type product_variant = Prisma.product_variantModel
+/**
+ * Model product_variant_image
+ * 
+ */
+export type product_variant_image = Prisma.product_variant_imageModel
+/**
  * Model product_unit
  * 
  */

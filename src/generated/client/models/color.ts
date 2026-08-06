@@ -218,6 +218,7 @@ export type colorWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"color"> | Date | string
   translations?: Prisma.Color_translationListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  produc_variants?: Prisma.Product_variantListRelationFilter
 }
 
 export type colorOrderByWithRelationInput = {
@@ -228,6 +229,7 @@ export type colorOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   translations?: Prisma.color_translationOrderByRelationAggregateInput
   products?: Prisma.productOrderByRelationAggregateInput
+  produc_variants?: Prisma.product_variantOrderByRelationAggregateInput
 }
 
 export type colorWhereUniqueInput = Prisma.AtLeast<{
@@ -241,6 +243,7 @@ export type colorWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"color"> | Date | string
   translations?: Prisma.Color_translationListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  produc_variants?: Prisma.Product_variantListRelationFilter
 }, "id" | "code">
 
 export type colorOrderByWithAggregationInput = {
@@ -274,6 +277,7 @@ export type colorCreateInput = {
   updated_at?: Date | string
   translations?: Prisma.color_translationCreateNestedManyWithoutColorInput
   products?: Prisma.productCreateNestedManyWithoutColorInput
+  produc_variants?: Prisma.product_variantCreateNestedManyWithoutColorInput
 }
 
 export type colorUncheckedCreateInput = {
@@ -284,6 +288,7 @@ export type colorUncheckedCreateInput = {
   updated_at?: Date | string
   translations?: Prisma.color_translationUncheckedCreateNestedManyWithoutColorInput
   products?: Prisma.productUncheckedCreateNestedManyWithoutColorInput
+  produc_variants?: Prisma.product_variantUncheckedCreateNestedManyWithoutColorInput
 }
 
 export type colorUpdateInput = {
@@ -293,6 +298,7 @@ export type colorUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUpdateManyWithoutColorNestedInput
   products?: Prisma.productUpdateManyWithoutColorNestedInput
+  produc_variants?: Prisma.product_variantUpdateManyWithoutColorNestedInput
 }
 
 export type colorUncheckedUpdateInput = {
@@ -303,6 +309,7 @@ export type colorUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUncheckedUpdateManyWithoutColorNestedInput
   products?: Prisma.productUncheckedUpdateManyWithoutColorNestedInput
+  produc_variants?: Prisma.product_variantUncheckedUpdateManyWithoutColorNestedInput
 }
 
 export type colorCreateManyInput = {
@@ -400,12 +407,29 @@ export type colorUpdateOneWithoutProductsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.colorUpdateToOneWithWhereWithoutProductsInput, Prisma.colorUpdateWithoutProductsInput>, Prisma.colorUncheckedUpdateWithoutProductsInput>
 }
 
+export type colorCreateNestedOneWithoutProduc_variantsInput = {
+  create?: Prisma.XOR<Prisma.colorCreateWithoutProduc_variantsInput, Prisma.colorUncheckedCreateWithoutProduc_variantsInput>
+  connectOrCreate?: Prisma.colorCreateOrConnectWithoutProduc_variantsInput
+  connect?: Prisma.colorWhereUniqueInput
+}
+
+export type colorUpdateOneWithoutProduc_variantsNestedInput = {
+  create?: Prisma.XOR<Prisma.colorCreateWithoutProduc_variantsInput, Prisma.colorUncheckedCreateWithoutProduc_variantsInput>
+  connectOrCreate?: Prisma.colorCreateOrConnectWithoutProduc_variantsInput
+  upsert?: Prisma.colorUpsertWithoutProduc_variantsInput
+  disconnect?: Prisma.colorWhereInput | boolean
+  delete?: Prisma.colorWhereInput | boolean
+  connect?: Prisma.colorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.colorUpdateToOneWithWhereWithoutProduc_variantsInput, Prisma.colorUpdateWithoutProduc_variantsInput>, Prisma.colorUncheckedUpdateWithoutProduc_variantsInput>
+}
+
 export type colorCreateWithoutTranslationsInput = {
   code: string
   image_url?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   products?: Prisma.productCreateNestedManyWithoutColorInput
+  produc_variants?: Prisma.product_variantCreateNestedManyWithoutColorInput
 }
 
 export type colorUncheckedCreateWithoutTranslationsInput = {
@@ -415,6 +439,7 @@ export type colorUncheckedCreateWithoutTranslationsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   products?: Prisma.productUncheckedCreateNestedManyWithoutColorInput
+  produc_variants?: Prisma.product_variantUncheckedCreateNestedManyWithoutColorInput
 }
 
 export type colorCreateOrConnectWithoutTranslationsInput = {
@@ -439,6 +464,7 @@ export type colorUpdateWithoutTranslationsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.productUpdateManyWithoutColorNestedInput
+  produc_variants?: Prisma.product_variantUpdateManyWithoutColorNestedInput
 }
 
 export type colorUncheckedUpdateWithoutTranslationsInput = {
@@ -448,6 +474,7 @@ export type colorUncheckedUpdateWithoutTranslationsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.productUncheckedUpdateManyWithoutColorNestedInput
+  produc_variants?: Prisma.product_variantUncheckedUpdateManyWithoutColorNestedInput
 }
 
 export type colorCreateWithoutProductsInput = {
@@ -456,6 +483,7 @@ export type colorCreateWithoutProductsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.color_translationCreateNestedManyWithoutColorInput
+  produc_variants?: Prisma.product_variantCreateNestedManyWithoutColorInput
 }
 
 export type colorUncheckedCreateWithoutProductsInput = {
@@ -465,6 +493,7 @@ export type colorUncheckedCreateWithoutProductsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.color_translationUncheckedCreateNestedManyWithoutColorInput
+  produc_variants?: Prisma.product_variantUncheckedCreateNestedManyWithoutColorInput
 }
 
 export type colorCreateOrConnectWithoutProductsInput = {
@@ -489,6 +518,7 @@ export type colorUpdateWithoutProductsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUpdateManyWithoutColorNestedInput
+  produc_variants?: Prisma.product_variantUpdateManyWithoutColorNestedInput
 }
 
 export type colorUncheckedUpdateWithoutProductsInput = {
@@ -498,6 +528,61 @@ export type colorUncheckedUpdateWithoutProductsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.color_translationUncheckedUpdateManyWithoutColorNestedInput
+  produc_variants?: Prisma.product_variantUncheckedUpdateManyWithoutColorNestedInput
+}
+
+export type colorCreateWithoutProduc_variantsInput = {
+  code: string
+  image_url?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  translations?: Prisma.color_translationCreateNestedManyWithoutColorInput
+  products?: Prisma.productCreateNestedManyWithoutColorInput
+}
+
+export type colorUncheckedCreateWithoutProduc_variantsInput = {
+  id?: number
+  code: string
+  image_url?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  translations?: Prisma.color_translationUncheckedCreateNestedManyWithoutColorInput
+  products?: Prisma.productUncheckedCreateNestedManyWithoutColorInput
+}
+
+export type colorCreateOrConnectWithoutProduc_variantsInput = {
+  where: Prisma.colorWhereUniqueInput
+  create: Prisma.XOR<Prisma.colorCreateWithoutProduc_variantsInput, Prisma.colorUncheckedCreateWithoutProduc_variantsInput>
+}
+
+export type colorUpsertWithoutProduc_variantsInput = {
+  update: Prisma.XOR<Prisma.colorUpdateWithoutProduc_variantsInput, Prisma.colorUncheckedUpdateWithoutProduc_variantsInput>
+  create: Prisma.XOR<Prisma.colorCreateWithoutProduc_variantsInput, Prisma.colorUncheckedCreateWithoutProduc_variantsInput>
+  where?: Prisma.colorWhereInput
+}
+
+export type colorUpdateToOneWithWhereWithoutProduc_variantsInput = {
+  where?: Prisma.colorWhereInput
+  data: Prisma.XOR<Prisma.colorUpdateWithoutProduc_variantsInput, Prisma.colorUncheckedUpdateWithoutProduc_variantsInput>
+}
+
+export type colorUpdateWithoutProduc_variantsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.color_translationUpdateManyWithoutColorNestedInput
+  products?: Prisma.productUpdateManyWithoutColorNestedInput
+}
+
+export type colorUncheckedUpdateWithoutProduc_variantsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.color_translationUncheckedUpdateManyWithoutColorNestedInput
+  products?: Prisma.productUncheckedUpdateManyWithoutColorNestedInput
 }
 
 
@@ -508,11 +593,13 @@ export type colorUncheckedUpdateWithoutProductsInput = {
 export type ColorCountOutputType = {
   translations: number
   products: number
+  produc_variants: number
 }
 
 export type ColorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   translations?: boolean | ColorCountOutputTypeCountTranslationsArgs
   products?: boolean | ColorCountOutputTypeCountProductsArgs
+  produc_variants?: boolean | ColorCountOutputTypeCountProduc_variantsArgs
 }
 
 /**
@@ -539,6 +626,13 @@ export type ColorCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.productWhereInput
 }
 
+/**
+ * ColorCountOutputType without action
+ */
+export type ColorCountOutputTypeCountProduc_variantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_variantWhereInput
+}
+
 
 export type colorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -548,6 +642,7 @@ export type colorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updated_at?: boolean
   translations?: boolean | Prisma.color$translationsArgs<ExtArgs>
   products?: boolean | Prisma.color$productsArgs<ExtArgs>
+  produc_variants?: boolean | Prisma.color$produc_variantsArgs<ExtArgs>
   _count?: boolean | Prisma.ColorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["color"]>
 
@@ -579,6 +674,7 @@ export type colorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type colorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   translations?: boolean | Prisma.color$translationsArgs<ExtArgs>
   products?: boolean | Prisma.color$productsArgs<ExtArgs>
+  produc_variants?: boolean | Prisma.color$produc_variantsArgs<ExtArgs>
   _count?: boolean | Prisma.ColorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type colorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -589,6 +685,7 @@ export type $colorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     translations: Prisma.$color_translationPayload<ExtArgs>[]
     products: Prisma.$productPayload<ExtArgs>[]
+    produc_variants: Prisma.$product_variantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -992,6 +1089,7 @@ export interface Prisma__colorClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   translations<T extends Prisma.color$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.color$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$color_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   products<T extends Prisma.color$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.color$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  produc_variants<T extends Prisma.color$produc_variantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.color$produc_variantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_variantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1459,6 +1557,30 @@ export type color$productsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * color.produc_variants
+ */
+export type color$produc_variantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_variant
+   */
+  select?: Prisma.product_variantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_variant
+   */
+  omit?: Prisma.product_variantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_variantInclude<ExtArgs> | null
+  where?: Prisma.product_variantWhereInput
+  orderBy?: Prisma.product_variantOrderByWithRelationInput | Prisma.product_variantOrderByWithRelationInput[]
+  cursor?: Prisma.product_variantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_variantScalarFieldEnum | Prisma.Product_variantScalarFieldEnum[]
 }
 
 /**

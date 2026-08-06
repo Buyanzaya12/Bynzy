@@ -1,6 +1,5 @@
-// routes/userfavorite.ts
-
 import express from "express";
+import { authMiddleware } from "../middleware/auth.middleware";
 
 import {
   addToFavorites,
@@ -11,12 +10,12 @@ import {
 
 const router = express.Router();
 
-router.post("/", addToFavorites);
+router.post("/", authMiddleware, addToFavorites);
 
-router.get("/", getFavorites);
+router.get("/", authMiddleware, getFavorites);
 
-router.get("/user/:userId", getUserFavorites);
+router.get("/user/:userId", authMiddleware, getUserFavorites);
 
-router.delete("/:id", removeFavorite);
+router.delete("/:id", authMiddleware, removeFavorite);
 
 export default router;

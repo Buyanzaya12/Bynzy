@@ -402,6 +402,8 @@ export const ModelName = {
   color: 'color',
   color_translation: 'color_translation',
   product: 'product',
+  product_variant: 'product_variant',
+  product_variant_image: 'product_variant_image',
   product_unit: 'product_unit',
   product_unit_translation: 'product_unit_translation',
   product_unit_map: 'product_unit_map',
@@ -438,7 +440,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "product_attribute_translation" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
+    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_variant" | "product_variant_image" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "product_attribute_translation" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1327,6 +1329,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.productCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ProductCountAggregateOutputType> | number
+        }
+      }
+    }
+    product_variant: {
+      payload: Prisma.$product_variantPayload<ExtArgs>
+      fields: Prisma.product_variantFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.product_variantFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.product_variantFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>
+        }
+        findFirst: {
+          args: Prisma.product_variantFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.product_variantFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>
+        }
+        findMany: {
+          args: Prisma.product_variantFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>[]
+        }
+        create: {
+          args: Prisma.product_variantCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>
+        }
+        createMany: {
+          args: Prisma.product_variantCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.product_variantCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>[]
+        }
+        delete: {
+          args: Prisma.product_variantDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>
+        }
+        update: {
+          args: Prisma.product_variantUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>
+        }
+        deleteMany: {
+          args: Prisma.product_variantDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.product_variantUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.product_variantUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>[]
+        }
+        upsert: {
+          args: Prisma.product_variantUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variantPayload>
+        }
+        aggregate: {
+          args: Prisma.Product_variantAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProduct_variant>
+        }
+        groupBy: {
+          args: Prisma.product_variantGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Product_variantGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.product_variantCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Product_variantCountAggregateOutputType> | number
+        }
+      }
+    }
+    product_variant_image: {
+      payload: Prisma.$product_variant_imagePayload<ExtArgs>
+      fields: Prisma.product_variant_imageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.product_variant_imageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.product_variant_imageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>
+        }
+        findFirst: {
+          args: Prisma.product_variant_imageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.product_variant_imageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>
+        }
+        findMany: {
+          args: Prisma.product_variant_imageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>[]
+        }
+        create: {
+          args: Prisma.product_variant_imageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>
+        }
+        createMany: {
+          args: Prisma.product_variant_imageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.product_variant_imageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>[]
+        }
+        delete: {
+          args: Prisma.product_variant_imageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>
+        }
+        update: {
+          args: Prisma.product_variant_imageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>
+        }
+        deleteMany: {
+          args: Prisma.product_variant_imageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.product_variant_imageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.product_variant_imageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>[]
+        }
+        upsert: {
+          args: Prisma.product_variant_imageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$product_variant_imagePayload>
+        }
+        aggregate: {
+          args: Prisma.Product_variant_imageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProduct_variant_image>
+        }
+        groupBy: {
+          args: Prisma.product_variant_imageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Product_variant_imageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.product_variant_imageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Product_variant_imageCountAggregateOutputType> | number
         }
       }
     }
@@ -3064,6 +3214,31 @@ export const ProductScalarFieldEnum = {
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
+export const Product_variantScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  color_id: 'color_id',
+  price: 'price',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  quantity: 'quantity'
+} as const
+
+export type Product_variantScalarFieldEnum = (typeof Product_variantScalarFieldEnum)[keyof typeof Product_variantScalarFieldEnum]
+
+
+export const Product_variant_imageScalarFieldEnum = {
+  id: 'id',
+  variant_id: 'variant_id',
+  url: 'url',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  sort_order: 'sort_order'
+} as const
+
+export type Product_variant_imageScalarFieldEnum = (typeof Product_variant_imageScalarFieldEnum)[keyof typeof Product_variant_imageScalarFieldEnum]
+
+
 export const Product_unitScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -3401,6 +3576,20 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
  * Reference to a field of type 'StockLogType'
  */
 export type EnumStockLogTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StockLogType'>
@@ -3512,6 +3701,8 @@ export type GlobalOmitConfig = {
   color?: Prisma.colorOmit
   color_translation?: Prisma.color_translationOmit
   product?: Prisma.productOmit
+  product_variant?: Prisma.product_variantOmit
+  product_variant_image?: Prisma.product_variant_imageOmit
   product_unit?: Prisma.product_unitOmit
   product_unit_translation?: Prisma.product_unit_translationOmit
   product_unit_map?: Prisma.product_unit_mapOmit

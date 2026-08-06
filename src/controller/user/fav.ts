@@ -1,9 +1,6 @@
-// controllers/userfavorite.ts
-
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
-// ADD TO FAVORITES
 export const addToFavorites = async (
   req: Request,
   res: Response
