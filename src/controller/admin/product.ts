@@ -568,7 +568,6 @@ export const deleteProduct = async (
     res.status(500).json({ error: "Failed to delete product" });
   }
 };
-
 // export const updateProduct = async (
 //   req: Request,
 //   res: Response,
@@ -577,8 +576,8 @@ export const deleteProduct = async (
 //     const id = Number(req.params.id);
 
 //     if (!id) {
-//       res.status(400).json({
-//         error: "Valid product id required",
+//       res.status(404).json({
+//         error: "Product not found",
 //       });
 //       return;
 //     }
@@ -606,8 +605,11 @@ export const deleteProduct = async (
 
 //       attributes,
 //       units,
+
+//       variants, // NEW
 //     } = req.body;
 
+//     // Remove old attribute translations
 //     await prisma.product_attribute_translation.deleteMany({
 //       where: {
 //         attribute: {
@@ -616,7 +618,24 @@ export const deleteProduct = async (
 //       },
 //     });
 
+//     // Remove old attributes
 //     await prisma.product_attribute.deleteMany({
+//       where: {
+//         product_id: id,
+//       },
+//     });
+
+//     // Remove old variant images
+//     await prisma.product_variant_image.deleteMany({
+//       where: {
+//         variant: {
+//           product_id: id,
+//         },
+//       },
+//     });
+
+//     // Remove old variants
+//     await prisma.product_variant.deleteMany({
 //       where: {
 //         product_id: id,
 //       },
@@ -634,15 +653,62 @@ export const deleteProduct = async (
 
 //         discount: discount !== undefined ? Number(discount) : undefined,
 
-//         type_id: type_id !== undefined ? Number(type_id) : undefined,
+//         type:
+//           type_id !== undefined
+//             ? { connect: { id: Number(type_id) } }
+//             : undefined,
 
-//         brand_id: brand_id ? Number(brand_id) : null,
+//         brand:
+//           brand_id !== undefined
+//             ? brand_id
+//               ? {
+//                   connect: {
+//                     id: Number(brand_id),
+//                   },
+//                 }
+//               : {
+//                   disconnect: true,
+//                 }
+//             : undefined,
 
-//         color_id: color_id ? Number(color_id) : null,
+//         color:
+//           color_id !== undefined
+//             ? color_id
+//               ? {
+//                   connect: {
+//                     id: Number(color_id),
+//                   },
+//                 }
+//               : {
+//                   disconnect: true,
+//                 }
+//             : undefined,
 
-//         availability_id: availability_id ? Number(availability_id) : null,
+//         availability:
+//           availability_id !== undefined
+//             ? availability_id
+//               ? {
+//                   connect: {
+//                     id: Number(availability_id),
+//                   },
+//                 }
+//               : {
+//                   disconnect: true,
+//                 }
+//             : undefined,
 
-//         stock_profile_id: stock_profile_id ? Number(stock_profile_id) : null,
+//         stock_profile:
+//           stock_profile_id !== undefined
+//             ? stock_profile_id
+//               ? {
+//                   connect: {
+//                     id: Number(stock_profile_id),
+//                   },
+//                 }
+//               : {
+//                   disconnect: true,
+//                 }
+//             : undefined,
 
 //         arrival_date: arrival_date ? new Date(arrival_date) : null,
 
@@ -709,6 +775,20 @@ export const deleteProduct = async (
 //           : undefined,
 
 //         // ATTRIBUTES
+//         product_attributes: attributes
+//           ? {
+//               create: attributes.map((attr: any) => ({
+//                 type_id: Number(attr.type_id),
+
+//                 translations: {
+//                   create: attr.translations.map((t: any) => ({
+//                     language: t.language,
+//                     value: t.value,
+//                   })),
+//                 },
+//               })),
+//             }
+//           : undefined,
 
 //         // UNITS
 //         product_unit_maps: units
@@ -724,62 +804,106 @@ export const deleteProduct = async (
 //               })),
 //             }
 //           : undefined,
-//       },
 
-//       include: {
-//         translations: true,
+//         // VARIANTS
+//         product_variants: variants
+//           ? {
+//               create: variants.map((variant: any) => ({
+//                 color_id: variant.color_id ? Number(variant.color_id) : null,
 
-//         images: true,
+//                 quantity: Number(variant.quantity ?? 0),
 
-//         stock: true,
+//                 price:
+//                   variant.price !== undefined && variant.price !== null
+//                     ? Number(variant.price)
+//                     : null,
 
-//         availability: true,
+//                 images: {
+//                   create:
+//                     variant.images?.map((url: string, index: number) => ({
+//                       url,
+//                       sort_order: index,
+//                     })) ?? [],
+//                 },
+//               })),
+//             }
+//           : undefined,
+//         include: {
+//           translations: true,
 
-//         stock_profile: true,
+//           images: true,
 
-//         brand: true,
+//           stock: true,
 
-//         color: true,
+//           availability: true,
 
-//         type: true,
+//           stock_profile: true,
 
-//         product_audiences: {
-//           include: {
-//             audience: {
-//               include: {
-//                 translations: true,
+//           brand: true,
+
+//           color: {
+//             include: {
+//               translations: true,
+//             },
+//           },
+
+//           type: {
+//             include: {
+//               translations: true,
+//             },
+//           },
+
+//           product_audiences: {
+//             include: {
+//               audience: {
+//                 include: {
+//                   translations: true,
+//                 },
 //               },
 //             },
 //           },
-//         },
 
-//         product_home_sections: {
-//           include: {
-//             section: {
-//               include: {
-//                 translations: true,
+//           product_home_sections: {
+//             include: {
+//               section: {
+//                 include: {
+//                   translations: true,
+//                 },
 //               },
 //             },
 //           },
-//         },
 
-//         product_attributes: {
-//           include: {
-//             type: {
-//               include: {
-//                 translations: true,
+//           product_attributes: {
+//             include: {
+//               type: {
+//                 include: {
+//                   translations: true,
+//                 },
+//               },
+
+//               translations: true,
+//             },
+//           },
+
+//           product_unit_maps: {
+//             include: {
+//               unit: {
+//                 include: {
+//                   translations: true,
+//                 },
 //               },
 //             },
-//             translations: true,
 //           },
-//         },
 
-//         product_unit_maps: {
-//           include: {
-//             unit: {
-//               include: {
-//                 translations: true,
+//           product_variants: {
+//             include: {
+//               color: {
+//                 include: {
+//                   translations: true,
+//                 },
 //               },
+
+//               images: true,
 //             },
 //           },
 //         },
@@ -792,7 +916,12 @@ export const deleteProduct = async (
 //       data: product,
 //     });
 //   } catch (error: any) {
+//     console.error("=========UPDATE PRODUCT ERROR ========");
 //     console.error(error);
+//     console.error("MESSAGE:", error.message);
+//     console.error("CODE:", error?.code);
+//     console.error("META:", error?.meta);
+//     console.error("========================================");
 
 //     if (error.code === "P2025") {
 //       res.status(404).json({
@@ -809,20 +938,20 @@ export const deleteProduct = async (
 //     }
 
 //     res.status(500).json({
-//       error: error.message,
+//       success: false,
+//       error: error?.message || "Failed to update product",
+//       code: error?.code || null,
+//       meta: error?.meta || null,
 //     });
 //   }
 // };
-export const updateProduct = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const updateProduct = async (req, res) => {
   try {
     const id = Number(req.params.id);
 
     if (!id) {
-      res.status(404).json({
-        error: "Product not found",
+      res.status(400).json({
+        error: "Valid product id required",
       });
       return;
     }
@@ -851,10 +980,13 @@ export const updateProduct = async (
       attributes,
       units,
 
-      variants, // NEW
+      variants,
     } = req.body;
 
-    // Remove old attribute translations
+    // -----------------------------------------
+    // DELETE OLD ATTRIBUTES
+    // -----------------------------------------
+
     await prisma.product_attribute_translation.deleteMany({
       where: {
         attribute: {
@@ -863,14 +995,16 @@ export const updateProduct = async (
       },
     });
 
-    // Remove old attributes
     await prisma.product_attribute.deleteMany({
       where: {
         product_id: id,
       },
     });
 
-    // Remove old variant images
+    // -----------------------------------------
+    // DELETE OLD VARIANT IMAGES
+    // -----------------------------------------
+
     await prisma.product_variant_image.deleteMany({
       where: {
         variant: {
@@ -879,12 +1013,19 @@ export const updateProduct = async (
       },
     });
 
-    // Remove old variants
+    // -----------------------------------------
+    // DELETE OLD VARIANTS
+    // -----------------------------------------
+
     await prisma.product_variant.deleteMany({
       where: {
         product_id: id,
       },
     });
+
+    // -----------------------------------------
+    // UPDATE PRODUCT
+    // -----------------------------------------
 
     const product = await prisma.product.update({
       where: {
@@ -898,19 +1039,97 @@ export const updateProduct = async (
 
         discount: discount !== undefined ? Number(discount) : undefined,
 
-        type_id: type_id !== undefined ? Number(type_id) : undefined,
+        // -----------------------------------------
+        // TYPE
+        // -----------------------------------------
 
-        brand_id: brand_id ? Number(brand_id) : null,
+        type:
+          type_id !== undefined
+            ? {
+                connect: {
+                  id: Number(type_id),
+                },
+              }
+            : undefined,
 
-        color_id: color_id ? Number(color_id) : null,
+        // -----------------------------------------
+        // BRAND
+        // -----------------------------------------
 
-        availability_id: availability_id ? Number(availability_id) : null,
+        brand:
+          brand_id !== undefined
+            ? brand_id
+              ? {
+                  connect: {
+                    id: Number(brand_id),
+                  },
+                }
+              : {
+                  disconnect: true,
+                }
+            : undefined,
 
-        stock_profile_id: stock_profile_id ? Number(stock_profile_id) : null,
+        // -----------------------------------------
+        // COLOR
+        // -----------------------------------------
+
+        color:
+          color_id !== undefined
+            ? color_id
+              ? {
+                  connect: {
+                    id: Number(color_id),
+                  },
+                }
+              : {
+                  disconnect: true,
+                }
+            : undefined,
+
+        // -----------------------------------------
+        // AVAILABILITY
+        // -----------------------------------------
+
+        availability:
+          availability_id !== undefined
+            ? availability_id
+              ? {
+                  connect: {
+                    id: Number(availability_id),
+                  },
+                }
+              : {
+                  disconnect: true,
+                }
+            : undefined,
+
+        // -----------------------------------------
+        // STOCK PROFILE
+        // -----------------------------------------
+
+        stock_profile:
+          stock_profile_id !== undefined
+            ? stock_profile_id
+              ? {
+                  connect: {
+                    id: Number(stock_profile_id),
+                  },
+                }
+              : {
+                  disconnect: true,
+                }
+            : undefined,
+
+        // -----------------------------------------
+        // ARRIVAL DATE
+        // -----------------------------------------
 
         arrival_date: arrival_date ? new Date(arrival_date) : null,
 
+        // -----------------------------------------
         // TRANSLATIONS
+        // -----------------------------------------
+
         translations: translations
           ? {
               deleteMany: {},
@@ -923,7 +1142,10 @@ export const updateProduct = async (
             }
           : undefined,
 
-        // IMAGES
+        // -----------------------------------------
+        // PRODUCT IMAGES
+        // -----------------------------------------
+
         images: images
           ? {
               deleteMany: {},
@@ -934,7 +1156,10 @@ export const updateProduct = async (
             }
           : undefined,
 
-        // STOCK
+        // -----------------------------------------
+        // PRODUCT STOCK
+        // -----------------------------------------
+
         stock:
           quantity !== undefined
             ? {
@@ -949,37 +1174,45 @@ export const updateProduct = async (
                 },
               }
             : undefined,
-
+        // -----------------------------------------
         // AUDIENCES
+        // -----------------------------------------
+
         product_audiences: audience_ids
           ? {
               deleteMany: {},
 
-              create: audience_ids.map((id: number) => ({
+              create: audience_ids.map((id: any) => ({
                 audience_id: Number(id),
               })),
             }
           : undefined,
 
+        // -----------------------------------------
         // HOME SECTIONS
+        // -----------------------------------------
+
         product_home_sections: home_section_ids
           ? {
               deleteMany: {},
 
-              create: home_section_ids.map((id: number) => ({
+              create: home_section_ids.map((id: any) => ({
                 section_id: Number(id),
               })),
             }
           : undefined,
 
+        // -----------------------------------------
         // ATTRIBUTES
+        // -----------------------------------------
+
         product_attributes: attributes
           ? {
               create: attributes.map((attr: any) => ({
                 type_id: Number(attr.type_id),
 
                 translations: {
-                  create: attr.translations.map((t: any) => ({
+                  create: (attr.translations || []).map((t: any) => ({
                     language: t.language,
                     value: t.value,
                   })),
@@ -988,7 +1221,10 @@ export const updateProduct = async (
             }
           : undefined,
 
+        // -----------------------------------------
         // UNITS
+        // -----------------------------------------
+
         product_unit_maps: units
           ? {
               deleteMany: {},
@@ -998,144 +1234,183 @@ export const updateProduct = async (
 
                 quantity_in_base: Number(unit.quantity_in_base),
 
-                price: unit.price ? Number(unit.price) : null,
+                price:
+                  unit.price !== undefined && unit.price !== null
+                    ? Number(unit.price)
+                    : null,
               })),
             }
           : undefined,
 
+        // -----------------------------------------
         // VARIANTS
+        // -----------------------------------------
+
         product_variants: variants
           ? {
               create: variants.map((variant: any) => ({
-                color_id: variant.color_id ? Number(variant.color_id) : null,
+                color_id:
+                  variant.color_id !== undefined &&
+                  variant.color_id !== null &&
+                  variant.color_id !== ""
+                    ? Number(variant.color_id)
+                    : null,
 
                 quantity: Number(variant.quantity ?? 0),
 
                 price:
-                  variant.price !== undefined && variant.price !== null
+                  variant.price !== undefined &&
+                  variant.price !== null &&
+                  variant.price !== ""
                     ? Number(variant.price)
                     : null,
 
                 images: {
-                  create:
-                    variant.images?.map((url: string, index: number) => ({
+                  create: (variant.images || []).map(
+                    (url: string, index: number) => ({
                       url,
                       sort_order: index,
-                    })) ?? [],
+                    }),
+                  ),
                 },
               })),
             }
           : undefined,
-        include: {
-          translations: true,
+      },
 
-          images: true,
+      // -----------------------------------------
+      // INCLUDE
+      // -----------------------------------------
 
-          stock: true,
+      include: {
+        translations: true,
 
-          availability: true,
+        images: true,
 
-          stock_profile: true,
+        stock: true,
 
-          brand: true,
+        availability: true,
 
-          color: {
-            include: {
-              translations: true,
-            },
+        stock_profile: true,
+
+        brand: true,
+
+        color: {
+          include: {
+            translations: true,
           },
+        },
 
-          type: {
-            include: {
-              translations: true,
-            },
+        type: {
+          include: {
+            translations: true,
           },
+        },
 
-          product_audiences: {
-            include: {
-              audience: {
-                include: {
-                  translations: true,
-                },
+        product_audiences: {
+          include: {
+            audience: {
+              include: {
+                translations: true,
               },
             },
           },
+        },
 
-          product_home_sections: {
-            include: {
-              section: {
-                include: {
-                  translations: true,
-                },
+        product_home_sections: {
+          include: {
+            section: {
+              include: {
+                translations: true,
               },
             },
           },
-
-          product_attributes: {
-            include: {
-              type: {
-                include: {
-                  translations: true,
-                },
+        },
+        product_attributes: {
+          include: {
+            type: {
+              include: {
+                translations: true,
               },
-
-              translations: true,
             },
+            translations: true,
           },
+        },
 
-          product_unit_maps: {
-            include: {
-              unit: {
-                include: {
-                  translations: true,
-                },
+        product_unit_maps: {
+          include: {
+            unit: {
+              include: {
+                translations: true,
               },
             },
           },
+        },
 
-          product_variants: {
-            include: {
-              color: {
-                include: {
-                  translations: true,
-                },
+        product_variants: {
+          include: {
+            color: {
+              include: {
+                translations: true,
               },
-
-              images: true,
             },
+            images: true,
           },
         },
       },
     });
+
+    // -----------------------------------------
+    // SUCCESS RESPONSE
+    // -----------------------------------------
 
     res.status(200).json({
       success: true,
       message: "Product updated successfully",
       data: product,
     });
-  } catch (error: any) {
+  } catch (error) {
+    console.error("========= UPDATE PRODUCT ERROR =========");
     console.error(error);
 
-    if (error.code === "P2025") {
+    const err = error as {
+      code?: string;
+      message?: string;
+      meta?: unknown;
+    };
+
+    console.error("MESSAGE:", err.message);
+    console.error("CODE:", err.code);
+    console.error("META:", err.meta);
+    console.error("========================================");
+
+    // Product not found
+    if (err.code === "P2025") {
       res.status(404).json({
+        success: false,
         error: "Product not found",
       });
       return;
     }
 
-    if (error.code === "P2002") {
+    // Duplicate product code
+    if (err.code === "P2002") {
       res.status(400).json({
+        success: false,
         error: "Duplicate product code",
       });
       return;
     }
 
+    // Other errors
     res.status(500).json({
-      error: error.message,
+      success: false,
+      error: err.message || "Failed to update product",
+      code: err.code || null,
+      meta: err.meta || null,
     });
   }
 };
-
 export const permanentlyDeleteProduct = async (
   req: Request,
   res: Response,
