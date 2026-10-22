@@ -48,7 +48,11 @@ export const getCategories = async (req: Request, res: Response) => {
       },
 
       include: {
-        translations: true,
+        translations: {
+          where: {
+            language: lang as any,
+          },
+        },
         types: {
           include: {
             translations: {

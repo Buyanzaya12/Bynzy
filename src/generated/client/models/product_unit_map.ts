@@ -31,7 +31,7 @@ export type Product_unit_mapAvgAggregateOutputType = {
   product_id: number | null
   unit_id: number | null
   quantity_in_base: number | null
-  price: number | null
+  price: runtime.Decimal | null
 }
 
 export type Product_unit_mapSumAggregateOutputType = {
@@ -39,7 +39,7 @@ export type Product_unit_mapSumAggregateOutputType = {
   product_id: number | null
   unit_id: number | null
   quantity_in_base: number | null
-  price: number | null
+  price: runtime.Decimal | null
 }
 
 export type Product_unit_mapMinAggregateOutputType = {
@@ -47,7 +47,7 @@ export type Product_unit_mapMinAggregateOutputType = {
   product_id: number | null
   unit_id: number | null
   quantity_in_base: number | null
-  price: number | null
+  price: runtime.Decimal | null
 }
 
 export type Product_unit_mapMaxAggregateOutputType = {
@@ -55,7 +55,7 @@ export type Product_unit_mapMaxAggregateOutputType = {
   product_id: number | null
   unit_id: number | null
   quantity_in_base: number | null
-  price: number | null
+  price: runtime.Decimal | null
 }
 
 export type Product_unit_mapCountAggregateOutputType = {
@@ -200,7 +200,7 @@ export type Product_unit_mapGroupByOutputType = {
   product_id: number
   unit_id: number
   quantity_in_base: number
-  price: number | null
+  price: runtime.Decimal | null
   _count: Product_unit_mapCountAggregateOutputType | null
   _avg: Product_unit_mapAvgAggregateOutputType | null
   _sum: Product_unit_mapSumAggregateOutputType | null
@@ -231,7 +231,7 @@ export type product_unit_mapWhereInput = {
   product_id?: Prisma.IntFilter<"product_unit_map"> | number
   unit_id?: Prisma.IntFilter<"product_unit_map"> | number
   quantity_in_base?: Prisma.IntFilter<"product_unit_map"> | number
-  price?: Prisma.FloatNullableFilter<"product_unit_map"> | number | null
+  price?: Prisma.DecimalNullableFilter<"product_unit_map"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
   unit?: Prisma.XOR<Prisma.Product_unitScalarRelationFilter, Prisma.product_unitWhereInput>
 }
@@ -255,7 +255,7 @@ export type product_unit_mapWhereUniqueInput = Prisma.AtLeast<{
   product_id?: Prisma.IntFilter<"product_unit_map"> | number
   unit_id?: Prisma.IntFilter<"product_unit_map"> | number
   quantity_in_base?: Prisma.IntFilter<"product_unit_map"> | number
-  price?: Prisma.FloatNullableFilter<"product_unit_map"> | number | null
+  price?: Prisma.DecimalNullableFilter<"product_unit_map"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
   unit?: Prisma.XOR<Prisma.Product_unitScalarRelationFilter, Prisma.product_unitWhereInput>
 }, "id" | "product_id_unit_id">
@@ -281,12 +281,12 @@ export type product_unit_mapScalarWhereWithAggregatesInput = {
   product_id?: Prisma.IntWithAggregatesFilter<"product_unit_map"> | number
   unit_id?: Prisma.IntWithAggregatesFilter<"product_unit_map"> | number
   quantity_in_base?: Prisma.IntWithAggregatesFilter<"product_unit_map"> | number
-  price?: Prisma.FloatNullableWithAggregatesFilter<"product_unit_map"> | number | null
+  price?: Prisma.DecimalNullableWithAggregatesFilter<"product_unit_map"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapCreateInput = {
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   product: Prisma.productCreateNestedOneWithoutProduct_unit_mapsInput
   unit: Prisma.product_unitCreateNestedOneWithoutProduct_unitsInput
 }
@@ -296,12 +296,12 @@ export type product_unit_mapUncheckedCreateInput = {
   product_id: number
   unit_id: number
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUpdateInput = {
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   product?: Prisma.productUpdateOneRequiredWithoutProduct_unit_mapsNestedInput
   unit?: Prisma.product_unitUpdateOneRequiredWithoutProduct_unitsNestedInput
 }
@@ -311,7 +311,7 @@ export type product_unit_mapUncheckedUpdateInput = {
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   unit_id?: Prisma.IntFieldUpdateOperationsInput | number
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapCreateManyInput = {
@@ -319,12 +319,12 @@ export type product_unit_mapCreateManyInput = {
   product_id: number
   unit_id: number
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUpdateManyMutationInput = {
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUncheckedUpdateManyInput = {
@@ -332,7 +332,7 @@ export type product_unit_mapUncheckedUpdateManyInput = {
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   unit_id?: Prisma.IntFieldUpdateOperationsInput | number
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type Product_unit_mapListRelationFilter = {
@@ -476,7 +476,7 @@ export type product_unit_mapUncheckedUpdateManyWithoutUnitNestedInput = {
 
 export type product_unit_mapCreateWithoutProductInput = {
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   unit: Prisma.product_unitCreateNestedOneWithoutProduct_unitsInput
 }
 
@@ -484,7 +484,7 @@ export type product_unit_mapUncheckedCreateWithoutProductInput = {
   id?: number
   unit_id: number
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapCreateOrConnectWithoutProductInput = {
@@ -521,12 +521,12 @@ export type product_unit_mapScalarWhereInput = {
   product_id?: Prisma.IntFilter<"product_unit_map"> | number
   unit_id?: Prisma.IntFilter<"product_unit_map"> | number
   quantity_in_base?: Prisma.IntFilter<"product_unit_map"> | number
-  price?: Prisma.FloatNullableFilter<"product_unit_map"> | number | null
+  price?: Prisma.DecimalNullableFilter<"product_unit_map"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapCreateWithoutUnitInput = {
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   product: Prisma.productCreateNestedOneWithoutProduct_unit_mapsInput
 }
 
@@ -534,7 +534,7 @@ export type product_unit_mapUncheckedCreateWithoutUnitInput = {
   id?: number
   product_id: number
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapCreateOrConnectWithoutUnitInput = {
@@ -567,12 +567,12 @@ export type product_unit_mapCreateManyProductInput = {
   id?: number
   unit_id: number
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUpdateWithoutProductInput = {
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   unit?: Prisma.product_unitUpdateOneRequiredWithoutProduct_unitsNestedInput
 }
 
@@ -580,26 +580,26 @@ export type product_unit_mapUncheckedUpdateWithoutProductInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   unit_id?: Prisma.IntFieldUpdateOperationsInput | number
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUncheckedUpdateManyWithoutProductInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   unit_id?: Prisma.IntFieldUpdateOperationsInput | number
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapCreateManyUnitInput = {
   id?: number
   product_id: number
   quantity_in_base: number
-  price?: number | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUpdateWithoutUnitInput = {
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   product?: Prisma.productUpdateOneRequiredWithoutProduct_unit_mapsNestedInput
 }
 
@@ -607,14 +607,14 @@ export type product_unit_mapUncheckedUpdateWithoutUnitInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type product_unit_mapUncheckedUpdateManyWithoutUnitInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   quantity_in_base?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 
@@ -682,7 +682,7 @@ export type $product_unit_mapPayload<ExtArgs extends runtime.Types.Extensions.In
     product_id: number
     unit_id: number
     quantity_in_base: number
-    price: number | null
+    price: runtime.Decimal | null
   }, ExtArgs["result"]["product_unit_map"]>
   composites: {}
 }
@@ -1112,7 +1112,7 @@ export interface product_unit_mapFieldRefs {
   readonly product_id: Prisma.FieldRef<"product_unit_map", 'Int'>
   readonly unit_id: Prisma.FieldRef<"product_unit_map", 'Int'>
   readonly quantity_in_base: Prisma.FieldRef<"product_unit_map", 'Int'>
-  readonly price: Prisma.FieldRef<"product_unit_map", 'Float'>
+  readonly price: Prisma.FieldRef<"product_unit_map", 'Decimal'>
 }
     
 

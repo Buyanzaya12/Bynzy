@@ -407,6 +407,9 @@ export const ModelName = {
   product_unit: 'product_unit',
   product_unit_translation: 'product_unit_translation',
   product_unit_map: 'product_unit_map',
+  measurement_unit: 'measurement_unit',
+  measurement_unit_translation: 'measurement_unit_translation',
+  measurement_unit_conversion: 'measurement_unit_conversion',
   product_availability: 'product_availability',
   product_availability_translation: 'product_availability_translation',
   product_image: 'product_image',
@@ -440,7 +443,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_variant" | "product_variant_image" | "product_unit" | "product_unit_translation" | "product_unit_map" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "product_attribute_translation" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
+    modelProps: "user_auth" | "user_cart" | "user_cart_item" | "user_favorite" | "category" | "category_translation" | "type" | "type_translation" | "brand" | "color" | "color_translation" | "product" | "product_variant" | "product_variant_image" | "product_unit" | "product_unit_translation" | "product_unit_map" | "measurement_unit" | "measurement_unit_translation" | "measurement_unit_conversion" | "product_availability" | "product_availability_translation" | "product_image" | "product_translation" | "product_attribute_type" | "product_attribute_type_translation" | "product_attribute" | "product_attribute_translation" | "audience" | "audience_translation" | "product_audience" | "home_section" | "home_section_translation" | "product_home_section" | "product_stock" | "product_stock_profile" | "product_stock_profile_translation" | "product_stock_log"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1699,6 +1702,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.product_unit_mapCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.Product_unit_mapCountAggregateOutputType> | number
+        }
+      }
+    }
+    measurement_unit: {
+      payload: Prisma.$measurement_unitPayload<ExtArgs>
+      fields: Prisma.measurement_unitFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.measurement_unitFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.measurement_unitFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>
+        }
+        findFirst: {
+          args: Prisma.measurement_unitFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.measurement_unitFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>
+        }
+        findMany: {
+          args: Prisma.measurement_unitFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>[]
+        }
+        create: {
+          args: Prisma.measurement_unitCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>
+        }
+        createMany: {
+          args: Prisma.measurement_unitCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.measurement_unitCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>[]
+        }
+        delete: {
+          args: Prisma.measurement_unitDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>
+        }
+        update: {
+          args: Prisma.measurement_unitUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>
+        }
+        deleteMany: {
+          args: Prisma.measurement_unitDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.measurement_unitUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.measurement_unitUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>[]
+        }
+        upsert: {
+          args: Prisma.measurement_unitUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unitPayload>
+        }
+        aggregate: {
+          args: Prisma.Measurement_unitAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMeasurement_unit>
+        }
+        groupBy: {
+          args: Prisma.measurement_unitGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Measurement_unitGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.measurement_unitCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Measurement_unitCountAggregateOutputType> | number
+        }
+      }
+    }
+    measurement_unit_translation: {
+      payload: Prisma.$measurement_unit_translationPayload<ExtArgs>
+      fields: Prisma.measurement_unit_translationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.measurement_unit_translationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.measurement_unit_translationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>
+        }
+        findFirst: {
+          args: Prisma.measurement_unit_translationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.measurement_unit_translationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>
+        }
+        findMany: {
+          args: Prisma.measurement_unit_translationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>[]
+        }
+        create: {
+          args: Prisma.measurement_unit_translationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>
+        }
+        createMany: {
+          args: Prisma.measurement_unit_translationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.measurement_unit_translationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>[]
+        }
+        delete: {
+          args: Prisma.measurement_unit_translationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>
+        }
+        update: {
+          args: Prisma.measurement_unit_translationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>
+        }
+        deleteMany: {
+          args: Prisma.measurement_unit_translationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.measurement_unit_translationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.measurement_unit_translationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>[]
+        }
+        upsert: {
+          args: Prisma.measurement_unit_translationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_translationPayload>
+        }
+        aggregate: {
+          args: Prisma.Measurement_unit_translationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMeasurement_unit_translation>
+        }
+        groupBy: {
+          args: Prisma.measurement_unit_translationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Measurement_unit_translationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.measurement_unit_translationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Measurement_unit_translationCountAggregateOutputType> | number
+        }
+      }
+    }
+    measurement_unit_conversion: {
+      payload: Prisma.$measurement_unit_conversionPayload<ExtArgs>
+      fields: Prisma.measurement_unit_conversionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.measurement_unit_conversionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.measurement_unit_conversionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>
+        }
+        findFirst: {
+          args: Prisma.measurement_unit_conversionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.measurement_unit_conversionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>
+        }
+        findMany: {
+          args: Prisma.measurement_unit_conversionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>[]
+        }
+        create: {
+          args: Prisma.measurement_unit_conversionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>
+        }
+        createMany: {
+          args: Prisma.measurement_unit_conversionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.measurement_unit_conversionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>[]
+        }
+        delete: {
+          args: Prisma.measurement_unit_conversionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>
+        }
+        update: {
+          args: Prisma.measurement_unit_conversionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>
+        }
+        deleteMany: {
+          args: Prisma.measurement_unit_conversionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.measurement_unit_conversionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.measurement_unit_conversionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>[]
+        }
+        upsert: {
+          args: Prisma.measurement_unit_conversionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$measurement_unit_conversionPayload>
+        }
+        aggregate: {
+          args: Prisma.Measurement_unit_conversionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMeasurement_unit_conversion>
+        }
+        groupBy: {
+          args: Prisma.measurement_unit_conversionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Measurement_unit_conversionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.measurement_unit_conversionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Measurement_unit_conversionCountAggregateOutputType> | number
         }
       }
     }
@@ -3079,11 +3304,11 @@ export const User_authScalarFieldEnum = {
   email: 'email',
   password: 'password',
   role: 'role',
-  avatar: 'avatar',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   resetToken: 'resetToken',
-  resetTokenExpiry: 'resetTokenExpiry'
+  resetTokenExpiry: 'resetTokenExpiry',
+  avatar: 'avatar'
 } as const
 
 export type User_authScalarFieldEnum = (typeof User_authScalarFieldEnum)[keyof typeof User_authScalarFieldEnum]
@@ -3105,7 +3330,8 @@ export const User_cart_itemScalarFieldEnum = {
   product_id: 'product_id',
   quantity: 'quantity',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  variant_id: 'variant_id'
 } as const
 
 export type User_cart_itemScalarFieldEnum = (typeof User_cart_itemScalarFieldEnum)[keyof typeof User_cart_itemScalarFieldEnum]
@@ -3166,10 +3392,10 @@ export type Type_translationScalarFieldEnum = (typeof Type_translationScalarFiel
 export const BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  image_url: 'image_url',
   code: 'code',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  image_url: 'image_url'
 } as const
 
 export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
@@ -3178,9 +3404,9 @@ export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof Br
 export const ColorScalarFieldEnum = {
   id: 'id',
   code: 'code',
-  image_url: 'image_url',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  image_url: 'image_url'
 } as const
 
 export type ColorScalarFieldEnum = (typeof ColorScalarFieldEnum)[keyof typeof ColorScalarFieldEnum]
@@ -3206,9 +3432,10 @@ export const ProductScalarFieldEnum = {
   color_id: 'color_id',
   created_at: 'created_at',
   updated_at: 'updated_at',
+  arrival_date: 'arrival_date',
   availability_id: 'availability_id',
   stock_profile_id: 'stock_profile_id',
-  arrival_date: 'arrival_date'
+  gtin: 'gtin'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -3221,7 +3448,8 @@ export const Product_variantScalarFieldEnum = {
   price: 'price',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  quantity: 'quantity'
+  quantity: 'quantity',
+  code: 'code'
 } as const
 
 export type Product_variantScalarFieldEnum = (typeof Product_variantScalarFieldEnum)[keyof typeof Product_variantScalarFieldEnum]
@@ -3269,6 +3497,37 @@ export const Product_unit_mapScalarFieldEnum = {
 } as const
 
 export type Product_unit_mapScalarFieldEnum = (typeof Product_unit_mapScalarFieldEnum)[keyof typeof Product_unit_mapScalarFieldEnum]
+
+
+export const Measurement_unitScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Measurement_unitScalarFieldEnum = (typeof Measurement_unitScalarFieldEnum)[keyof typeof Measurement_unitScalarFieldEnum]
+
+
+export const Measurement_unit_translationScalarFieldEnum = {
+  id: 'id',
+  unit_id: 'unit_id',
+  language: 'language',
+  name: 'name',
+  short_name: 'short_name'
+} as const
+
+export type Measurement_unit_translationScalarFieldEnum = (typeof Measurement_unit_translationScalarFieldEnum)[keyof typeof Measurement_unit_translationScalarFieldEnum]
+
+
+export const Measurement_unit_conversionScalarFieldEnum = {
+  id: 'id',
+  from_unit_id: 'from_unit_id',
+  to_unit_id: 'to_unit_id',
+  conversion_rate: 'conversion_rate'
+} as const
+
+export type Measurement_unit_conversionScalarFieldEnum = (typeof Measurement_unit_conversionScalarFieldEnum)[keyof typeof Measurement_unit_conversionScalarFieldEnum]
 
 
 export const Product_availabilityScalarFieldEnum = {
@@ -3338,6 +3597,8 @@ export const Product_attributeScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
   type_id: 'type_id',
+  numeric_value: 'numeric_value',
+  unit_id: 'unit_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -3562,20 +3823,6 @@ export type ListEnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 
 
 /**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
  * Reference to a field of type 'Decimal'
  */
 export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -3600,6 +3847,20 @@ export type EnumStockLogTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'StockLogType[]'
  */
 export type ListEnumStockLogTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StockLogType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -3706,6 +3967,9 @@ export type GlobalOmitConfig = {
   product_unit?: Prisma.product_unitOmit
   product_unit_translation?: Prisma.product_unit_translationOmit
   product_unit_map?: Prisma.product_unit_mapOmit
+  measurement_unit?: Prisma.measurement_unitOmit
+  measurement_unit_translation?: Prisma.measurement_unit_translationOmit
+  measurement_unit_conversion?: Prisma.measurement_unit_conversionOmit
   product_availability?: Prisma.product_availabilityOmit
   product_availability_translation?: Prisma.product_availability_translationOmit
   product_image?: Prisma.product_imageOmit

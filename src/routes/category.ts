@@ -5,6 +5,7 @@ import {
   updateCategory,
 } from "../controller/admin/category";
 
+
 const router = express.Router();
 
 router.get("/", getCategories);

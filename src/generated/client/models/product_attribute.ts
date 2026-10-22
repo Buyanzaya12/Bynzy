@@ -30,18 +30,24 @@ export type Product_attributeAvgAggregateOutputType = {
   id: number | null
   product_id: number | null
   type_id: number | null
+  numeric_value: runtime.Decimal | null
+  unit_id: number | null
 }
 
 export type Product_attributeSumAggregateOutputType = {
   id: number | null
   product_id: number | null
   type_id: number | null
+  numeric_value: runtime.Decimal | null
+  unit_id: number | null
 }
 
 export type Product_attributeMinAggregateOutputType = {
   id: number | null
   product_id: number | null
   type_id: number | null
+  numeric_value: runtime.Decimal | null
+  unit_id: number | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -50,6 +56,8 @@ export type Product_attributeMaxAggregateOutputType = {
   id: number | null
   product_id: number | null
   type_id: number | null
+  numeric_value: runtime.Decimal | null
+  unit_id: number | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -58,6 +66,8 @@ export type Product_attributeCountAggregateOutputType = {
   id: number
   product_id: number
   type_id: number
+  numeric_value: number
+  unit_id: number
   created_at: number
   updated_at: number
   _all: number
@@ -68,18 +78,24 @@ export type Product_attributeAvgAggregateInputType = {
   id?: true
   product_id?: true
   type_id?: true
+  numeric_value?: true
+  unit_id?: true
 }
 
 export type Product_attributeSumAggregateInputType = {
   id?: true
   product_id?: true
   type_id?: true
+  numeric_value?: true
+  unit_id?: true
 }
 
 export type Product_attributeMinAggregateInputType = {
   id?: true
   product_id?: true
   type_id?: true
+  numeric_value?: true
+  unit_id?: true
   created_at?: true
   updated_at?: true
 }
@@ -88,6 +104,8 @@ export type Product_attributeMaxAggregateInputType = {
   id?: true
   product_id?: true
   type_id?: true
+  numeric_value?: true
+  unit_id?: true
   created_at?: true
   updated_at?: true
 }
@@ -96,6 +114,8 @@ export type Product_attributeCountAggregateInputType = {
   id?: true
   product_id?: true
   type_id?: true
+  numeric_value?: true
+  unit_id?: true
   created_at?: true
   updated_at?: true
   _all?: true
@@ -191,6 +211,8 @@ export type Product_attributeGroupByOutputType = {
   id: number
   product_id: number
   type_id: number
+  numeric_value: runtime.Decimal | null
+  unit_id: number | null
   created_at: Date
   updated_at: Date
   _count: Product_attributeCountAggregateOutputType | null
@@ -222,10 +244,13 @@ export type product_attributeWhereInput = {
   id?: Prisma.IntFilter<"product_attribute"> | number
   product_id?: Prisma.IntFilter<"product_attribute"> | number
   type_id?: Prisma.IntFilter<"product_attribute"> | number
+  numeric_value?: Prisma.DecimalNullableFilter<"product_attribute"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.IntNullableFilter<"product_attribute"> | number | null
   created_at?: Prisma.DateTimeFilter<"product_attribute"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_attribute"> | Date | string
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
   type?: Prisma.XOR<Prisma.Product_attribute_typeScalarRelationFilter, Prisma.product_attribute_typeWhereInput>
+  unit?: Prisma.XOR<Prisma.Measurement_unitNullableScalarRelationFilter, Prisma.measurement_unitWhereInput> | null
   translations?: Prisma.Product_attribute_translationListRelationFilter
 }
 
@@ -233,10 +258,13 @@ export type product_attributeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrderInput | Prisma.SortOrder
+  unit_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   product?: Prisma.productOrderByWithRelationInput
   type?: Prisma.product_attribute_typeOrderByWithRelationInput
+  unit?: Prisma.measurement_unitOrderByWithRelationInput
   translations?: Prisma.product_attribute_translationOrderByRelationAggregateInput
 }
 
@@ -247,10 +275,13 @@ export type product_attributeWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.product_attributeWhereInput | Prisma.product_attributeWhereInput[]
   product_id?: Prisma.IntFilter<"product_attribute"> | number
   type_id?: Prisma.IntFilter<"product_attribute"> | number
+  numeric_value?: Prisma.DecimalNullableFilter<"product_attribute"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.IntNullableFilter<"product_attribute"> | number | null
   created_at?: Prisma.DateTimeFilter<"product_attribute"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_attribute"> | Date | string
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
   type?: Prisma.XOR<Prisma.Product_attribute_typeScalarRelationFilter, Prisma.product_attribute_typeWhereInput>
+  unit?: Prisma.XOR<Prisma.Measurement_unitNullableScalarRelationFilter, Prisma.measurement_unitWhereInput> | null
   translations?: Prisma.Product_attribute_translationListRelationFilter
 }, "id">
 
@@ -258,6 +289,8 @@ export type product_attributeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrderInput | Prisma.SortOrder
+  unit_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   _count?: Prisma.product_attributeCountOrderByAggregateInput
@@ -274,15 +307,19 @@ export type product_attributeScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"product_attribute"> | number
   product_id?: Prisma.IntWithAggregatesFilter<"product_attribute"> | number
   type_id?: Prisma.IntWithAggregatesFilter<"product_attribute"> | number
+  numeric_value?: Prisma.DecimalNullableWithAggregatesFilter<"product_attribute"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.IntNullableWithAggregatesFilter<"product_attribute"> | number | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"product_attribute"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"product_attribute"> | Date | string
 }
 
 export type product_attributeCreateInput = {
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   product: Prisma.productCreateNestedOneWithoutProduct_attributesInput
   type: Prisma.product_attribute_typeCreateNestedOneWithoutProduct_attributesInput
+  unit?: Prisma.measurement_unitCreateNestedOneWithoutProduct_attributesInput
   translations?: Prisma.product_attribute_translationCreateNestedManyWithoutAttributeInput
 }
 
@@ -290,16 +327,20 @@ export type product_attributeUncheckedCreateInput = {
   id?: number
   product_id: number
   type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.product_attribute_translationUncheckedCreateNestedManyWithoutAttributeInput
 }
 
 export type product_attributeUpdateInput = {
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.productUpdateOneRequiredWithoutProduct_attributesNestedInput
   type?: Prisma.product_attribute_typeUpdateOneRequiredWithoutProduct_attributesNestedInput
+  unit?: Prisma.measurement_unitUpdateOneWithoutProduct_attributesNestedInput
   translations?: Prisma.product_attribute_translationUpdateManyWithoutAttributeNestedInput
 }
 
@@ -307,6 +348,8 @@ export type product_attributeUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.product_attribute_translationUncheckedUpdateManyWithoutAttributeNestedInput
@@ -316,11 +359,14 @@ export type product_attributeCreateManyInput = {
   id?: number
   product_id: number
   type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
 }
 
 export type product_attributeUpdateManyMutationInput = {
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -329,6 +375,8 @@ export type product_attributeUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -347,6 +395,8 @@ export type product_attributeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrder
+  unit_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -355,12 +405,16 @@ export type product_attributeAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrder
+  unit_id?: Prisma.SortOrder
 }
 
 export type product_attributeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrder
+  unit_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -369,6 +423,8 @@ export type product_attributeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrder
+  unit_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -377,6 +433,8 @@ export type product_attributeSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   product_id?: Prisma.SortOrder
   type_id?: Prisma.SortOrder
+  numeric_value?: Prisma.SortOrder
+  unit_id?: Prisma.SortOrder
 }
 
 export type Product_attributeScalarRelationFilter = {
@@ -423,6 +481,48 @@ export type product_attributeUncheckedUpdateManyWithoutProductNestedInput = {
   connect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
   update?: Prisma.product_attributeUpdateWithWhereUniqueWithoutProductInput | Prisma.product_attributeUpdateWithWhereUniqueWithoutProductInput[]
   updateMany?: Prisma.product_attributeUpdateManyWithWhereWithoutProductInput | Prisma.product_attributeUpdateManyWithWhereWithoutProductInput[]
+  deleteMany?: Prisma.product_attributeScalarWhereInput | Prisma.product_attributeScalarWhereInput[]
+}
+
+export type product_attributeCreateNestedManyWithoutUnitInput = {
+  create?: Prisma.XOR<Prisma.product_attributeCreateWithoutUnitInput, Prisma.product_attributeUncheckedCreateWithoutUnitInput> | Prisma.product_attributeCreateWithoutUnitInput[] | Prisma.product_attributeUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.product_attributeCreateOrConnectWithoutUnitInput | Prisma.product_attributeCreateOrConnectWithoutUnitInput[]
+  createMany?: Prisma.product_attributeCreateManyUnitInputEnvelope
+  connect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+}
+
+export type product_attributeUncheckedCreateNestedManyWithoutUnitInput = {
+  create?: Prisma.XOR<Prisma.product_attributeCreateWithoutUnitInput, Prisma.product_attributeUncheckedCreateWithoutUnitInput> | Prisma.product_attributeCreateWithoutUnitInput[] | Prisma.product_attributeUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.product_attributeCreateOrConnectWithoutUnitInput | Prisma.product_attributeCreateOrConnectWithoutUnitInput[]
+  createMany?: Prisma.product_attributeCreateManyUnitInputEnvelope
+  connect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+}
+
+export type product_attributeUpdateManyWithoutUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.product_attributeCreateWithoutUnitInput, Prisma.product_attributeUncheckedCreateWithoutUnitInput> | Prisma.product_attributeCreateWithoutUnitInput[] | Prisma.product_attributeUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.product_attributeCreateOrConnectWithoutUnitInput | Prisma.product_attributeCreateOrConnectWithoutUnitInput[]
+  upsert?: Prisma.product_attributeUpsertWithWhereUniqueWithoutUnitInput | Prisma.product_attributeUpsertWithWhereUniqueWithoutUnitInput[]
+  createMany?: Prisma.product_attributeCreateManyUnitInputEnvelope
+  set?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  disconnect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  delete?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  connect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  update?: Prisma.product_attributeUpdateWithWhereUniqueWithoutUnitInput | Prisma.product_attributeUpdateWithWhereUniqueWithoutUnitInput[]
+  updateMany?: Prisma.product_attributeUpdateManyWithWhereWithoutUnitInput | Prisma.product_attributeUpdateManyWithWhereWithoutUnitInput[]
+  deleteMany?: Prisma.product_attributeScalarWhereInput | Prisma.product_attributeScalarWhereInput[]
+}
+
+export type product_attributeUncheckedUpdateManyWithoutUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.product_attributeCreateWithoutUnitInput, Prisma.product_attributeUncheckedCreateWithoutUnitInput> | Prisma.product_attributeCreateWithoutUnitInput[] | Prisma.product_attributeUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.product_attributeCreateOrConnectWithoutUnitInput | Prisma.product_attributeCreateOrConnectWithoutUnitInput[]
+  upsert?: Prisma.product_attributeUpsertWithWhereUniqueWithoutUnitInput | Prisma.product_attributeUpsertWithWhereUniqueWithoutUnitInput[]
+  createMany?: Prisma.product_attributeCreateManyUnitInputEnvelope
+  set?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  disconnect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  delete?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  connect?: Prisma.product_attributeWhereUniqueInput | Prisma.product_attributeWhereUniqueInput[]
+  update?: Prisma.product_attributeUpdateWithWhereUniqueWithoutUnitInput | Prisma.product_attributeUpdateWithWhereUniqueWithoutUnitInput[]
+  updateMany?: Prisma.product_attributeUpdateManyWithWhereWithoutUnitInput | Prisma.product_attributeUpdateManyWithWhereWithoutUnitInput[]
   deleteMany?: Prisma.product_attributeScalarWhereInput | Prisma.product_attributeScalarWhereInput[]
 }
 
@@ -483,15 +583,19 @@ export type product_attributeUpdateOneRequiredWithoutTranslationsNestedInput = {
 }
 
 export type product_attributeCreateWithoutProductInput = {
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   type: Prisma.product_attribute_typeCreateNestedOneWithoutProduct_attributesInput
+  unit?: Prisma.measurement_unitCreateNestedOneWithoutProduct_attributesInput
   translations?: Prisma.product_attribute_translationCreateNestedManyWithoutAttributeInput
 }
 
 export type product_attributeUncheckedCreateWithoutProductInput = {
   id?: number
   type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.product_attribute_translationUncheckedCreateNestedManyWithoutAttributeInput
@@ -530,20 +634,71 @@ export type product_attributeScalarWhereInput = {
   id?: Prisma.IntFilter<"product_attribute"> | number
   product_id?: Prisma.IntFilter<"product_attribute"> | number
   type_id?: Prisma.IntFilter<"product_attribute"> | number
+  numeric_value?: Prisma.DecimalNullableFilter<"product_attribute"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.IntNullableFilter<"product_attribute"> | number | null
   created_at?: Prisma.DateTimeFilter<"product_attribute"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_attribute"> | Date | string
 }
 
-export type product_attributeCreateWithoutTypeInput = {
+export type product_attributeCreateWithoutUnitInput = {
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   product: Prisma.productCreateNestedOneWithoutProduct_attributesInput
+  type: Prisma.product_attribute_typeCreateNestedOneWithoutProduct_attributesInput
+  translations?: Prisma.product_attribute_translationCreateNestedManyWithoutAttributeInput
+}
+
+export type product_attributeUncheckedCreateWithoutUnitInput = {
+  id?: number
+  product_id: number
+  type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  translations?: Prisma.product_attribute_translationUncheckedCreateNestedManyWithoutAttributeInput
+}
+
+export type product_attributeCreateOrConnectWithoutUnitInput = {
+  where: Prisma.product_attributeWhereUniqueInput
+  create: Prisma.XOR<Prisma.product_attributeCreateWithoutUnitInput, Prisma.product_attributeUncheckedCreateWithoutUnitInput>
+}
+
+export type product_attributeCreateManyUnitInputEnvelope = {
+  data: Prisma.product_attributeCreateManyUnitInput | Prisma.product_attributeCreateManyUnitInput[]
+  skipDuplicates?: boolean
+}
+
+export type product_attributeUpsertWithWhereUniqueWithoutUnitInput = {
+  where: Prisma.product_attributeWhereUniqueInput
+  update: Prisma.XOR<Prisma.product_attributeUpdateWithoutUnitInput, Prisma.product_attributeUncheckedUpdateWithoutUnitInput>
+  create: Prisma.XOR<Prisma.product_attributeCreateWithoutUnitInput, Prisma.product_attributeUncheckedCreateWithoutUnitInput>
+}
+
+export type product_attributeUpdateWithWhereUniqueWithoutUnitInput = {
+  where: Prisma.product_attributeWhereUniqueInput
+  data: Prisma.XOR<Prisma.product_attributeUpdateWithoutUnitInput, Prisma.product_attributeUncheckedUpdateWithoutUnitInput>
+}
+
+export type product_attributeUpdateManyWithWhereWithoutUnitInput = {
+  where: Prisma.product_attributeScalarWhereInput
+  data: Prisma.XOR<Prisma.product_attributeUpdateManyMutationInput, Prisma.product_attributeUncheckedUpdateManyWithoutUnitInput>
+}
+
+export type product_attributeCreateWithoutTypeInput = {
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  product: Prisma.productCreateNestedOneWithoutProduct_attributesInput
+  unit?: Prisma.measurement_unitCreateNestedOneWithoutProduct_attributesInput
   translations?: Prisma.product_attribute_translationCreateNestedManyWithoutAttributeInput
 }
 
 export type product_attributeUncheckedCreateWithoutTypeInput = {
   id?: number
   product_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   translations?: Prisma.product_attribute_translationUncheckedCreateNestedManyWithoutAttributeInput
@@ -576,16 +731,20 @@ export type product_attributeUpdateManyWithWhereWithoutTypeInput = {
 }
 
 export type product_attributeCreateWithoutTranslationsInput = {
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   product: Prisma.productCreateNestedOneWithoutProduct_attributesInput
   type: Prisma.product_attribute_typeCreateNestedOneWithoutProduct_attributesInput
+  unit?: Prisma.measurement_unitCreateNestedOneWithoutProduct_attributesInput
 }
 
 export type product_attributeUncheckedCreateWithoutTranslationsInput = {
   id?: number
   product_id: number
   type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
 }
@@ -607,16 +766,20 @@ export type product_attributeUpdateToOneWithWhereWithoutTranslationsInput = {
 }
 
 export type product_attributeUpdateWithoutTranslationsInput = {
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.productUpdateOneRequiredWithoutProduct_attributesNestedInput
   type?: Prisma.product_attribute_typeUpdateOneRequiredWithoutProduct_attributesNestedInput
+  unit?: Prisma.measurement_unitUpdateOneWithoutProduct_attributesNestedInput
 }
 
 export type product_attributeUncheckedUpdateWithoutTranslationsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -624,20 +787,26 @@ export type product_attributeUncheckedUpdateWithoutTranslationsInput = {
 export type product_attributeCreateManyProductInput = {
   id?: number
   type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
 }
 
 export type product_attributeUpdateWithoutProductInput = {
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.product_attribute_typeUpdateOneRequiredWithoutProduct_attributesNestedInput
+  unit?: Prisma.measurement_unitUpdateOneWithoutProduct_attributesNestedInput
   translations?: Prisma.product_attribute_translationUpdateManyWithoutAttributeNestedInput
 }
 
 export type product_attributeUncheckedUpdateWithoutProductInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.product_attribute_translationUncheckedUpdateManyWithoutAttributeNestedInput
@@ -646,6 +815,45 @@ export type product_attributeUncheckedUpdateWithoutProductInput = {
 export type product_attributeUncheckedUpdateManyWithoutProductInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type product_attributeCreateManyUnitInput = {
+  id?: number
+  product_id: number
+  type_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type product_attributeUpdateWithoutUnitInput = {
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.productUpdateOneRequiredWithoutProduct_attributesNestedInput
+  type?: Prisma.product_attribute_typeUpdateOneRequiredWithoutProduct_attributesNestedInput
+  translations?: Prisma.product_attribute_translationUpdateManyWithoutAttributeNestedInput
+}
+
+export type product_attributeUncheckedUpdateWithoutUnitInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  translations?: Prisma.product_attribute_translationUncheckedUpdateManyWithoutAttributeNestedInput
+}
+
+export type product_attributeUncheckedUpdateManyWithoutUnitInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -653,20 +861,26 @@ export type product_attributeUncheckedUpdateManyWithoutProductInput = {
 export type product_attributeCreateManyTypeInput = {
   id?: number
   product_id: number
+  numeric_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: number | null
   created_at?: Date | string
   updated_at?: Date | string
 }
 
 export type product_attributeUpdateWithoutTypeInput = {
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.productUpdateOneRequiredWithoutProduct_attributesNestedInput
+  unit?: Prisma.measurement_unitUpdateOneWithoutProduct_attributesNestedInput
   translations?: Prisma.product_attribute_translationUpdateManyWithoutAttributeNestedInput
 }
 
 export type product_attributeUncheckedUpdateWithoutTypeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   translations?: Prisma.product_attribute_translationUncheckedUpdateManyWithoutAttributeNestedInput
@@ -675,6 +889,8 @@ export type product_attributeUncheckedUpdateWithoutTypeInput = {
 export type product_attributeUncheckedUpdateManyWithoutTypeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   product_id?: Prisma.IntFieldUpdateOperationsInput | number
+  numeric_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -714,10 +930,13 @@ export type product_attributeSelect<ExtArgs extends runtime.Types.Extensions.Int
   id?: boolean
   product_id?: boolean
   type_id?: boolean
+  numeric_value?: boolean
+  unit_id?: boolean
   created_at?: boolean
   updated_at?: boolean
   product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   type?: boolean | Prisma.product_attribute_typeDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.product_attribute$unitArgs<ExtArgs>
   translations?: boolean | Prisma.product_attribute$translationsArgs<ExtArgs>
   _count?: boolean | Prisma.Product_attributeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product_attribute"]>
@@ -726,44 +945,55 @@ export type product_attributeSelectCreateManyAndReturn<ExtArgs extends runtime.T
   id?: boolean
   product_id?: boolean
   type_id?: boolean
+  numeric_value?: boolean
+  unit_id?: boolean
   created_at?: boolean
   updated_at?: boolean
   product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   type?: boolean | Prisma.product_attribute_typeDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.product_attribute$unitArgs<ExtArgs>
 }, ExtArgs["result"]["product_attribute"]>
 
 export type product_attributeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   product_id?: boolean
   type_id?: boolean
+  numeric_value?: boolean
+  unit_id?: boolean
   created_at?: boolean
   updated_at?: boolean
   product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   type?: boolean | Prisma.product_attribute_typeDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.product_attribute$unitArgs<ExtArgs>
 }, ExtArgs["result"]["product_attribute"]>
 
 export type product_attributeSelectScalar = {
   id?: boolean
   product_id?: boolean
   type_id?: boolean
+  numeric_value?: boolean
+  unit_id?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type product_attributeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "product_id" | "type_id" | "created_at" | "updated_at", ExtArgs["result"]["product_attribute"]>
+export type product_attributeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "product_id" | "type_id" | "numeric_value" | "unit_id" | "created_at" | "updated_at", ExtArgs["result"]["product_attribute"]>
 export type product_attributeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   type?: boolean | Prisma.product_attribute_typeDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.product_attribute$unitArgs<ExtArgs>
   translations?: boolean | Prisma.product_attribute$translationsArgs<ExtArgs>
   _count?: boolean | Prisma.Product_attributeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type product_attributeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   type?: boolean | Prisma.product_attribute_typeDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.product_attribute$unitArgs<ExtArgs>
 }
 export type product_attributeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   type?: boolean | Prisma.product_attribute_typeDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.product_attribute$unitArgs<ExtArgs>
 }
 
 export type $product_attributePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -771,12 +1001,15 @@ export type $product_attributePayload<ExtArgs extends runtime.Types.Extensions.I
   objects: {
     product: Prisma.$productPayload<ExtArgs>
     type: Prisma.$product_attribute_typePayload<ExtArgs>
+    unit: Prisma.$measurement_unitPayload<ExtArgs> | null
     translations: Prisma.$product_attribute_translationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     product_id: number
     type_id: number
+    numeric_value: runtime.Decimal | null
+    unit_id: number | null
     created_at: Date
     updated_at: Date
   }, ExtArgs["result"]["product_attribute"]>
@@ -1175,6 +1408,7 @@ export interface Prisma__product_attributeClient<T, Null = never, ExtArgs extend
   readonly [Symbol.toStringTag]: "PrismaPromise"
   product<T extends Prisma.productDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.productDefaultArgs<ExtArgs>>): Prisma.Prisma__productClient<runtime.Types.Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   type<T extends Prisma.product_attribute_typeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_attribute_typeDefaultArgs<ExtArgs>>): Prisma.Prisma__product_attribute_typeClient<runtime.Types.Result.GetResult<Prisma.$product_attribute_typePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  unit<T extends Prisma.product_attribute$unitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_attribute$unitArgs<ExtArgs>>): Prisma.Prisma__measurement_unitClient<runtime.Types.Result.GetResult<Prisma.$measurement_unitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   translations<T extends Prisma.product_attribute$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_attribute$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_attribute_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1208,6 +1442,8 @@ export interface product_attributeFieldRefs {
   readonly id: Prisma.FieldRef<"product_attribute", 'Int'>
   readonly product_id: Prisma.FieldRef<"product_attribute", 'Int'>
   readonly type_id: Prisma.FieldRef<"product_attribute", 'Int'>
+  readonly numeric_value: Prisma.FieldRef<"product_attribute", 'Decimal'>
+  readonly unit_id: Prisma.FieldRef<"product_attribute", 'Int'>
   readonly created_at: Prisma.FieldRef<"product_attribute", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"product_attribute", 'DateTime'>
 }
@@ -1603,6 +1839,25 @@ export type product_attributeDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many product_attributes to delete.
    */
   limit?: number
+}
+
+/**
+ * product_attribute.unit
+ */
+export type product_attribute$unitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the measurement_unit
+   */
+  select?: Prisma.measurement_unitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the measurement_unit
+   */
+  omit?: Prisma.measurement_unitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.measurement_unitInclude<ExtArgs> | null
+  where?: Prisma.measurement_unitWhereInput
 }
 
 /**

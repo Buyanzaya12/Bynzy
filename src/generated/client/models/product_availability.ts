@@ -208,8 +208,8 @@ export type product_availabilityWhereInput = {
   code?: Prisma.StringFilter<"product_availability"> | string
   created_at?: Prisma.DateTimeFilter<"product_availability"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_availability"> | Date | string
-  translations?: Prisma.Product_availability_translationListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  translations?: Prisma.Product_availability_translationListRelationFilter
 }
 
 export type product_availabilityOrderByWithRelationInput = {
@@ -217,8 +217,8 @@ export type product_availabilityOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  translations?: Prisma.product_availability_translationOrderByRelationAggregateInput
   products?: Prisma.productOrderByRelationAggregateInput
+  translations?: Prisma.product_availability_translationOrderByRelationAggregateInput
 }
 
 export type product_availabilityWhereUniqueInput = Prisma.AtLeast<{
@@ -229,8 +229,8 @@ export type product_availabilityWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.product_availabilityWhereInput | Prisma.product_availabilityWhereInput[]
   created_at?: Prisma.DateTimeFilter<"product_availability"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_availability"> | Date | string
-  translations?: Prisma.Product_availability_translationListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  translations?: Prisma.Product_availability_translationListRelationFilter
 }, "id" | "code">
 
 export type product_availabilityOrderByWithAggregationInput = {
@@ -259,8 +259,8 @@ export type product_availabilityCreateInput = {
   code: string
   created_at?: Date | string
   updated_at?: Date | string
-  translations?: Prisma.product_availability_translationCreateNestedManyWithoutAvailabilityInput
   products?: Prisma.productCreateNestedManyWithoutAvailabilityInput
+  translations?: Prisma.product_availability_translationCreateNestedManyWithoutAvailabilityInput
 }
 
 export type product_availabilityUncheckedCreateInput = {
@@ -268,16 +268,16 @@ export type product_availabilityUncheckedCreateInput = {
   code: string
   created_at?: Date | string
   updated_at?: Date | string
-  translations?: Prisma.product_availability_translationUncheckedCreateNestedManyWithoutAvailabilityInput
   products?: Prisma.productUncheckedCreateNestedManyWithoutAvailabilityInput
+  translations?: Prisma.product_availability_translationUncheckedCreateNestedManyWithoutAvailabilityInput
 }
 
 export type product_availabilityUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  translations?: Prisma.product_availability_translationUpdateManyWithoutAvailabilityNestedInput
   products?: Prisma.productUpdateManyWithoutAvailabilityNestedInput
+  translations?: Prisma.product_availability_translationUpdateManyWithoutAvailabilityNestedInput
 }
 
 export type product_availabilityUncheckedUpdateInput = {
@@ -285,8 +285,8 @@ export type product_availabilityUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  translations?: Prisma.product_availability_translationUncheckedUpdateManyWithoutAvailabilityNestedInput
   products?: Prisma.productUncheckedUpdateManyWithoutAvailabilityNestedInput
+  translations?: Prisma.product_availability_translationUncheckedUpdateManyWithoutAvailabilityNestedInput
 }
 
 export type product_availabilityCreateManyInput = {
@@ -476,13 +476,13 @@ export type product_availabilityUncheckedUpdateWithoutTranslationsInput = {
  */
 
 export type Product_availabilityCountOutputType = {
-  translations: number
   products: number
+  translations: number
 }
 
 export type Product_availabilityCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  translations?: boolean | Product_availabilityCountOutputTypeCountTranslationsArgs
   products?: boolean | Product_availabilityCountOutputTypeCountProductsArgs
+  translations?: boolean | Product_availabilityCountOutputTypeCountTranslationsArgs
 }
 
 /**
@@ -498,15 +498,15 @@ export type Product_availabilityCountOutputTypeDefaultArgs<ExtArgs extends runti
 /**
  * Product_availabilityCountOutputType without action
  */
-export type Product_availabilityCountOutputTypeCountTranslationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.product_availability_translationWhereInput
+export type Product_availabilityCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.productWhereInput
 }
 
 /**
  * Product_availabilityCountOutputType without action
  */
-export type Product_availabilityCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.productWhereInput
+export type Product_availabilityCountOutputTypeCountTranslationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_availability_translationWhereInput
 }
 
 
@@ -515,8 +515,8 @@ export type product_availabilitySelect<ExtArgs extends runtime.Types.Extensions.
   code?: boolean
   created_at?: boolean
   updated_at?: boolean
-  translations?: boolean | Prisma.product_availability$translationsArgs<ExtArgs>
   products?: boolean | Prisma.product_availability$productsArgs<ExtArgs>
+  translations?: boolean | Prisma.product_availability$translationsArgs<ExtArgs>
   _count?: boolean | Prisma.Product_availabilityCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product_availability"]>
 
@@ -543,8 +543,8 @@ export type product_availabilitySelectScalar = {
 
 export type product_availabilityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "created_at" | "updated_at", ExtArgs["result"]["product_availability"]>
 export type product_availabilityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  translations?: boolean | Prisma.product_availability$translationsArgs<ExtArgs>
   products?: boolean | Prisma.product_availability$productsArgs<ExtArgs>
+  translations?: boolean | Prisma.product_availability$translationsArgs<ExtArgs>
   _count?: boolean | Prisma.Product_availabilityCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type product_availabilityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -553,8 +553,8 @@ export type product_availabilityIncludeUpdateManyAndReturn<ExtArgs extends runti
 export type $product_availabilityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "product_availability"
   objects: {
-    translations: Prisma.$product_availability_translationPayload<ExtArgs>[]
     products: Prisma.$productPayload<ExtArgs>[]
+    translations: Prisma.$product_availability_translationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -955,8 +955,8 @@ readonly fields: product_availabilityFieldRefs;
  */
 export interface Prisma__product_availabilityClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  translations<T extends Prisma.product_availability$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_availability$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_availability_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   products<T extends Prisma.product_availability$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_availability$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translations<T extends Prisma.product_availability$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_availability$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_availability_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1378,30 +1378,6 @@ export type product_availabilityDeleteManyArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
- * product_availability.translations
- */
-export type product_availability$translationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the product_availability_translation
-   */
-  select?: Prisma.product_availability_translationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the product_availability_translation
-   */
-  omit?: Prisma.product_availability_translationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.product_availability_translationInclude<ExtArgs> | null
-  where?: Prisma.product_availability_translationWhereInput
-  orderBy?: Prisma.product_availability_translationOrderByWithRelationInput | Prisma.product_availability_translationOrderByWithRelationInput[]
-  cursor?: Prisma.product_availability_translationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Product_availability_translationScalarFieldEnum | Prisma.Product_availability_translationScalarFieldEnum[]
-}
-
-/**
  * product_availability.products
  */
 export type product_availability$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1423,6 +1399,30 @@ export type product_availability$productsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * product_availability.translations
+ */
+export type product_availability$translationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_availability_translation
+   */
+  select?: Prisma.product_availability_translationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_availability_translation
+   */
+  omit?: Prisma.product_availability_translationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_availability_translationInclude<ExtArgs> | null
+  where?: Prisma.product_availability_translationWhereInput
+  orderBy?: Prisma.product_availability_translationOrderByWithRelationInput | Prisma.product_availability_translationOrderByWithRelationInput[]
+  cursor?: Prisma.product_availability_translationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_availability_translationScalarFieldEnum | Prisma.Product_availability_translationScalarFieldEnum[]
 }
 
 /**

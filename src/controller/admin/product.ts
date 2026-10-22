@@ -32,7 +32,7 @@ export const addProduct = async (req: Request, res: Response) => {
 
       attributes,
       units,
-
+      gtin,
       variants,
     } = req.body;
 
@@ -54,7 +54,7 @@ export const addProduct = async (req: Request, res: Response) => {
     const product = await prisma.product.create({
       data: {
         code,
-
+        gtin: gtin?.trim() || null,
         price: Number(price),
 
         discount: discount ? Number(discount) : null,
@@ -133,38 +133,54 @@ export const addProduct = async (req: Request, res: Response) => {
 
         product_attributes: attributes?.length
           ? {
-              create: attributes.map((attr: any) => ({
-                type_id: Number(attr.type_id),
+              create: attributes.map((attr: any) => {
+                const numericValue =
+                  attr.numeric_value !== undefined &&
+                  attr.numeric_value !== null &&
+                  attr.numeric_value !== ""
+                    ? Number(attr.numeric_value)
+                    : null;
 
-                translations: {
-                  create: [
-                    {
-                      language: "MN",
-                      value: attr.value,
+                const unitId =
+                  attr.unit_id !== undefined &&
+                  attr.unit_id !== null &&
+                  attr.unit_id !== ""
+                    ? Number(attr.unit_id)
+                    : null;
+
+                // Support both the new translations array and the old attr.value format.
+                const attributeTranslations =
+                  Array.isArray(attr.translations) &&
+                  attr.translations.length > 0
+                    ? attr.translations
+                    : attr.value !== undefined &&
+                        attr.value !== null &&
+                        attr.value !== ""
+                      ? ["MN", "EN", "RU", "ZH", "DE", "FR"].map(
+                          (language) => ({
+                            language,
+                            value: String(attr.value),
+                          }),
+                        )
+                      : [];
+
+                return {
+                  type_id: Number(attr.type_id),
+
+                  numeric_value: numericValue,
+
+                  unit_id: unitId,
+
+                  ...(attributeTranslations.length > 0 && {
+                    translations: {
+                      create: attributeTranslations.map((t: any) => ({
+                        language: t.language,
+                        value: t.value,
+                      })),
                     },
-                    {
-                      language: "EN",
-                      value: attr.value,
-                    },
-                    {
-                      language: "RU",
-                      value: attr.value,
-                    },
-                    {
-                      language: "ZH",
-                      value: attr.value,
-                    },
-                    {
-                      language: "DE",
-                      value: attr.value,
-                    },
-                    {
-                      language: "FR",
-                      value: attr.value,
-                    },
-                  ],
-                },
-              })),
+                  }),
+                };
+              }),
             }
           : undefined,
 
@@ -223,7 +239,11 @@ export const addProduct = async (req: Request, res: Response) => {
                 translations: true,
               },
             },
-
+            unit: {
+              include: {
+                translations: true,
+              },
+            },
             translations: true,
           },
         },
@@ -427,6 +447,11 @@ export const getProductByCode = async (
                 translations: true,
               },
             },
+            unit: {
+              include: {
+                translations: true,
+              },
+            },
             translations: true,
           },
         },
@@ -500,8 +525,11 @@ export const getProductByCode = async (
 
         variants: product.product_variants.map((variant: any) => ({
           id: variant.id,
-
-          price: variant.price ? Number(variant.price) : Number(product.price),
+          code: variant.code ?? null,
+          price:
+            variant.price !== null && variant.price !== undefined
+              ? Number(variant.price)
+              : null,
 
           quantity: variant.quantity,
 
@@ -568,384 +596,8 @@ export const deleteProduct = async (
     res.status(500).json({ error: "Failed to delete product" });
   }
 };
-// export const updateProduct = async (
-//   req: Request,
-//   res: Response,
-// ): Promise<void> => {
-//   try {
-//     const id = Number(req.params.id);
 
-//     if (!id) {
-//       res.status(404).json({
-//         error: "Product not found",
-//       });
-//       return;
-//     }
-
-//     const {
-//       code,
-//       price,
-//       discount,
-
-//       type_id,
-//       brand_id,
-//       color_id,
-
-//       availability_id,
-//       stock_profile_id,
-
-//       quantity,
-//       arrival_date,
-
-//       images,
-//       translations,
-
-//       audience_ids,
-//       home_section_ids,
-
-//       attributes,
-//       units,
-
-//       variants, // NEW
-//     } = req.body;
-
-//     // Remove old attribute translations
-//     await prisma.product_attribute_translation.deleteMany({
-//       where: {
-//         attribute: {
-//           product_id: id,
-//         },
-//       },
-//     });
-
-//     // Remove old attributes
-//     await prisma.product_attribute.deleteMany({
-//       where: {
-//         product_id: id,
-//       },
-//     });
-
-//     // Remove old variant images
-//     await prisma.product_variant_image.deleteMany({
-//       where: {
-//         variant: {
-//           product_id: id,
-//         },
-//       },
-//     });
-
-//     // Remove old variants
-//     await prisma.product_variant.deleteMany({
-//       where: {
-//         product_id: id,
-//       },
-//     });
-
-//     const product = await prisma.product.update({
-//       where: {
-//         id,
-//       },
-
-//       data: {
-//         code: code ?? undefined,
-
-//         price: price !== undefined ? Number(price) : undefined,
-
-//         discount: discount !== undefined ? Number(discount) : undefined,
-
-//         type:
-//           type_id !== undefined
-//             ? { connect: { id: Number(type_id) } }
-//             : undefined,
-
-//         brand:
-//           brand_id !== undefined
-//             ? brand_id
-//               ? {
-//                   connect: {
-//                     id: Number(brand_id),
-//                   },
-//                 }
-//               : {
-//                   disconnect: true,
-//                 }
-//             : undefined,
-
-//         color:
-//           color_id !== undefined
-//             ? color_id
-//               ? {
-//                   connect: {
-//                     id: Number(color_id),
-//                   },
-//                 }
-//               : {
-//                   disconnect: true,
-//                 }
-//             : undefined,
-
-//         availability:
-//           availability_id !== undefined
-//             ? availability_id
-//               ? {
-//                   connect: {
-//                     id: Number(availability_id),
-//                   },
-//                 }
-//               : {
-//                   disconnect: true,
-//                 }
-//             : undefined,
-
-//         stock_profile:
-//           stock_profile_id !== undefined
-//             ? stock_profile_id
-//               ? {
-//                   connect: {
-//                     id: Number(stock_profile_id),
-//                   },
-//                 }
-//               : {
-//                   disconnect: true,
-//                 }
-//             : undefined,
-
-//         arrival_date: arrival_date ? new Date(arrival_date) : null,
-
-//         // TRANSLATIONS
-//         translations: translations
-//           ? {
-//               deleteMany: {},
-
-//               create: translations.map((t: any) => ({
-//                 language: t.language,
-//                 name: t.name,
-//                 description: t.description || null,
-//               })),
-//             }
-//           : undefined,
-
-//         // IMAGES
-//         images: images
-//           ? {
-//               deleteMany: {},
-
-//               create: images.map((url: string) => ({
-//                 url,
-//               })),
-//             }
-//           : undefined,
-
-//         // STOCK
-//         stock:
-//           quantity !== undefined
-//             ? {
-//                 upsert: {
-//                   create: {
-//                     quantity: Number(quantity),
-//                   },
-
-//                   update: {
-//                     quantity: Number(quantity),
-//                   },
-//                 },
-//               }
-//             : undefined,
-
-//         // AUDIENCES
-//         product_audiences: audience_ids
-//           ? {
-//               deleteMany: {},
-
-//               create: audience_ids.map((id: number) => ({
-//                 audience_id: Number(id),
-//               })),
-//             }
-//           : undefined,
-
-//         // HOME SECTIONS
-//         product_home_sections: home_section_ids
-//           ? {
-//               deleteMany: {},
-
-//               create: home_section_ids.map((id: number) => ({
-//                 section_id: Number(id),
-//               })),
-//             }
-//           : undefined,
-
-//         // ATTRIBUTES
-//         product_attributes: attributes
-//           ? {
-//               create: attributes.map((attr: any) => ({
-//                 type_id: Number(attr.type_id),
-
-//                 translations: {
-//                   create: attr.translations.map((t: any) => ({
-//                     language: t.language,
-//                     value: t.value,
-//                   })),
-//                 },
-//               })),
-//             }
-//           : undefined,
-
-//         // UNITS
-//         product_unit_maps: units
-//           ? {
-//               deleteMany: {},
-
-//               create: units.map((unit: any) => ({
-//                 unit_id: Number(unit.unit_id),
-
-//                 quantity_in_base: Number(unit.quantity_in_base),
-
-//                 price: unit.price ? Number(unit.price) : null,
-//               })),
-//             }
-//           : undefined,
-
-//         // VARIANTS
-//         product_variants: variants
-//           ? {
-//               create: variants.map((variant: any) => ({
-//                 color_id: variant.color_id ? Number(variant.color_id) : null,
-
-//                 quantity: Number(variant.quantity ?? 0),
-
-//                 price:
-//                   variant.price !== undefined && variant.price !== null
-//                     ? Number(variant.price)
-//                     : null,
-
-//                 images: {
-//                   create:
-//                     variant.images?.map((url: string, index: number) => ({
-//                       url,
-//                       sort_order: index,
-//                     })) ?? [],
-//                 },
-//               })),
-//             }
-//           : undefined,
-//         include: {
-//           translations: true,
-
-//           images: true,
-
-//           stock: true,
-
-//           availability: true,
-
-//           stock_profile: true,
-
-//           brand: true,
-
-//           color: {
-//             include: {
-//               translations: true,
-//             },
-//           },
-
-//           type: {
-//             include: {
-//               translations: true,
-//             },
-//           },
-
-//           product_audiences: {
-//             include: {
-//               audience: {
-//                 include: {
-//                   translations: true,
-//                 },
-//               },
-//             },
-//           },
-
-//           product_home_sections: {
-//             include: {
-//               section: {
-//                 include: {
-//                   translations: true,
-//                 },
-//               },
-//             },
-//           },
-
-//           product_attributes: {
-//             include: {
-//               type: {
-//                 include: {
-//                   translations: true,
-//                 },
-//               },
-
-//               translations: true,
-//             },
-//           },
-
-//           product_unit_maps: {
-//             include: {
-//               unit: {
-//                 include: {
-//                   translations: true,
-//                 },
-//               },
-//             },
-//           },
-
-//           product_variants: {
-//             include: {
-//               color: {
-//                 include: {
-//                   translations: true,
-//                 },
-//               },
-
-//               images: true,
-//             },
-//           },
-//         },
-//       },
-//     });
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Product updated successfully",
-//       data: product,
-//     });
-//   } catch (error: any) {
-//     console.error("=========UPDATE PRODUCT ERROR ========");
-//     console.error(error);
-//     console.error("MESSAGE:", error.message);
-//     console.error("CODE:", error?.code);
-//     console.error("META:", error?.meta);
-//     console.error("========================================");
-
-//     if (error.code === "P2025") {
-//       res.status(404).json({
-//         error: "Product not found",
-//       });
-//       return;
-//     }
-
-//     if (error.code === "P2002") {
-//       res.status(400).json({
-//         error: "Duplicate product code",
-//       });
-//       return;
-//     }
-
-//     res.status(500).json({
-//       success: false,
-//       error: error?.message || "Failed to update product",
-//       code: error?.code || null,
-//       meta: error?.meta || null,
-//     });
-//   }
-// };
-export const updateProduct = async (req, res) => {
+export const updateProduct = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
 
@@ -960,7 +612,7 @@ export const updateProduct = async (req, res) => {
       code,
       price,
       discount,
-
+      gtin,
       type_id,
       brand_id,
       color_id,
@@ -987,19 +639,21 @@ export const updateProduct = async (req, res) => {
     // DELETE OLD ATTRIBUTES
     // -----------------------------------------
 
-    await prisma.product_attribute_translation.deleteMany({
-      where: {
-        attribute: {
+    if (attributes !== undefined) {
+      await prisma.product_attribute_translation.deleteMany({
+        where: {
+          attribute: {
+            product_id: id,
+          },
+        },
+      });
+
+      await prisma.product_attribute.deleteMany({
+        where: {
           product_id: id,
         },
-      },
-    });
-
-    await prisma.product_attribute.deleteMany({
-      where: {
-        product_id: id,
-      },
-    });
+      });
+    }
 
     // -----------------------------------------
     // DELETE OLD VARIANT IMAGES
@@ -1026,7 +680,10 @@ export const updateProduct = async (req, res) => {
     // -----------------------------------------
     // UPDATE PRODUCT
     // -----------------------------------------
-
+    console.log("========== VARIANTS RECEIVED ==========");
+    console.log(JSON.stringify(variants, null, 2));
+    console.log("VARIANT COUNT:", variants?.length);
+    console.log("=======================================");
     const product = await prisma.product.update({
       where: {
         id,
@@ -1038,6 +695,13 @@ export const updateProduct = async (req, res) => {
         price: price !== undefined ? Number(price) : undefined,
 
         discount: discount !== undefined ? Number(discount) : undefined,
+
+        gtin:
+          gtin !== undefined
+            ? typeof gtin === "string" && gtin.trim() !== ""
+              ? gtin.trim()
+              : null
+            : undefined,
 
         // -----------------------------------------
         // TYPE
@@ -1206,20 +870,58 @@ export const updateProduct = async (req, res) => {
         // ATTRIBUTES
         // -----------------------------------------
 
-        product_attributes: attributes
-          ? {
-              create: attributes.map((attr: any) => ({
-                type_id: Number(attr.type_id),
+        product_attributes:
+          attributes !== undefined
+            ? {
+                create: (attributes ?? []).map((attr: any) => {
+                  const numericValue =
+                    attr.numeric_value !== undefined &&
+                    attr.numeric_value !== null &&
+                    attr.numeric_value !== ""
+                      ? Number(attr.numeric_value)
+                      : null;
 
-                translations: {
-                  create: (attr.translations || []).map((t: any) => ({
-                    language: t.language,
-                    value: t.value,
-                  })),
-                },
-              })),
-            }
-          : undefined,
+                  const unitId =
+                    attr.unit_id !== undefined &&
+                    attr.unit_id !== null &&
+                    attr.unit_id !== ""
+                      ? Number(attr.unit_id)
+                      : null;
+
+                  const attributeTranslations =
+                    Array.isArray(attr.translations) &&
+                    attr.translations.length > 0
+                      ? attr.translations
+                      : attr.value !== undefined &&
+                          attr.value !== null &&
+                          attr.value !== ""
+                        ? ["MN", "EN", "RU", "ZH", "DE", "FR"].map(
+                            (language) => ({
+                              language,
+                              value: String(attr.value),
+                            }),
+                          )
+                        : [];
+
+                  return {
+                    type_id: Number(attr.type_id),
+
+                    numeric_value: numericValue,
+
+                    unit_id: unitId,
+
+                    ...(attributeTranslations.length > 0 && {
+                      translations: {
+                        create: attributeTranslations.map((t: any) => ({
+                          language: t.language,
+                          value: t.value,
+                        })),
+                      },
+                    }),
+                  };
+                }),
+              }
+            : undefined,
 
         // -----------------------------------------
         // UNITS
@@ -1249,6 +951,12 @@ export const updateProduct = async (req, res) => {
         product_variants: variants
           ? {
               create: variants.map((variant: any) => ({
+                code:
+                  variant.code !== undefined &&
+                  variant.code !== null &&
+                  variant.code !== ""
+                    ? variant.code
+                    : null,
                 color_id:
                   variant.color_id !== undefined &&
                   variant.color_id !== null &&
@@ -1329,6 +1037,11 @@ export const updateProduct = async (req, res) => {
         product_attributes: {
           include: {
             type: {
+              include: {
+                translations: true,
+              },
+            },
+            unit: {
               include: {
                 translations: true,
               },

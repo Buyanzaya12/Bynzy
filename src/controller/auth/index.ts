@@ -3,7 +3,6 @@ import { prisma } from "../../lib/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { transporter } from "../../lib/mail";
-import crypto from "crypto";
 
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 

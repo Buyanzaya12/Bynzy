@@ -224,8 +224,8 @@ export type product_audienceWhereInput = {
   audience_id?: Prisma.IntFilter<"product_audience"> | number
   created_at?: Prisma.DateTimeFilter<"product_audience"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_audience"> | Date | string
-  product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.audienceWhereInput>
+  product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
 }
 
 export type product_audienceOrderByWithRelationInput = {
@@ -234,8 +234,8 @@ export type product_audienceOrderByWithRelationInput = {
   audience_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  product?: Prisma.productOrderByWithRelationInput
   audience?: Prisma.audienceOrderByWithRelationInput
+  product?: Prisma.productOrderByWithRelationInput
 }
 
 export type product_audienceWhereUniqueInput = Prisma.AtLeast<{
@@ -247,8 +247,8 @@ export type product_audienceWhereUniqueInput = Prisma.AtLeast<{
   audience_id?: Prisma.IntFilter<"product_audience"> | number
   created_at?: Prisma.DateTimeFilter<"product_audience"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_audience"> | Date | string
-  product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.audienceWhereInput>
+  product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.productWhereInput>
 }, "id">
 
 export type product_audienceOrderByWithAggregationInput = {
@@ -278,8 +278,8 @@ export type product_audienceScalarWhereWithAggregatesInput = {
 export type product_audienceCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
-  product: Prisma.productCreateNestedOneWithoutProduct_audiencesInput
   audience: Prisma.audienceCreateNestedOneWithoutProduct_audiencesInput
+  product: Prisma.productCreateNestedOneWithoutProduct_audiencesInput
 }
 
 export type product_audienceUncheckedCreateInput = {
@@ -293,8 +293,8 @@ export type product_audienceUncheckedCreateInput = {
 export type product_audienceUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  product?: Prisma.productUpdateOneRequiredWithoutProduct_audiencesNestedInput
   audience?: Prisma.audienceUpdateOneRequiredWithoutProduct_audiencesNestedInput
+  product?: Prisma.productUpdateOneRequiredWithoutProduct_audiencesNestedInput
 }
 
 export type product_audienceUncheckedUpdateInput = {
@@ -607,8 +607,8 @@ export type product_audienceSelect<ExtArgs extends runtime.Types.Extensions.Inte
   audience_id?: boolean
   created_at?: boolean
   updated_at?: boolean
-  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   audience?: boolean | Prisma.audienceDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product_audience"]>
 
 export type product_audienceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -617,8 +617,8 @@ export type product_audienceSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   audience_id?: boolean
   created_at?: boolean
   updated_at?: boolean
-  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   audience?: boolean | Prisma.audienceDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product_audience"]>
 
 export type product_audienceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -627,8 +627,8 @@ export type product_audienceSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   audience_id?: boolean
   created_at?: boolean
   updated_at?: boolean
-  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   audience?: boolean | Prisma.audienceDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product_audience"]>
 
 export type product_audienceSelectScalar = {
@@ -641,23 +641,23 @@ export type product_audienceSelectScalar = {
 
 export type product_audienceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "product_id" | "audience_id" | "created_at" | "updated_at", ExtArgs["result"]["product_audience"]>
 export type product_audienceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   audience?: boolean | Prisma.audienceDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
 }
 export type product_audienceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   audience?: boolean | Prisma.audienceDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
 }
 export type product_audienceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
   audience?: boolean | Prisma.audienceDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.productDefaultArgs<ExtArgs>
 }
 
 export type $product_audiencePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "product_audience"
   objects: {
-    product: Prisma.$productPayload<ExtArgs>
     audience: Prisma.$audiencePayload<ExtArgs>
+    product: Prisma.$productPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1059,8 +1059,8 @@ readonly fields: product_audienceFieldRefs;
  */
 export interface Prisma__product_audienceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  product<T extends Prisma.productDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.productDefaultArgs<ExtArgs>>): Prisma.Prisma__productClient<runtime.Types.Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   audience<T extends Prisma.audienceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.audienceDefaultArgs<ExtArgs>>): Prisma.Prisma__audienceClient<runtime.Types.Result.GetResult<Prisma.$audiencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  product<T extends Prisma.productDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.productDefaultArgs<ExtArgs>>): Prisma.Prisma__productClient<runtime.Types.Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

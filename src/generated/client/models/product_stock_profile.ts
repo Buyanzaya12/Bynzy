@@ -220,8 +220,8 @@ export type product_stock_profileWhereInput = {
   low_stock_threshold?: Prisma.IntFilter<"product_stock_profile"> | number
   created_at?: Prisma.DateTimeFilter<"product_stock_profile"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_stock_profile"> | Date | string
-  translations?: Prisma.Product_stock_profile_translationListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  translations?: Prisma.Product_stock_profile_translationListRelationFilter
 }
 
 export type product_stock_profileOrderByWithRelationInput = {
@@ -230,8 +230,8 @@ export type product_stock_profileOrderByWithRelationInput = {
   low_stock_threshold?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  translations?: Prisma.product_stock_profile_translationOrderByRelationAggregateInput
   products?: Prisma.productOrderByRelationAggregateInput
+  translations?: Prisma.product_stock_profile_translationOrderByRelationAggregateInput
 }
 
 export type product_stock_profileWhereUniqueInput = Prisma.AtLeast<{
@@ -243,8 +243,8 @@ export type product_stock_profileWhereUniqueInput = Prisma.AtLeast<{
   low_stock_threshold?: Prisma.IntFilter<"product_stock_profile"> | number
   created_at?: Prisma.DateTimeFilter<"product_stock_profile"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"product_stock_profile"> | Date | string
-  translations?: Prisma.Product_stock_profile_translationListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  translations?: Prisma.Product_stock_profile_translationListRelationFilter
 }, "id" | "code">
 
 export type product_stock_profileOrderByWithAggregationInput = {
@@ -276,8 +276,8 @@ export type product_stock_profileCreateInput = {
   low_stock_threshold: number
   created_at?: Date | string
   updated_at?: Date | string
-  translations?: Prisma.product_stock_profile_translationCreateNestedManyWithoutProfileInput
   products?: Prisma.productCreateNestedManyWithoutStock_profileInput
+  translations?: Prisma.product_stock_profile_translationCreateNestedManyWithoutProfileInput
 }
 
 export type product_stock_profileUncheckedCreateInput = {
@@ -286,8 +286,8 @@ export type product_stock_profileUncheckedCreateInput = {
   low_stock_threshold: number
   created_at?: Date | string
   updated_at?: Date | string
-  translations?: Prisma.product_stock_profile_translationUncheckedCreateNestedManyWithoutProfileInput
   products?: Prisma.productUncheckedCreateNestedManyWithoutStock_profileInput
+  translations?: Prisma.product_stock_profile_translationUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type product_stock_profileUpdateInput = {
@@ -295,8 +295,8 @@ export type product_stock_profileUpdateInput = {
   low_stock_threshold?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  translations?: Prisma.product_stock_profile_translationUpdateManyWithoutProfileNestedInput
   products?: Prisma.productUpdateManyWithoutStock_profileNestedInput
+  translations?: Prisma.product_stock_profile_translationUpdateManyWithoutProfileNestedInput
 }
 
 export type product_stock_profileUncheckedUpdateInput = {
@@ -305,8 +305,8 @@ export type product_stock_profileUncheckedUpdateInput = {
   low_stock_threshold?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  translations?: Prisma.product_stock_profile_translationUncheckedUpdateManyWithoutProfileNestedInput
   products?: Prisma.productUncheckedUpdateManyWithoutStock_profileNestedInput
+  translations?: Prisma.product_stock_profile_translationUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type product_stock_profileCreateManyInput = {
@@ -512,13 +512,13 @@ export type product_stock_profileUncheckedUpdateWithoutTranslationsInput = {
  */
 
 export type Product_stock_profileCountOutputType = {
-  translations: number
   products: number
+  translations: number
 }
 
 export type Product_stock_profileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  translations?: boolean | Product_stock_profileCountOutputTypeCountTranslationsArgs
   products?: boolean | Product_stock_profileCountOutputTypeCountProductsArgs
+  translations?: boolean | Product_stock_profileCountOutputTypeCountTranslationsArgs
 }
 
 /**
@@ -534,15 +534,15 @@ export type Product_stock_profileCountOutputTypeDefaultArgs<ExtArgs extends runt
 /**
  * Product_stock_profileCountOutputType without action
  */
-export type Product_stock_profileCountOutputTypeCountTranslationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.product_stock_profile_translationWhereInput
+export type Product_stock_profileCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.productWhereInput
 }
 
 /**
  * Product_stock_profileCountOutputType without action
  */
-export type Product_stock_profileCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.productWhereInput
+export type Product_stock_profileCountOutputTypeCountTranslationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.product_stock_profile_translationWhereInput
 }
 
 
@@ -552,8 +552,8 @@ export type product_stock_profileSelect<ExtArgs extends runtime.Types.Extensions
   low_stock_threshold?: boolean
   created_at?: boolean
   updated_at?: boolean
-  translations?: boolean | Prisma.product_stock_profile$translationsArgs<ExtArgs>
   products?: boolean | Prisma.product_stock_profile$productsArgs<ExtArgs>
+  translations?: boolean | Prisma.product_stock_profile$translationsArgs<ExtArgs>
   _count?: boolean | Prisma.Product_stock_profileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product_stock_profile"]>
 
@@ -583,8 +583,8 @@ export type product_stock_profileSelectScalar = {
 
 export type product_stock_profileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "low_stock_threshold" | "created_at" | "updated_at", ExtArgs["result"]["product_stock_profile"]>
 export type product_stock_profileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  translations?: boolean | Prisma.product_stock_profile$translationsArgs<ExtArgs>
   products?: boolean | Prisma.product_stock_profile$productsArgs<ExtArgs>
+  translations?: boolean | Prisma.product_stock_profile$translationsArgs<ExtArgs>
   _count?: boolean | Prisma.Product_stock_profileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type product_stock_profileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -593,8 +593,8 @@ export type product_stock_profileIncludeUpdateManyAndReturn<ExtArgs extends runt
 export type $product_stock_profilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "product_stock_profile"
   objects: {
-    translations: Prisma.$product_stock_profile_translationPayload<ExtArgs>[]
     products: Prisma.$productPayload<ExtArgs>[]
+    translations: Prisma.$product_stock_profile_translationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -996,8 +996,8 @@ readonly fields: product_stock_profileFieldRefs;
  */
 export interface Prisma__product_stock_profileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  translations<T extends Prisma.product_stock_profile$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_stock_profile$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_stock_profile_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   products<T extends Prisma.product_stock_profile$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_stock_profile$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translations<T extends Prisma.product_stock_profile$translationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.product_stock_profile$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$product_stock_profile_translationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1420,30 +1420,6 @@ export type product_stock_profileDeleteManyArgs<ExtArgs extends runtime.Types.Ex
 }
 
 /**
- * product_stock_profile.translations
- */
-export type product_stock_profile$translationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the product_stock_profile_translation
-   */
-  select?: Prisma.product_stock_profile_translationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the product_stock_profile_translation
-   */
-  omit?: Prisma.product_stock_profile_translationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.product_stock_profile_translationInclude<ExtArgs> | null
-  where?: Prisma.product_stock_profile_translationWhereInput
-  orderBy?: Prisma.product_stock_profile_translationOrderByWithRelationInput | Prisma.product_stock_profile_translationOrderByWithRelationInput[]
-  cursor?: Prisma.product_stock_profile_translationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Product_stock_profile_translationScalarFieldEnum | Prisma.Product_stock_profile_translationScalarFieldEnum[]
-}
-
-/**
  * product_stock_profile.products
  */
 export type product_stock_profile$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1465,6 +1441,30 @@ export type product_stock_profile$productsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * product_stock_profile.translations
+ */
+export type product_stock_profile$translationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the product_stock_profile_translation
+   */
+  select?: Prisma.product_stock_profile_translationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the product_stock_profile_translation
+   */
+  omit?: Prisma.product_stock_profile_translationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.product_stock_profile_translationInclude<ExtArgs> | null
+  where?: Prisma.product_stock_profile_translationWhereInput
+  orderBy?: Prisma.product_stock_profile_translationOrderByWithRelationInput | Prisma.product_stock_profile_translationOrderByWithRelationInput[]
+  cursor?: Prisma.product_stock_profile_translationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Product_stock_profile_translationScalarFieldEnum | Prisma.Product_stock_profile_translationScalarFieldEnum[]
 }
 
 /**

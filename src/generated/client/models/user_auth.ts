@@ -40,11 +40,11 @@ export type User_authMinAggregateOutputType = {
   email: string | null
   password: string | null
   role: $Enums.user_role | null
-  avatar: string | null
   createdAt: Date | null
   updatedAt: Date | null
   resetToken: string | null
   resetTokenExpiry: Date | null
+  avatar: string | null
 }
 
 export type User_authMaxAggregateOutputType = {
@@ -53,11 +53,11 @@ export type User_authMaxAggregateOutputType = {
   email: string | null
   password: string | null
   role: $Enums.user_role | null
-  avatar: string | null
   createdAt: Date | null
   updatedAt: Date | null
   resetToken: string | null
   resetTokenExpiry: Date | null
+  avatar: string | null
 }
 
 export type User_authCountAggregateOutputType = {
@@ -66,11 +66,11 @@ export type User_authCountAggregateOutputType = {
   email: number
   password: number
   role: number
-  avatar: number
   createdAt: number
   updatedAt: number
   resetToken: number
   resetTokenExpiry: number
+  avatar: number
   _all: number
 }
 
@@ -89,11 +89,11 @@ export type User_authMinAggregateInputType = {
   email?: true
   password?: true
   role?: true
-  avatar?: true
   createdAt?: true
   updatedAt?: true
   resetToken?: true
   resetTokenExpiry?: true
+  avatar?: true
 }
 
 export type User_authMaxAggregateInputType = {
@@ -102,11 +102,11 @@ export type User_authMaxAggregateInputType = {
   email?: true
   password?: true
   role?: true
-  avatar?: true
   createdAt?: true
   updatedAt?: true
   resetToken?: true
   resetTokenExpiry?: true
+  avatar?: true
 }
 
 export type User_authCountAggregateInputType = {
@@ -115,11 +115,11 @@ export type User_authCountAggregateInputType = {
   email?: true
   password?: true
   role?: true
-  avatar?: true
   createdAt?: true
   updatedAt?: true
   resetToken?: true
   resetTokenExpiry?: true
+  avatar?: true
   _all?: true
 }
 
@@ -215,11 +215,11 @@ export type User_authGroupByOutputType = {
   email: string
   password: string
   role: $Enums.user_role
-  avatar: string | null
   createdAt: Date
   updatedAt: Date
   resetToken: string | null
   resetTokenExpiry: Date | null
+  avatar: string | null
   _count: User_authCountAggregateOutputType | null
   _avg: User_authAvgAggregateOutputType | null
   _sum: User_authSumAggregateOutputType | null
@@ -251,11 +251,11 @@ export type user_authWhereInput = {
   email?: Prisma.StringFilter<"user_auth"> | string
   password?: Prisma.StringFilter<"user_auth"> | string
   role?: Prisma.Enumuser_roleFilter<"user_auth"> | $Enums.user_role
-  avatar?: Prisma.StringNullableFilter<"user_auth"> | string | null
   createdAt?: Prisma.DateTimeFilter<"user_auth"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user_auth"> | Date | string
   resetToken?: Prisma.StringNullableFilter<"user_auth"> | string | null
   resetTokenExpiry?: Prisma.DateTimeNullableFilter<"user_auth"> | Date | string | null
+  avatar?: Prisma.StringNullableFilter<"user_auth"> | string | null
   userCart?: Prisma.XOR<Prisma.User_cartNullableScalarRelationFilter, Prisma.user_cartWhereInput> | null
   userFavorites?: Prisma.User_favoriteListRelationFilter
 }
@@ -266,11 +266,11 @@ export type user_authOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   resetToken?: Prisma.SortOrderInput | Prisma.SortOrder
   resetTokenExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   userCart?: Prisma.user_cartOrderByWithRelationInput
   userFavorites?: Prisma.user_favoriteOrderByRelationAggregateInput
 }
@@ -284,11 +284,11 @@ export type user_authWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.user_authWhereInput | Prisma.user_authWhereInput[]
   password?: Prisma.StringFilter<"user_auth"> | string
   role?: Prisma.Enumuser_roleFilter<"user_auth"> | $Enums.user_role
-  avatar?: Prisma.StringNullableFilter<"user_auth"> | string | null
   createdAt?: Prisma.DateTimeFilter<"user_auth"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user_auth"> | Date | string
   resetToken?: Prisma.StringNullableFilter<"user_auth"> | string | null
   resetTokenExpiry?: Prisma.DateTimeNullableFilter<"user_auth"> | Date | string | null
+  avatar?: Prisma.StringNullableFilter<"user_auth"> | string | null
   userCart?: Prisma.XOR<Prisma.User_cartNullableScalarRelationFilter, Prisma.user_cartWhereInput> | null
   userFavorites?: Prisma.User_favoriteListRelationFilter
 }, "id" | "username" | "email">
@@ -299,11 +299,11 @@ export type user_authOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   resetToken?: Prisma.SortOrderInput | Prisma.SortOrder
   resetTokenExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.user_authCountOrderByAggregateInput
   _avg?: Prisma.user_authAvgOrderByAggregateInput
   _max?: Prisma.user_authMaxOrderByAggregateInput
@@ -320,11 +320,11 @@ export type user_authScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"user_auth"> | string
   password?: Prisma.StringWithAggregatesFilter<"user_auth"> | string
   role?: Prisma.Enumuser_roleWithAggregatesFilter<"user_auth"> | $Enums.user_role
-  avatar?: Prisma.StringNullableWithAggregatesFilter<"user_auth"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"user_auth"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"user_auth"> | Date | string
   resetToken?: Prisma.StringNullableWithAggregatesFilter<"user_auth"> | string | null
   resetTokenExpiry?: Prisma.DateTimeNullableWithAggregatesFilter<"user_auth"> | Date | string | null
+  avatar?: Prisma.StringNullableWithAggregatesFilter<"user_auth"> | string | null
 }
 
 export type user_authCreateInput = {
@@ -332,11 +332,11 @@ export type user_authCreateInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
   userCart?: Prisma.user_cartCreateNestedOneWithoutUserInput
   userFavorites?: Prisma.user_favoriteCreateNestedManyWithoutUserInput
 }
@@ -347,11 +347,11 @@ export type user_authUncheckedCreateInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
   userCart?: Prisma.user_cartUncheckedCreateNestedOneWithoutUserInput
   userFavorites?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutUserInput
 }
@@ -361,11 +361,11 @@ export type user_authUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userCart?: Prisma.user_cartUpdateOneWithoutUserNestedInput
   userFavorites?: Prisma.user_favoriteUpdateManyWithoutUserNestedInput
 }
@@ -376,11 +376,11 @@ export type user_authUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userCart?: Prisma.user_cartUncheckedUpdateOneWithoutUserNestedInput
   userFavorites?: Prisma.user_favoriteUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -391,11 +391,11 @@ export type user_authCreateManyInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
 }
 
 export type user_authUpdateManyMutationInput = {
@@ -403,11 +403,11 @@ export type user_authUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type user_authUncheckedUpdateManyInput = {
@@ -416,11 +416,11 @@ export type user_authUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type user_authCountOrderByAggregateInput = {
@@ -429,11 +429,11 @@ export type user_authCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  avatar?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   resetToken?: Prisma.SortOrder
   resetTokenExpiry?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
 }
 
 export type user_authAvgOrderByAggregateInput = {
@@ -446,11 +446,11 @@ export type user_authMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  avatar?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   resetToken?: Prisma.SortOrder
   resetTokenExpiry?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
 }
 
 export type user_authMinOrderByAggregateInput = {
@@ -459,11 +459,11 @@ export type user_authMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  avatar?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   resetToken?: Prisma.SortOrder
   resetTokenExpiry?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
 }
 
 export type user_authSumOrderByAggregateInput = {
@@ -483,12 +483,12 @@ export type Enumuser_roleFieldUpdateOperationsInput = {
   set?: $Enums.user_role
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -536,11 +536,11 @@ export type user_authCreateWithoutUserCartInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
   userFavorites?: Prisma.user_favoriteCreateNestedManyWithoutUserInput
 }
 
@@ -550,11 +550,11 @@ export type user_authUncheckedCreateWithoutUserCartInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
   userFavorites?: Prisma.user_favoriteUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -579,11 +579,11 @@ export type user_authUpdateWithoutUserCartInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userFavorites?: Prisma.user_favoriteUpdateManyWithoutUserNestedInput
 }
 
@@ -593,11 +593,11 @@ export type user_authUncheckedUpdateWithoutUserCartInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userFavorites?: Prisma.user_favoriteUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -606,11 +606,11 @@ export type user_authCreateWithoutUserFavoritesInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
   userCart?: Prisma.user_cartCreateNestedOneWithoutUserInput
 }
 
@@ -620,11 +620,11 @@ export type user_authUncheckedCreateWithoutUserFavoritesInput = {
   email: string
   password: string
   role?: $Enums.user_role
-  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   resetToken?: string | null
   resetTokenExpiry?: Date | string | null
+  avatar?: string | null
   userCart?: Prisma.user_cartUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -649,11 +649,11 @@ export type user_authUpdateWithoutUserFavoritesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userCart?: Prisma.user_cartUpdateOneWithoutUserNestedInput
 }
 
@@ -663,11 +663,11 @@ export type user_authUncheckedUpdateWithoutUserFavoritesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetTokenExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userCart?: Prisma.user_cartUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -708,11 +708,11 @@ export type user_authSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   email?: boolean
   password?: boolean
   role?: boolean
-  avatar?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   resetToken?: boolean
   resetTokenExpiry?: boolean
+  avatar?: boolean
   userCart?: boolean | Prisma.user_auth$userCartArgs<ExtArgs>
   userFavorites?: boolean | Prisma.user_auth$userFavoritesArgs<ExtArgs>
   _count?: boolean | Prisma.User_authCountOutputTypeDefaultArgs<ExtArgs>
@@ -724,11 +724,11 @@ export type user_authSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   email?: boolean
   password?: boolean
   role?: boolean
-  avatar?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   resetToken?: boolean
   resetTokenExpiry?: boolean
+  avatar?: boolean
 }, ExtArgs["result"]["user_auth"]>
 
 export type user_authSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -737,11 +737,11 @@ export type user_authSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   email?: boolean
   password?: boolean
   role?: boolean
-  avatar?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   resetToken?: boolean
   resetTokenExpiry?: boolean
+  avatar?: boolean
 }, ExtArgs["result"]["user_auth"]>
 
 export type user_authSelectScalar = {
@@ -750,14 +750,14 @@ export type user_authSelectScalar = {
   email?: boolean
   password?: boolean
   role?: boolean
-  avatar?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   resetToken?: boolean
   resetTokenExpiry?: boolean
+  avatar?: boolean
 }
 
-export type user_authOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "password" | "role" | "avatar" | "createdAt" | "updatedAt" | "resetToken" | "resetTokenExpiry", ExtArgs["result"]["user_auth"]>
+export type user_authOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "password" | "role" | "createdAt" | "updatedAt" | "resetToken" | "resetTokenExpiry" | "avatar", ExtArgs["result"]["user_auth"]>
 export type user_authInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userCart?: boolean | Prisma.user_auth$userCartArgs<ExtArgs>
   userFavorites?: boolean | Prisma.user_auth$userFavoritesArgs<ExtArgs>
@@ -778,11 +778,11 @@ export type $user_authPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     email: string
     password: string
     role: $Enums.user_role
-    avatar: string | null
     createdAt: Date
     updatedAt: Date
     resetToken: string | null
     resetTokenExpiry: Date | null
+    avatar: string | null
   }, ExtArgs["result"]["user_auth"]>
   composites: {}
 }
@@ -1213,11 +1213,11 @@ export interface user_authFieldRefs {
   readonly email: Prisma.FieldRef<"user_auth", 'String'>
   readonly password: Prisma.FieldRef<"user_auth", 'String'>
   readonly role: Prisma.FieldRef<"user_auth", 'user_role'>
-  readonly avatar: Prisma.FieldRef<"user_auth", 'String'>
   readonly createdAt: Prisma.FieldRef<"user_auth", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"user_auth", 'DateTime'>
   readonly resetToken: Prisma.FieldRef<"user_auth", 'String'>
   readonly resetTokenExpiry: Prisma.FieldRef<"user_auth", 'DateTime'>
+  readonly avatar: Prisma.FieldRef<"user_auth", 'String'>
 }
     
 

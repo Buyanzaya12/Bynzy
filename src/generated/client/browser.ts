@@ -103,6 +103,21 @@ export type product_unit_translation = Prisma.product_unit_translationModel
  */
 export type product_unit_map = Prisma.product_unit_mapModel
 /**
+ * Model measurement_unit
+ * 
+ */
+export type measurement_unit = Prisma.measurement_unitModel
+/**
+ * Model measurement_unit_translation
+ * 
+ */
+export type measurement_unit_translation = Prisma.measurement_unit_translationModel
+/**
+ * Model measurement_unit_conversion
+ * 
+ */
+export type measurement_unit_conversion = Prisma.measurement_unit_conversionModel
+/**
  * Model product_availability
  * 
  */

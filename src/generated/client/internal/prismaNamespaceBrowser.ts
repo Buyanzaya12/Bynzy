@@ -66,6 +66,9 @@ export const ModelName = {
   product_unit: 'product_unit',
   product_unit_translation: 'product_unit_translation',
   product_unit_map: 'product_unit_map',
+  measurement_unit: 'measurement_unit',
+  measurement_unit_translation: 'measurement_unit_translation',
+  measurement_unit_conversion: 'measurement_unit_conversion',
   product_availability: 'product_availability',
   product_availability_translation: 'product_availability_translation',
   product_image: 'product_image',
@@ -108,11 +111,11 @@ export const User_authScalarFieldEnum = {
   email: 'email',
   password: 'password',
   role: 'role',
-  avatar: 'avatar',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   resetToken: 'resetToken',
-  resetTokenExpiry: 'resetTokenExpiry'
+  resetTokenExpiry: 'resetTokenExpiry',
+  avatar: 'avatar'
 } as const
 
 export type User_authScalarFieldEnum = (typeof User_authScalarFieldEnum)[keyof typeof User_authScalarFieldEnum]
@@ -134,7 +137,8 @@ export const User_cart_itemScalarFieldEnum = {
   product_id: 'product_id',
   quantity: 'quantity',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  variant_id: 'variant_id'
 } as const
 
 export type User_cart_itemScalarFieldEnum = (typeof User_cart_itemScalarFieldEnum)[keyof typeof User_cart_itemScalarFieldEnum]
@@ -195,10 +199,10 @@ export type Type_translationScalarFieldEnum = (typeof Type_translationScalarFiel
 export const BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  image_url: 'image_url',
   code: 'code',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  image_url: 'image_url'
 } as const
 
 export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
@@ -207,9 +211,9 @@ export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof Br
 export const ColorScalarFieldEnum = {
   id: 'id',
   code: 'code',
-  image_url: 'image_url',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  image_url: 'image_url'
 } as const
 
 export type ColorScalarFieldEnum = (typeof ColorScalarFieldEnum)[keyof typeof ColorScalarFieldEnum]
@@ -235,9 +239,10 @@ export const ProductScalarFieldEnum = {
   color_id: 'color_id',
   created_at: 'created_at',
   updated_at: 'updated_at',
+  arrival_date: 'arrival_date',
   availability_id: 'availability_id',
   stock_profile_id: 'stock_profile_id',
-  arrival_date: 'arrival_date'
+  gtin: 'gtin'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -250,7 +255,8 @@ export const Product_variantScalarFieldEnum = {
   price: 'price',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  quantity: 'quantity'
+  quantity: 'quantity',
+  code: 'code'
 } as const
 
 export type Product_variantScalarFieldEnum = (typeof Product_variantScalarFieldEnum)[keyof typeof Product_variantScalarFieldEnum]
@@ -298,6 +304,37 @@ export const Product_unit_mapScalarFieldEnum = {
 } as const
 
 export type Product_unit_mapScalarFieldEnum = (typeof Product_unit_mapScalarFieldEnum)[keyof typeof Product_unit_mapScalarFieldEnum]
+
+
+export const Measurement_unitScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Measurement_unitScalarFieldEnum = (typeof Measurement_unitScalarFieldEnum)[keyof typeof Measurement_unitScalarFieldEnum]
+
+
+export const Measurement_unit_translationScalarFieldEnum = {
+  id: 'id',
+  unit_id: 'unit_id',
+  language: 'language',
+  name: 'name',
+  short_name: 'short_name'
+} as const
+
+export type Measurement_unit_translationScalarFieldEnum = (typeof Measurement_unit_translationScalarFieldEnum)[keyof typeof Measurement_unit_translationScalarFieldEnum]
+
+
+export const Measurement_unit_conversionScalarFieldEnum = {
+  id: 'id',
+  from_unit_id: 'from_unit_id',
+  to_unit_id: 'to_unit_id',
+  conversion_rate: 'conversion_rate'
+} as const
+
+export type Measurement_unit_conversionScalarFieldEnum = (typeof Measurement_unit_conversionScalarFieldEnum)[keyof typeof Measurement_unit_conversionScalarFieldEnum]
 
 
 export const Product_availabilityScalarFieldEnum = {
@@ -367,6 +404,8 @@ export const Product_attributeScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
   type_id: 'type_id',
+  numeric_value: 'numeric_value',
+  unit_id: 'unit_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
