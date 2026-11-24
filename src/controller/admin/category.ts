@@ -40,8 +40,14 @@ export const addCategory = async (req: Request, res: Response) => {
 
 export const getCategories = async (req: Request, res: Response) => {
   try {
-    const lang = String(req.query.lang || "EN").toUpperCase();
+    // const lang = String(req.query.lang || "EN").toUpperCase();
+    const allowedLanguages = ["MN", "EN", "RU", "ZH", "DE", "FR"];
 
+    const requestedLang = String(req.query.lang || "EN").toUpperCase();
+
+    const lang = allowedLanguages.includes(requestedLang)
+      ? requestedLang
+      : "EN";
     const categories = await prisma.category.findMany({
       orderBy: {
         created_at: "desc",

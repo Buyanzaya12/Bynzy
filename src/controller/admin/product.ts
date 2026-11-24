@@ -63,7 +63,7 @@ export const addProduct = async (req: Request, res: Response) => {
 
         brand_id: brand_id ? Number(brand_id) : null,
 
-        color_id: null,
+        color_id: color_id ? Number(color_id) : null,
 
         availability_id: availability_id ? Number(availability_id) : null,
 
@@ -79,14 +79,14 @@ export const addProduct = async (req: Request, res: Response) => {
           })),
         },
 
-        images:
-          !variants?.length && images?.length
-            ? {
-                create: images.map((url: string) => ({
-                  url,
-                })),
-              }
-            : undefined,
+        images: images?.length
+          ? {
+              create: images.map((url: string, index: number) => ({
+                url,
+                sort_order: index,
+              })),
+            }
+          : undefined,
 
         stock:
           !variants?.length && quantity
@@ -203,6 +203,11 @@ export const addProduct = async (req: Request, res: Response) => {
         images: true,
 
         stock: true,
+        color: {
+          include: {
+            translations: true,
+          },
+        },
 
         product_variants: {
           include: {
@@ -684,6 +689,74 @@ export const updateProduct = async (req: Request, res: Response) => {
     console.log(JSON.stringify(variants, null, 2));
     console.log("VARIANT COUNT:", variants?.length);
     console.log("=======================================");
+    console.log("========== AUDIENCE UPDATE ==========");
+    console.log("RAW AUDIENCE IDS:", audience_ids);
+    console.log(
+      "NORMALIZED AUDIENCE IDS:",
+      Array.isArray(audience_ids)
+        ? audience_ids.map((id: any) => Number(id))
+        : audience_ids,
+    );
+    console.log("=====================================");
+
+    console.log("PRODUCT ID:", id);
+    const existingProduct = await prisma.product.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        code: true,
+      },
+    });
+
+    console.log("UPDATE PRODUCT ID:", id);
+    console.log("PRODUCT BEFORE UPDATE:", existingProduct);
+    const existingAudiences = await prisma.audience.findMany({
+      where: {
+        id: {
+          in: [3, 2, 1],
+        },
+      },
+      select: {
+        id: true,
+        code: true,
+      },
+    });
+
+    console.log("AUDIENCES IN DATABASE:", existingAudiences);
+    // -----------------------------------------
+    // VALIDATE AUDIENCE IDS
+    // -----------------------------------------
+
+    if (audience_ids !== undefined) {
+      if (!Array.isArray(audience_ids)) {
+        return res.status(400).json({
+          error: "audience_ids must be an array",
+        });
+      }
+
+      const ids = [...new Set(audience_ids.map(Number))];
+
+      const existingAudiences = await prisma.audience.findMany({
+        where: {
+          id: { in: ids },
+        },
+        select: {
+          id: true,
+        },
+      });
+
+      const validIds = existingAudiences.map((a) => a.id);
+
+      const invalidIds = ids.filter((id) => !validIds.includes(id));
+      if (invalidIds.length > 0) {
+        return res.status(400).json({
+          success: false,
+          message: "Some audience IDs do not exist",
+          invalidIds,
+          validIds,
+        });
+      }
+    }
     const product = await prisma.product.update({
       where: {
         id,
@@ -842,15 +915,21 @@ export const updateProduct = async (req: Request, res: Response) => {
         // AUDIENCES
         // -----------------------------------------
 
-        product_audiences: audience_ids
-          ? {
-              deleteMany: {},
+        product_audiences:
+          audience_ids !== undefined
+            ? {
+                deleteMany: {},
 
-              create: audience_ids.map((id: any) => ({
-                audience_id: Number(id),
-              })),
-            }
-          : undefined,
+                create: (Array.isArray(audience_ids) ? audience_ids : [])
+                  .map((id: any) => Number(id))
+                  .filter((id: number) => Number.isInteger(id) && id > 0)
+                  .map((id: number) => ({
+                    audience: {
+                      connect: { id },
+                    },
+                  })),
+              }
+            : undefined,
 
         // -----------------------------------------
         // HOME SECTIONS
@@ -974,12 +1053,15 @@ export const updateProduct = async (req: Request, res: Response) => {
                     : null,
 
                 images: {
-                  create: (variant.images || []).map(
-                    (url: string, index: number) => ({
-                      url,
+                  create: (variant.images ?? [])
+                    .map((image: any, index: number) => ({
+                      url: typeof image === "string" ? image : image?.url,
                       sort_order: index,
-                    }),
-                  ),
+                    }))
+                    .filter(
+                      (image: any) =>
+                        typeof image.url === "string" && image.url.trim(),
+                    ),
                 },
               })),
             }

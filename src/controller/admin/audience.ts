@@ -56,7 +56,13 @@ export const getAudiences = async (_req: Request, res: Response) => {
         created_at: "desc",
       },
     });
-
+    console.log(
+      "AUDIENCES FROM GET API:",
+      audiences.map((a) => ({
+        id: a.id,
+        code: a.code,
+      })),
+    );
     return res.status(200).json({
       success: true,
       data: audiences,
